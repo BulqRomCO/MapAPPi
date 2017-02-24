@@ -54,10 +54,11 @@
 
         <StackPanel x:Name="mapStack"  Grid.Column="1" Grid.Row="3">
             <Maps:MapControl
-                 x:Name="MapControl1"
+                 x:Name="JKLmap"
                  MapServiceToken="yxdffEuO5bMUnJ8WmmKR~TJMM6J-5G2qUihFfRMFSfQ~AjI7WnPIoqIr32u5piUZSyx4-YlEpk11IPbqP_CTlYXcP05mzhwigUi5a_hLShGZ"
                  Height="928"
-                 Margin="0,0,0,0" />
+                 Margin="0,0,0,0">
+            </Maps:MapControl>
         </StackPanel>
 
 

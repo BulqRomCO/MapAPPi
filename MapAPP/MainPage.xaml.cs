@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Maps;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
@@ -37,6 +39,32 @@ namespace MapAPP
         private void chooseBus_Click(object sender, RoutedEventArgs e)
         {
 
+
         }
-    }
+        private void AddMapIcon()
+        {
+            MapIcon forum = new MapIcon();
+            forum.Location = new Geopoint(new BasicGeoposition()
+            {
+                Latitude = 62.2417,
+                Longitude = 25.7473
+            });
+            forum.NormalizedAnchorPoint = new Point(0.5, 1.0);
+            forum.Title = "Forum";
+            JKLmap.MapElements.Add(forum);
+        }
+
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+        JKLmap.Center =
+            new Geopoint(new BasicGeoposition()
+            {
+                Latitude = 62.2417,
+                Longitude = 25.7473
+            });
+        JKLmap.ZoomLevel = 13;
+        JKLmap.LandmarksVisible = true;
+        }
+}
 }
