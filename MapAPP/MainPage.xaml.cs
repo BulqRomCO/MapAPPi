@@ -6,6 +6,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
@@ -65,11 +66,18 @@ namespace MapAPP
         private void OK_Click(object sender, RoutedEventArgs e)
         {
             if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
+            // show elements on map here
         }
 
         private void closeButton_Click(object sender, RoutedEventArgs e)
         {
             if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
+            // do nothing in this function
+        }
+
+        private void bus1_Click(object sender, RoutedEventArgs e)
+        {
+            Color lightlime = Color.FromArgb(1, 179, 255, 153);
         }
     }
 }

@@ -55,7 +55,7 @@
 
 
                 <StackPanel Grid.Column="0" Grid.Row="0">
-                    <Button x:Name="bus1" Content="1" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                    <Button x:Name="bus1" Content="1" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus1_Click"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Grid.Row="0">
