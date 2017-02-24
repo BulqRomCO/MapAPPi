@@ -28,25 +28,25 @@
         </Grid.ColumnDefinitions>
 
 
-        <StackPanel x:Name="nameStack"  Grid.Column="0" Grid.Row="0" Background="#e6e6e6" BorderThickness="0,0,2,2" BorderBrush="Black">
-            <TextBlock x:Name="title" TextWrapping="Wrap" Text="MapAPP" FontSize="60" TextAlignment="Center"/>
+        <StackPanel x:Name="nameStack"  Grid.Column="0" Grid.Row="0" Background="#b3b3b3" BorderThickness="0,0,2,2" BorderBrush="Black">
+            <TextBlock x:Name="title" TextWrapping="Wrap" Text="MapAPP" FontSize="80" TextAlignment="Center" FocusVisualPrimaryBrush="#FFEEDFDF" Foreground="#FF7A7A7A" FontFamily="PMingLiU-ExtB"/>
         </StackPanel>
 
 
-        <StackPanel x:Name="timeDateStack"  Grid.Column="1" Grid.Row="0" Background="#e6e6e6" BorderThickness="2,0,0,2" BorderBrush="Black">
-
+        <StackPanel x:Name="timeDateStack"  Grid.Column="1" Grid.Row="0" Background="#bfbfbf" BorderThickness="2,0,0,2" BorderBrush="Black">
+            <TextBlock Text="Tähän kellonaika ja päivämäärä!! " HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72"/>
         </StackPanel>
 
 
         <StackPanel x:Name="optionStack"  Grid.Column="0" Grid.Row="3" BorderThickness="0,2,2,0" BorderBrush="Black">
             <TextBlock x:Name="fromTextBox" TextWrapping="Wrap" Text="From:"/>
-            <TextBox x:Name="fromTextBlock" TextWrapping="Wrap" Text="|"/>
+            <TextBox x:Name="fromTextBlock" TextWrapping="Wrap" Text=""/>
             <TextBlock x:Name="destinationTextBox" TextWrapping="Wrap" Text="Destination:"/>
-            <TextBox x:Name="destinationBlock" TextWrapping="Wrap" Text="|"/>
+            <TextBox x:Name="destinationBlock" TextWrapping="Wrap" Text=""/>
             <TextBlock x:Name="dateTextBox" TextWrapping="Wrap" Text="Date:"/>
-            <DatePicker Height="27" Width="124" HorizontalAlignment="Center"/>
+            <DatePicker Height="27" Width="124" HorizontalAlignment="Center" FontFamily="OCR A Extended"/>
             <TextBlock x:Name="timeTextBox" TextWrapping="Wrap" Text="Time:"/>
-            <TimePicker Width="110" HorizontalAlignment="Center"/>
+            <TimePicker Width="110" HorizontalAlignment="Center" FontFamily="OCR A Extended"/>
             <Button x:Name="showButton" Content="Show" Margin="0,20,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="showButton_Click"/>
             <Button x:Name="chooseBus" Content="Choose Bus" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,50,0,0" Click="chooseBus_Click"/>
         </StackPanel>
@@ -56,7 +56,7 @@
             <Maps:MapControl
                  x:Name="JKLmap"
                  MapServiceToken="yxdffEuO5bMUnJ8WmmKR~TJMM6J-5G2qUihFfRMFSfQ~AjI7WnPIoqIr32u5piUZSyx4-YlEpk11IPbqP_CTlYXcP05mzhwigUi5a_hLShGZ"
-                 Height="928"
+                 Height="934"
                  Margin="0,0,0,0">
             </Maps:MapControl>
         </StackPanel>

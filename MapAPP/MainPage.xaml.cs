@@ -46,8 +46,9 @@ namespace MapAPP
             MapIcon forum = new MapIcon();
             forum.Location = new Geopoint(new BasicGeoposition()
             {
-                Latitude = 62.2417,
-                Longitude = 25.7473
+
+                Latitude = 62.2416403,
+                Longitude = 25.7474285
             });
             forum.NormalizedAnchorPoint = new Point(0.5, 1.0);
             forum.Title = "Forum";
