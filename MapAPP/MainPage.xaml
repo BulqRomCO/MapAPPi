@@ -5,9 +5,219 @@
     xmlns:local="using:MapAPP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps"
+    xmlns:bm="using:MapAPP"
+    >
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="#cccccc">
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="233*"/>
+            <RowDefinition Height="12*"/>
+        </Grid.RowDefinitions>
+
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <StackPanel x:Name="nameStack"  Grid.Column="0" Grid.Row="0" Background="#e6e6e6" BorderThickness="0,0,2,2" BorderBrush="Black">
+            <TextBlock x:Name="title" TextWrapping="Wrap" Text="MapAPP" FontSize="60" TextAlignment="Center"/>
+        </StackPanel>
+
+
+        <StackPanel x:Name="timeDateStack"  Grid.Column="1" Grid.Row="0" Background="#e6e6e6" BorderThickness="2,0,0,2" BorderBrush="Black">
+
+        </StackPanel>
+
+
+        <StackPanel x:Name="optionStack"  Grid.Column="0" Grid.Row="3" BorderThickness="0,2,2,0" BorderBrush="Black">
+            <TextBlock x:Name="fromTextBox" TextWrapping="Wrap" Text="From:"/>
+            <TextBox x:Name="fromTextBlock" TextWrapping="Wrap" Text="|"/>
+            <TextBlock x:Name="destinationTextBox" TextWrapping="Wrap" Text="Destination:"/>
+            <TextBox x:Name="destinationBlock" TextWrapping="Wrap" Text="|"/>
+            <TextBlock x:Name="dateTextBox" TextWrapping="Wrap" Text="Date:"/>
+            <DatePicker Height="27" Width="124" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="timeTextBox" TextWrapping="Wrap" Text="Time:"/>
+            <TimePicker Width="110" HorizontalAlignment="Center"/>
+            <Button x:Name="showButton" Content="Show" Margin="0,20,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="showButton_Click"/>
+            <Button x:Name="chooseBus" Content="Choose Bus" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,50,0,0" Click="chooseBus_Click"/>
+        </StackPanel>
+
+
+        <StackPanel x:Name="mapStack"  Grid.Column="1" Grid.Row="3">
+            <Maps:MapControl
+                 x:Name="MapControl1"
+                 MapServiceToken="yxdffEuO5bMUnJ8WmmKR~TJMM6J-5G2qUihFfRMFSfQ~AjI7WnPIoqIr32u5piUZSyx4-YlEpk11IPbqP_CTlYXcP05mzhwigUi5a_hLShGZ"
+                 Height="928"
+                 Margin="0,0,0,0" />
+        </StackPanel>
+
+
+        <StackPanel x:Name="toolbar1Stack"  Grid.Column="0" Grid.Row="4" Background="#b3b3b3" BorderThickness="0,2,0,0" BorderBrush="Black">
+
+        </StackPanel>
+
+
+        <StackPanel x:Name="toolbar2Stack"  Grid.Column="1" Grid.Row="4" Background="#b3b3b3" BorderThickness="0,2,0,0" BorderBrush="Black">
+
+        </StackPanel>
+
+        <Popup x:Name="popupWindow" Height="680" Width="400" Margin="0,150,0,0">
+            <Grid Background="Beige">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+
+                <StackPanel Grid.Column="0" Grid.Row="0">
+                    <Button x:Name="bus1" Content="1" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Grid.Row="0">
+                    <Button x:Name="bus2" Content="2" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Grid.Row="0">
+                    <Button x:Name="bus3" Content="3" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="3" Grid.Row="0">
+                    <Button x:Name="bus4" Content="4" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="1">
+                    <Button x:Name="bus5" Content="5" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="1">
+                    <Button x:Name="bus6" Content="6" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Grid.Row="1">
+                    <Button x:Name="bus7" Content="7" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="3" Grid.Row="1">
+                    <Button x:Name="bus8" Content="8" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="2">
+                    <Button x:Name="bus9" Content="9" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="2">
+                    <Button x:Name="bus10" Content="10" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Grid.Row="2">
+                    <Button x:Name="bus11" Content="11" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="3" Grid.Row="2">
+                    <Button x:Name="bus12" Content="12" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="3">
+                    <Button x:Name="bus13" Content="13" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="3">
+                    <Button x:Name="bus14" Content="14" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Grid.Row="3">
+                    <Button x:Name="bus15" Content="15" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="3" Grid.Row="3">
+                    <Button x:Name="bus16" Content="16" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="4">
+                    <Button x:Name="bus17" Content="17" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="4">
+                    <Button x:Name="bus18" Content="18" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Grid.Row="4">
+                    <Button x:Name="bus19" Content="19" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="3" Grid.Row="4">
+                    <Button x:Name="bus20" Content="20" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="5">
+                    <Button x:Name="bus21" Content="21" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="5">
+                    <Button x:Name="bus22" Content="22" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Grid.Row="5">
+                    <Button x:Name="bus23" Content="23" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="3" Grid.Row="5">
+                    <Button x:Name="bus24" Content="24" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="6">
+                    <Button x:Name="bus25" Content="25" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="6">
+                    <Button x:Name="bus26" Content="26" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Grid.Row="6">
+                    <Button x:Name="bus27" Content="27" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="3" Grid.Row="6">
+                    <Button x:Name="bus28" Content="28" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="7">
+                    <Button x:Name="bus29" Content="29" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="7">
+                    <Button x:Name="bus30" Content="30" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Grid.Row="7">
+                    <Button x:Name="bus31" Content="31" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="3" Grid.Row="7">
+                    <Button x:Name="bus32" Content="32" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="8">
+                    <Button x:Name="bus33" Content="33" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="8">
+                    <Button x:Name="bus34" Content="34" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Grid.Row="8">
+                    <Button x:Name="bus35" Content="35" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="3" Grid.Row="8">
+                    <Button x:Name="bus36" Content="36" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="9">
+                    <Button x:Name="bus37" Content="37" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="9">
+                    <Button x:Name="bus38" Content="38" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Grid.Row="9">
+                    <Button x:Name="bus39" Content="39" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="3" Grid.Row="9">
+                    <Button x:Name="bus40" Content="40" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+
+            </Grid>
+        </Popup>
+
 
     </Grid>
+
 </Page>
