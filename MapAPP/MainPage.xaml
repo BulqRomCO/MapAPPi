@@ -55,125 +55,125 @@
 
 
                 <StackPanel Grid.Column="0" Grid.Row="0">
-                    <Button x:Name="bus1" Content="1" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus1_Click"/>
+                    <Button x:Name="bus1" Content="1" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click" Background="AliceBlue"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Grid.Row="0">
-                        <Button x:Name="bus2" Content="2" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus2" Content="2" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="2" Grid.Row="0">
-                        <Button x:Name="bus3" Content="3" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus3" Content="3" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="3" Grid.Row="0">
-                        <Button x:Name="bus4" Content="4" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus4" Content="4" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="0" Grid.Row="1">
-                        <Button x:Name="bus5" Content="5" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus5" Content="5" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Grid.Row="1">
-                        <Button x:Name="bus6" Content="6" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus6" Content="6" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="2" Grid.Row="1">
-                        <Button x:Name="bus7" Content="7" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus7" Content="7" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="3" Grid.Row="1">
-                        <Button x:Name="bus8" Content="8" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus8" Content="8" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="0" Grid.Row="2">
-                        <Button x:Name="bus9" Content="9" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus9" Content="9" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Grid.Row="2">
-                        <Button x:Name="bus10" Content="10" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus10" Content="10" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="2" Grid.Row="2">
-                        <Button x:Name="bus11" Content="11" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus11" Content="11" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="3" Grid.Row="2">
-                        <Button x:Name="bus12" Content="12" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus12" Content="12" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="0" Grid.Row="3">
-                        <Button x:Name="bus13" Content="13" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus13" Content="13" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Grid.Row="3">
-                        <Button x:Name="bus14" Content="14" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus14" Content="14" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="2" Grid.Row="3">
-                        <Button x:Name="bus15" Content="15" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus15" Content="15" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="3" Grid.Row="3">
-                        <Button x:Name="bus16" Content="16" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus16" Content="16" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="0" Grid.Row="4">
-                        <Button x:Name="bus17" Content="17" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus17" Content="17" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Grid.Row="4">
-                        <Button x:Name="bus18" Content="18" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus18" Content="18" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="2" Grid.Row="4">
-                        <Button x:Name="bus19" Content="19" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus19" Content="19" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="3" Grid.Row="4">
-                        <Button x:Name="bus20" Content="20" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus20" Content="20" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="0" Grid.Row="5">
-                        <Button x:Name="bus21" Content="21" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus21" Content="21" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Grid.Row="5">
-                        <Button x:Name="bus22" Content="22" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus22" Content="22" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="2" Grid.Row="5">
-                        <Button x:Name="bus23" Content="23" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus23" Content="23" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="3" Grid.Row="5">
-                        <Button x:Name="bus24" Content="24" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus24" Content="24" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="0" Grid.Row="6">
-                        <Button x:Name="bus25" Content="25" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus25" Content="25" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Grid.Row="6">
-                        <Button x:Name="bus26" Content="26" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus26" Content="26" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="2" Grid.Row="6">
-                        <Button x:Name="bus27" Content="27" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus27" Content="27" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="3" Grid.Row="6">
-                        <Button x:Name="bus28" Content="28" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus28" Content="28" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="0" Grid.Row="7">
-                        <Button x:Name="bus29" Content="29" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus29" Content="29" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Grid.Row="7">
-                        <Button x:Name="bus30" Content="30" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus30" Content="30" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="2" Grid.Row="7">
-                        <Button x:Name="bus31" Content="31" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus31" Content="31" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="3" Grid.Row="7">
-                        <Button x:Name="bus32" Content="32" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus32" Content="32" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="0" Grid.Row="8">
-                        <Button x:Name="bus33" Content="33" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus33" Content="33" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Grid.Row="8">
-                        <Button x:Name="bus34" Content="34" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus34" Content="34" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="2" Grid.Row="8">
-                        <Button x:Name="bus35" Content="35" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus35" Content="35" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="3" Grid.Row="8">
-                        <Button x:Name="bus36" Content="36" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus36" Content="36" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="0" Grid.Row="9">
-                        <Button x:Name="bus37" Content="37" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus37" Content="37" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Grid.Row="9">
-                        <Button x:Name="bus38" Content="38" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus38" Content="38" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="2" Grid.Row="9">
-                        <Button x:Name="bus39" Content="39" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus39" Content="39" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="3" Grid.Row="9">
-                        <Button x:Name="bus40" Content="40" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2"/>
+                        <Button x:Name="bus40" Content="40" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Black" BorderThickness="2" Click="bus_Click"/>
                 </StackPanel>
                 <StackPanel Grid.Column="0" Grid.Row="10">
                         <Button x:Name="okButton" Content="OK" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="OK_Click" BorderBrush="Black" BorderThickness="2"/>

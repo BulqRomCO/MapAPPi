@@ -25,6 +25,9 @@ namespace MapAPP
     /// </summary>
     public sealed partial class MainPage : Page
     {
+
+        public object BackColor { get; private set; }
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -75,9 +78,16 @@ namespace MapAPP
             // do nothing in this function
         }
 
-        private void bus1_Click(object sender, RoutedEventArgs e)
+
+
+
+        private void bus_Click(object sender, RoutedEventArgs e)
         {
-            Color lightlime = Color.FromArgb(1, 179, 255, 153);
+            //if (this.BackColor == Color.FromArgb(0,255, 255, 255))
+                this.BackColor = new SolidColorBrush(Color.FromArgb(1,179, 255, 153));
+            //else
+              //  this.BackColor = Color.FromArgb();
+
         }
     }
 }
