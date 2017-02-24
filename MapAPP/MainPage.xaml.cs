@@ -29,16 +29,10 @@ namespace MapAPP
             this.InitializeComponent();
         }
 
-        private void showButton_Click(object sender, RoutedEventArgs e)
-        {
-            string PopupName = "popUp";
-            string PopupSettings = "height=900,width=1000,top=100,left=100,scrollbars=no,resizable=no,toolbar=no,menubar=no,location=no,status=yes";
-
-        }
 
         private void chooseBus_Click(object sender, RoutedEventArgs e)
         {
-
+            if (!popupWindow.IsOpen) { popupWindow.IsOpen = true; }
 
         }
         private void AddMapIcon()
@@ -67,5 +61,15 @@ namespace MapAPP
         JKLmap.ZoomLevel = 13;
         JKLmap.LandmarksVisible = true;
         }
-}
+
+        private void OK_Click(object sender, RoutedEventArgs e)
+        {
+            if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
+        }
+
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
+        }
+    }
 }
