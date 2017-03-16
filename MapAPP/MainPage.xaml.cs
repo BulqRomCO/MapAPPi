@@ -107,8 +107,8 @@ namespace MapAPP
 
         private void GenerateStopsData()
         {
-            stops.Add(new BussStops { StopName = "Pupari", StopID = 6000 });
-            stops.Add(new BussStops { StopName = "Hill Matthew", StopID = 6001 });
+            stops.Add(new BussStops { StopName = "Pupari", StopID = 6000, Latitude = "100", LonTitude = "120"});
+       
 
         }
         // Tallenetaan oliot-tiedostoon
@@ -119,10 +119,10 @@ namespace MapAPP
                 // open/create a file
 
                 StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-                StorageFile employeesFile = await storageFolder.CreateFileAsync("stops.dat", CreationCollisionOption.OpenIfExists);
+                StorageFile stopsfile = await storageFolder.CreateFileAsync("stops.txt", CreationCollisionOption.OpenIfExists);
 
                 // save employees to disk
-                Stream stream = await employeesFile.OpenStreamForWriteAsync();
+                Stream stream = await stopsfile.OpenStreamForWriteAsync();
                 DataContractSerializer serializer = new DataContractSerializer(typeof(List<BussStops>));
                 serializer.WriteObject(stream, stops);
                 await stream.FlushAsync();
@@ -141,7 +141,7 @@ namespace MapAPP
             {
                 // find a file
                 StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-                Stream stream = await storageFolder.OpenStreamForReadAsync("stops.dat");
+                Stream stream = await storageFolder.OpenStreamForReadAsync("stops.txt");
 
                 // is it empty
                 if (stream == null) stops = new List<BussStops>();
@@ -170,7 +170,7 @@ namespace MapAPP
             GenerateStopsData();
             SaveStopsInfo();
             ReadStops();
-            ShowStops();
+            
         }
     }
 }
