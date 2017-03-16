@@ -59,14 +59,14 @@ namespace MapAPP
         // OLETUS GPS PAIKKA KUN KARTTA LADATAAN
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-        JKLmap.Center =
-            new Geopoint(new BasicGeoposition()
-            {
-                Latitude = 62.2417,
-                Longitude = 25.7473
-            });
-        JKLmap.ZoomLevel = 13;
-        JKLmap.LandmarksVisible = true;
+            JKLmap.Center =
+                new Geopoint(new BasicGeoposition()
+                {
+                    Latitude = 62.2417,
+                    Longitude = 25.7473
+                });
+            JKLmap.ZoomLevel = 13;
+            JKLmap.LandmarksVisible = true;
         }
 
         private void OK_Click(object sender, RoutedEventArgs e)
@@ -81,7 +81,7 @@ namespace MapAPP
             // do nothing in this function
         }
 
-        SolidColorBrush onbusclick = new SolidColorBrush(Color.FromArgb(1,179, 255, 153));
+        SolidColorBrush onbusclick = new SolidColorBrush(Color.FromArgb(1, 179, 255, 153));
 
         void bus_Click(object sender, RoutedEventArgs e)
         {
@@ -95,8 +95,34 @@ namespace MapAPP
                 btn.Background = null;
             }
 
-            }
-        
+        }
 
+        // TÄHÄN VILLEN OSUUS TIEDOSTOJEN LUKEMINEN KIRJOITTAMINEN
+        private async void SaveStopsInfo()
+        {
+            try
+            {
+                // open/create a file
+                StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+                StorageFile employeesFile = await storageFolder.CreateFileAsync("stops.dat", CreationCollisionOption.OpenIfExists);
+
+                // save employees to disk
+                Stream stream = await employeesFile.OpenStreamForWriteAsync();
+                DataContractSerializer serializer = new DataContractSerializer(typeof(List<BussStops>));
+                BussStops stops = new BussStops();
+                serializer.WriteObject(stream, stops);
+                await stream.FlushAsync();
+                stream.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Following exception has happend (writing): " + ex.ToString());
+            }
+        }
+
+        private void savestopdata_Click(object sender, RoutedEventArgs e)
+        {
+            SaveStopsInfo();
         }
     }
+}
