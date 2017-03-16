@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MapAPP
 {
-    class BussStops
+    public class BussStops
     {
         public int StopID { get; set; }
         public string StopName { get; set; }
