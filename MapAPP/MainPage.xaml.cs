@@ -56,7 +56,7 @@ namespace MapAPP
             JKLmap.MapElements.Add(forum);
         }
 
-
+        // OLETUS GPS PAIKKA KUN KARTTA LADATAAN
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         JKLmap.Center =
