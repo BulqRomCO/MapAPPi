@@ -82,42 +82,25 @@ namespace MapAPP
         }
 
 
-
+        SolidColorBrush onbusclick = new SolidColorBrush(Color.FromArgb(1,179, 255, 153));
+        SolidColorBrush origcolor = ;
 
         void bus_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
-            btn.Background = new SolidColorBrush(Color.FromArgb(1,179, 255, 153));
 
-            }
-
-            // TÄHÄN ALLE TULEE TIETOJEN LUKI / KIRJOITUS
-        
-        // LUE PYSÄKKIEN TIEDOT LINKKIDATASTA
-        
-        // LUO TIETOJEN POHJALTA OLIOT
-        private async void SaveStopsInfo()
-        {
-            try
+            if (Background == origcolor)
             {
-                // Avaa/luo tiedosto pysäkeiden tiedoille
-                StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-                StorageFile employeesFile = await storageFolder.CreateFileAsync("stops.dat", CreationCollisionOption.OpenIfExists);
-
-                // Tallennetaan pysäkkioliot levylle
-                Stream stream = await employeesFile.OpenStreamForWriteAsync();
-                DataContractSerializer serializer = new DataContractSerializer(typeof(List<BussStops>));
-                BussStops stops = new BussStops();
-                serializer.WriteObject(stream, stops);
-                await stream.FlushAsync();
-                stream.Dispose();
+                btn.Background = onbusclick;
             }
-            catch (Exception ex)
+            else
             {
-                Debug.WriteLine("Exception happened: " + ex.ToString());
+                btn.Background = origcolor;
             }
+
+            }
+
+
         }
-        // TALLENNA OLIODATA TIEDOSTOON
-
     }
 }
