@@ -107,10 +107,28 @@ namespace MapAPP
         // TÄHÄN VILLEN OSUUS TIEDOSTOJEN LUKEMINEN KIRJOITTAMINEN
         private List<MapAPP.BussStops> stops = new List<MapAPP.BussStops>();
 
-        private void GenerateStopsData()
+        private async void GenerateStopsData()
         {
-            stops.Add(new BussStops { StopName = "Pupari", StopID = 6000, Latitude = 62.2416403, LonTitude = 25.7474285 });
-            stops.Add(new BussStops { StopName = "Jupari", StopID = 6000, Latitude = 62.236496, LonTitude = 25.723306 });
+            // KOKEILLAAN TIEDOSTON LUKUA ETTÄ SAADAAN PYSÄKKIEN GPS-TIEDOT
+
+            try
+            {
+                //StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+                StorageFolder storageFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                string PathToGPSFile = @"Linkkidata\stops.txt";
+                StorageFile sampleFile = await storageFolder.GetFileAsync(PathToGPSFile);
+                string text = await FileIO.ReadTextAsync(sampleFile);
+                stoptextblock.Text = text;
+            }
+
+            catch (Exception e)
+            {
+                Debug.Write("Virhe:", e.Message);
+            }
+         
+            
+        stops.Add(new BussStops { StopName = "Pupari", StopID = 6000, Latitude = 62.2416403, LonTitude = 25.7474285 });
+        stops.Add(new BussStops { StopName = "Jupari", StopID = 6000, Latitude = 62.236496, LonTitude = 25.723306 });
 
 
         }
