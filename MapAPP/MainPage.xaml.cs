@@ -92,7 +92,7 @@ namespace MapAPP
             }
 
 
-        }
+        
         // LUE PYSÄKKIEN TIEDOT LINKKIDATASTA
         
         // LUO TIETOJEN POHJALTA OLIOT

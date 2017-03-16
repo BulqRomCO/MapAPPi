@@ -110,6 +110,15 @@
     <None Include="MapAPP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Linkkidata\agency.txt" />
+    <Content Include="Linkkidata\calendar.txt" />
+    <Content Include="Linkkidata\calendar_dates.txt" />
+    <Content Include="Linkkidata\contracts.txt" />
+    <Content Include="Linkkidata\routes.txt" />
+    <Content Include="Linkkidata\stops.txt" />
+    <Content Include="Linkkidata\stop_times.txt" />
+    <Content Include="Linkkidata\translations.txt" />
+    <Content Include="Linkkidata\trips.txt" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
