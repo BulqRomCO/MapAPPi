@@ -81,21 +81,18 @@ namespace MapAPP
             // do nothing in this function
         }
 
-
         SolidColorBrush onbusclick = new SolidColorBrush(Color.FromArgb(1,179, 255, 153));
-        SolidColorBrush origcolor = ;
 
         void bus_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
-
-            if (Background == origcolor)
+            if (Background == null)
             {
                 btn.Background = onbusclick;
             }
             else
             {
-                btn.Background = origcolor;
+                btn.Background = null;
             }
 
             }
@@ -103,4 +100,3 @@ namespace MapAPP
 
         }
     }
-}
