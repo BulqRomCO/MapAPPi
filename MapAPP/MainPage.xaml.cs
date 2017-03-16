@@ -29,7 +29,7 @@ namespace MapAPP
     public sealed partial class MainPage : Page
     {
 
-        public object BackColor { get; private set; }
+        // public object BackColor { get; set; }
 
         public MainPage()
         {
@@ -96,7 +96,7 @@ namespace MapAPP
             }
 
             }
-        nakki;
+        
 
         }
     }
