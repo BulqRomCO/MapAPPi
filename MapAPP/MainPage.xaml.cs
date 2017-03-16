@@ -84,6 +84,7 @@ namespace MapAPP
         }
 
         SolidColorBrush onbusclick = new SolidColorBrush(Color.FromArgb(1,179, 255, 153));
+        SolidColorBrush origcolor;
 
         void bus_Click(object sender, RoutedEventArgs e)
         {
