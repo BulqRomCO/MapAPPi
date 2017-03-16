@@ -103,18 +103,27 @@ namespace MapAPP
         }
 
         // TÄHÄN VILLEN OSUUS TIEDOSTOJEN LUKEMINEN KIRJOITTAMINEN
+        private List<MapAPP.BussStops> stops = new List<MapAPP.BussStops>();
+
+        private void GenerateStopsData()
+        {
+            stops.Add(new BussStops { StopName = "Pupari", StopID = 6000, Latitude = "100", LonTitude = "120"});
+       
+
+        }
+        // Tallenetaan oliot-tiedostoon
         private async void SaveStopsInfo()
         {
             try
             {
                 // open/create a file
+
                 StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-                StorageFile employeesFile = await storageFolder.CreateFileAsync("stops.dat", CreationCollisionOption.OpenIfExists);
+                StorageFile stopsfile = await storageFolder.CreateFileAsync("stops.txt", CreationCollisionOption.OpenIfExists);
 
                 // save employees to disk
-                Stream stream = await employeesFile.OpenStreamForWriteAsync();
+                Stream stream = await stopsfile.OpenStreamForWriteAsync();
                 DataContractSerializer serializer = new DataContractSerializer(typeof(List<BussStops>));
-                BussStops stops = new BussStops();
                 serializer.WriteObject(stream, stops);
                 await stream.FlushAsync();
                 stream.Dispose();
@@ -124,10 +133,44 @@ namespace MapAPP
                 Debug.WriteLine("Following exception has happend (writing): " + ex.ToString());
             }
         }
+        // Save stops data napin funktio joka kutsuu SaveStopsInfo funktiota ja kirjoittaa pysäkkien tiedot tiedostoon stops.dat
+     
+        private async void ReadStops()
+        {
+            try
+            {
+                // find a file
+                StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+                Stream stream = await storageFolder.OpenStreamForReadAsync("stops.txt");
 
+                // is it empty
+                if (stream == null) stops = new List<BussStops>();
+
+                // read data
+                DataContractSerializer serializer = new DataContractSerializer(typeof(List<BussStops>));
+                stops = (List<BussStops>)serializer.ReadObject(stream);
+                ShowStops();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Following exception has happend (reading): " + ex.ToString());
+            }
+
+        }
+        private void ShowStops()
+        {
+            stoptextblock.Text = "Stops:" + Environment.NewLine;
+            foreach (BussStops stop in stops)
+            {
+                stoptextblock.Text += stop.StopID + " " + stop.StopName + Environment.NewLine;
+            }
+        }
         private void savestopdata_Click(object sender, RoutedEventArgs e)
         {
+            GenerateStopsData();
             SaveStopsInfo();
+            ReadStops();
+            
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
