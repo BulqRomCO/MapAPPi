@@ -203,7 +203,7 @@
             <Button x:Name="showButton" Content="Show" Margin="0,20,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
             <Button x:Name="chooseBus" Content="Choose Bus" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,50,0,0" Click="chooseBus_Click"/>
             <Button x:Name="savestopdata" Content="Save stop data" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,50,0,0" Click="savestopdata_Click"/>
-            <ScrollViewer Height="500">
+            <ScrollViewer Height="352">
                 <StackPanel>
                     <TextBlock x:Name="stoptextblock" Text=""/>
                 </StackPanel>
