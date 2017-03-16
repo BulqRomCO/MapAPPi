@@ -186,7 +186,7 @@
         </Popup>
         </StackPanel>
         <StackPanel x:Name="timeDateStack"  Grid.Column="1" Grid.Row="0" Background="#bfbfbf" BorderThickness="2,0,0,2" BorderBrush="Black">
-            <TextBlock Text="Tähän kellonaika ja päivämäärä!! " HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72"/>
+            <TextBlock x:Name="Time" Text="TÄHÄHN AIKA" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
 
 
@@ -196,7 +196,7 @@
             <TextBlock x:Name="destinationTextBox" TextWrapping="Wrap" Text="Destination:"/>
             <TextBox x:Name="destinationBlock" TextWrapping="Wrap" Text=""/>
             <TextBlock x:Name="dateTextBox" TextWrapping="Wrap" Text="Date:"/>
-            <DatePicker Height="27" Width="124" HorizontalAlignment="Center" FontFamily="OCR A Extended"/>
+            <CalendarDatePicker Height="27" Width="124" HorizontalAlignment="Center" FontFamily="OCR A Extended"/>
             <TextBlock x:Name="timeTextBox" TextWrapping="Wrap" Text="Time:"/>
             <TimePicker Width="110" HorizontalAlignment="Center" FontFamily="OCR A Extended"/>
             <Button x:Name="showButton" Content="Show" Margin="0,20,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
@@ -216,7 +216,7 @@
 
 
         <StackPanel x:Name="toolbar1Stack"  Grid.Column="0" Grid.Row="4" Background="#b3b3b3" BorderThickness="0,2,0,0" BorderBrush="Black">
-
+            <Button Background="Red" x:Name="exitButton" Content="Exit" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding=" 0,12,0,12" Click="exitButton_Click"/>
         </StackPanel>
 
 
