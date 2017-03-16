@@ -9,6 +9,7 @@ using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.Storage.Streams;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -28,6 +29,7 @@ namespace MapAPP
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private Windows.Storage.StorageFile sampleFile;
         // public object BackColor { get; set; }
 
         public MainPage()
@@ -107,8 +109,9 @@ namespace MapAPP
 
         private void GenerateStopsData()
         {
-            stops.Add(new BussStops { StopName = "Pupari", StopID = 6000, Latitude = "100", LonTitude = "120"});
-       
+            stops.Add(new BussStops { StopName = "Pupari", StopID = 6000, Latitude = 62.2416403, LonTitude = 25.7474285 });
+            stops.Add(new BussStops { StopName = "Jupari", StopID = 6000, Latitude = 62.236496, LonTitude = 25.723306 });
+
 
         }
         // Tallenetaan oliot-tiedostoon
@@ -163,13 +166,23 @@ namespace MapAPP
             foreach (BussStops stop in stops)
             {
                 stoptextblock.Text += stop.StopID + " " + stop.StopName + Environment.NewLine;
+                BasicGeoposition snPosition = new BasicGeoposition() { Latitude = stop.Latitude, Longitude = stop.LonTitude };
+                Geopoint snPoint = new Geopoint(snPosition);
+                // Luodaan uusi stop 
+                MapIcon stopoint = new MapIcon();
+                stopoint.Location = snPoint;
+                stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
+                stopoint.Title = stop.StopName;
+                // ALLA VOIT VAIHTAA BUSSIN KUVAN
+                // stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/StoreLogo.png"));
+                JKLmap.MapElements.Add(stopoint);
+
             }
         }
         private void savestopdata_Click(object sender, RoutedEventArgs e)
         {
             GenerateStopsData();
-            SaveStopsInfo();
-            ReadStops();
+            ShowStops();
             
         }
     }

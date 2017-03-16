@@ -10,7 +10,7 @@ namespace MapAPP
     {
         public int StopID { get; set; }
         public string StopName { get; set; }
-        public string LonTitude { get; set; }
-        public string Latitude { get; set; }
+        public double LonTitude { get; set; }
+        public double Latitude { get; set; }
     }
 }
