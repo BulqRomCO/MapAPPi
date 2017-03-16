@@ -91,7 +91,7 @@ namespace MapAPP
 
             }
 
-
+            // TÄHÄN ALLE TULEE TIETOJEN LUKI / KIRJOITUS
         
         // LUE PYSÄKKIEN TIEDOT LINKKIDATASTA
         
@@ -100,20 +100,21 @@ namespace MapAPP
         {
             try
             {
-                // open/create a file
+                // Avaa/luo tiedosto pysäkeiden tiedoille
                 StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
                 StorageFile employeesFile = await storageFolder.CreateFileAsync("stops.dat", CreationCollisionOption.OpenIfExists);
 
-                // save employees to disk
+                // Tallennetaan pysäkkioliot levylle
                 Stream stream = await employeesFile.OpenStreamForWriteAsync();
                 DataContractSerializer serializer = new DataContractSerializer(typeof(List<BussStops>));
+                BussStops stops = new BussStops();
                 serializer.WriteObject(stream, stops);
                 await stream.FlushAsync();
                 stream.Dispose();
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Following exception has happend (writing): " + ex.ToString());
+                Debug.WriteLine("Exception happened: " + ex.ToString());
             }
         }
         // TALLENNA OLIODATA TIEDOSTOON
