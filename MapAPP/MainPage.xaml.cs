@@ -28,7 +28,6 @@ namespace MapAPP
     /// </summary>
     public sealed partial class MainPage : Page
     {
-
         // public object BackColor { get; set; }
 
         public MainPage()
@@ -69,30 +68,36 @@ namespace MapAPP
             JKLmap.LandmarksVisible = true;
         }
 
+
+
         private void OK_Click(object sender, RoutedEventArgs e)
         {
             if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
             // show elements on map here
         }
 
-        private void closeButton_Click(object sender, RoutedEventArgs e)
+        private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
+            
             if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
             // do nothing in this function
         }
 
-        SolidColorBrush onbusclick = new SolidColorBrush(Color.FromArgb(1, 179, 255, 153));
+        SolidColorBrush onbusclick = new SolidColorBrush(Color.FromArgb(1,179, 255, 153));
+        SolidColorBrush origcolor;
 
         void bus_Click(object sender, RoutedEventArgs e)
         {
             Button btn = sender as Button;
-            if (Background == null)
+               
+            if ((SolidColorBrush)btn.Background == onbusclick)
             {
-                btn.Background = onbusclick;
+                btn.Background = origcolor;
             }
             else
             {
-                btn.Background = null;
+                origcolor = (SolidColorBrush)btn.Background;
+                btn.Background = onbusclick;
             }
 
         }
