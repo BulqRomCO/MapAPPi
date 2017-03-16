@@ -84,12 +84,13 @@ namespace MapAPP
 
 
 
-        private void bus_Click(object sender, RoutedEventArgs e)
+        void bus_Click(object sender, RoutedEventArgs e)
         {
-            //if (this.BackColor == Color.FromArgb(0,255, 255, 255))
-                this.BackColor = new SolidColorBrush(Color.FromArgb(1,179, 255, 153));
-            //else
-              //  this.BackColor = Color.FromArgb();
+            Button btn = sender as Button;
+            btn.Background = new SolidColorBrush(Color.FromArgb(1,179, 255, 153));
+
+            }
+
 
         }
         // LUE PYSÄKKIEN TIEDOT LINKKIDATASTA
