@@ -108,7 +108,13 @@ namespace MapAPP
         private void GenerateStopsData()
         {
             stops.Add(new BussStops { StopName = "Pupari", StopID = 6000, Latitude = "100", LonTitude = "120"});
-       
+            stops.Add(new BussStops { StopName = "Pupadsadri", StopID = 6098000, Latitude = "100", LonTitude = "120" });
+            stops.Add(new BussStops { StopName = "Pupafgfrgrri", StopID = 6053600, Latitude = "100", LonTitude = "120" });
+            stops.Add(new BussStops { StopName = "Puphrrhari", StopID = 6012400, Latitude = "100", LonTitude = "120" });
+            stops.Add(new BussStops { StopName = "Pupyregari", StopID = 600430, Latitude = "100", LonTitude = "120" });
+            stops.Add(new BussStops { StopName = "Pupadfhdbri", StopID = 603100, Latitude = "100", LonTitude = "120" });
+            stops.Add(new BussStops { StopName = "Puphdfgdgari", StopID = 60100, Latitude = "100", LonTitude = "120" });
+
 
         }
         // Tallenetaan oliot-tiedostoon
@@ -169,7 +175,7 @@ namespace MapAPP
         {
             GenerateStopsData();
             SaveStopsInfo();
-            ReadStops();
+            ShowStops();
             
         }
 
