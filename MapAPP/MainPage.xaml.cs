@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Runtime.Serialization;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -89,5 +92,30 @@ namespace MapAPP
               //  this.BackColor = Color.FromArgb();
 
         }
+        // LUE PYSÄKKIEN TIEDOT LINKKIDATASTA
+        
+        // LUO TIETOJEN POHJALTA OLIOT
+        private async void SaveStopsInfo()
+        {
+            try
+            {
+                // open/create a file
+                StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+                StorageFile employeesFile = await storageFolder.CreateFileAsync("stops.dat", CreationCollisionOption.OpenIfExists);
+
+                // save employees to disk
+                Stream stream = await employeesFile.OpenStreamForWriteAsync();
+                DataContractSerializer serializer = new DataContractSerializer(typeof(List<BussStops>));
+                serializer.WriteObject(stream, stops);
+                await stream.FlushAsync();
+                stream.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Following exception has happend (writing): " + ex.ToString());
+            }
+        }
+        // TALLENNA OLIODATA TIEDOSTOON
+
     }
 }
