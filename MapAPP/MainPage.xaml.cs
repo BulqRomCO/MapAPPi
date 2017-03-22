@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -117,8 +118,48 @@ namespace MapAPP
                 StorageFolder storageFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
                 string PathToGPSFile = @"Linkkidata\stops.txt";
                 StorageFile sampleFile = await storageFolder.GetFileAsync(PathToGPSFile);
-                string text = await FileIO.ReadTextAsync(sampleFile);
-                stoptextblock.Text = text;
+                // string text = await FileIO.ReadTextAsync(sampleFile);
+                // Luetaan tiedostosta kaikki rivit yksitellen
+                IList<string> pys = await FileIO.ReadLinesAsync(sampleFile);
+                
+               
+                // REGEX TOIMII HYVIN TIEDOSTON SPLITTAAMISEEN
+                Regex reg = new Regex("\"([^\"]*?)\"");
+
+                List<string> parsed_gps = new List<string>();
+                int lines = 0;
+                foreach (string text in pys)
+                {
+                    var matches = reg.Matches(text);
+                    foreach (Match match in matches)
+                    {
+                        var theData = match.Groups[1].Value;
+                        parsed_gps.Add(theData);
+                    }
+                    lines++;
+                }
+                Debug.Write(parsed_gps.Count);
+                Debug.Write("Pysäkkejä" + lines);
+                Debug.Write("GPS TIETO " + parsed_gps[6]);
+
+
+                /*
+              for(int i = 0; i < text.Length; i++) {
+                    stops.Add(new BussStops
+                    {
+                        StopName = parsed_gps[2],
+                        StopID = Int32.Parse(parsed_gps[0]),
+                        Latitude = Double.Parse(parsed_gps[4]),
+                        LonTitude = Double.Parse(parsed_gps[5])
+                        
+                    });
+                  
+                }*/
+               
+                
+              
+               
+                
             }
 
             catch (Exception e)
@@ -170,6 +211,7 @@ namespace MapAPP
                 // read data
                 DataContractSerializer serializer = new DataContractSerializer(typeof(List<BussStops>));
                 stops = (List<BussStops>)serializer.ReadObject(stream);
+                // älä näytä vielä pysäkkejä koska prossu 100%
                 ShowStops();
             }
             catch (Exception ex)
@@ -183,7 +225,9 @@ namespace MapAPP
             stoptextblock.Text = "Stops:" + Environment.NewLine;
             foreach (BussStops stop in stops)
             {
+                Debug.Write(stop.ToString());
                 stoptextblock.Text += stop.StopID + " " + stop.StopName + Environment.NewLine;
+                Debug.Write(stop.Latitude + stop.LonTitude);
                 BasicGeoposition snPosition = new BasicGeoposition() { Latitude = stop.Latitude, Longitude = stop.LonTitude };
                 Geopoint snPoint = new Geopoint(snPosition);
                 // Luodaan uusi stop 
@@ -200,13 +244,18 @@ namespace MapAPP
         private void savestopdata_Click(object sender, RoutedEventArgs e)
         {
             GenerateStopsData();
-            ShowStops();
+            //ShowStops();
             
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();
+        }
+
+        private void stopsonmap_Click(object sender, RoutedEventArgs e)
+        {
+            ShowStops();
         }
     }
 
