@@ -30,7 +30,7 @@ namespace MapAPP
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private Windows.Storage.StorageFile sampleFile;
+        
         // public object BackColor { get; set; }
 
         public MainPage()
@@ -44,21 +44,7 @@ namespace MapAPP
             if (!popupWindow.IsOpen) { popupWindow.IsOpen = true; }
 
         }
-        private void AddMapIcon()
-        {
-            MapIcon forum = new MapIcon();
-            forum.Location = new Geopoint(new BasicGeoposition()
-            {
-
-                Latitude = 62.2416403,
-                Longitude = 25.7474285
-            });
-            forum.NormalizedAnchorPoint = new Point(0.5, 1.0);
-            forum.Title = "Forum";
-            JKLmap.MapElements.Add(forum);
-        }
-
-        // OLETUS GPS PAIKKA KUN KARTTA LADATAAN
+        // Kun kartta ladataan oletus GPS paikka on JKL koordinaatit !
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             JKLmap.Center =
@@ -104,31 +90,33 @@ namespace MapAPP
             }
 
         }
-
-        // TÄHÄN VILLEN OSUUS TIEDOSTOJEN LUKEMINEN KIRJOITTAMINEN
         private List<MapAPP.BussStops> stops = new List<MapAPP.BussStops>();
-
         private async void GenerateStopsData()
         {
-            // KOKEILLAAN TIEDOSTON LUKUA ETTÄ SAADAAN PYSÄKKIEN GPS-TIEDOT
-
             try
             {
-                //StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+                // Avaa paikallinen kansio missä on asennettu tämä softa
                 StorageFolder storageFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                // Linkkidatan sijainti 
                 string PathToGPSFile = @"Linkkidata\stops.txt";
-                StorageFile sampleFile = await storageFolder.GetFileAsync(PathToGPSFile);
-                // string text = await FileIO.ReadTextAsync(sampleFile);
+                StorageFile linkkitieto = await storageFolder.GetFileAsync(PathToGPSFile);
                 // Luetaan tiedostosta kaikki rivit yksitellen
-                IList<string> pys = await FileIO.ReadLinesAsync(sampleFile);
-                List<string> Testi = new List<string>();
+                IList<string> pys = await FileIO.ReadLinesAsync(linkkitieto);
+                // Lista mihin lisätään parsittu tieto
+                List<string[]> InfoList = new List<string[]>();
+                // Parsitaan tieto ensin splittaamalla , kohdalta ja sitten korvataan "" tyhjällä.
+               
                 foreach(string splitti in pys) {
-                    string[] doit = splitti.Split(',');
-                    Testi.Add(doit[2]);
+                    string s = splitti.Replace('"', ' ').Trim();
+                    string[] parts = s.Split(',');
+                    string stopname = parts[2];
+                    int stopid = int.Parse(parts[0]);
+                    double lon = double.Parse(parts[4]);
+                    double lat = double.Parse(parts[5]);
+                    stops.Add(new BussStops {LonTitude = lon, Latitude = lat, StopID = stopid, StopName = stopname});
                 }
-                foreach(string s in Testi) {
-                    Debug.Write(s);
-                }
+               
+                
                 
             }
 
@@ -136,11 +124,8 @@ namespace MapAPP
             {
                 Debug.Write("Virhe:", e.Message);
             }
-         
-            
-        stops.Add(new BussStops { StopName = "Pupari", StopID = 6000, Latitude = 62.2416403, LonTitude = 25.7474285 });
+        stops.Add(new BussStops { StopName = "Forum", StopID = 6000, Latitude = 62.2416403, LonTitude = 25.7474285 });
         stops.Add(new BussStops { StopName = "Jupari", StopID = 6000, Latitude = 62.236496, LonTitude = 25.723306 });
-
 
         }
         // Tallenetaan oliot-tiedostoon
@@ -204,6 +189,7 @@ namespace MapAPP
                 MapIcon stopoint = new MapIcon();
                 stopoint.Location = snPoint;
                 stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
+                Debug.Write(stopoint.Title = stop.StopName);
                 stopoint.Title = stop.StopName;
                 // ALLA VOIT VAIHTAA BUSSIN KUVAN
                 // stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/StoreLogo.png"));
