@@ -89,8 +89,6 @@ namespace MapAPP
             JKLmap.LandmarksVisible = true;
         }
 
-
-
         private void OK_Click(object sender, RoutedEventArgs e)
         {
             if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
@@ -138,19 +136,16 @@ namespace MapAPP
                 // Lista mihin lisätään parsittu tieto
                 List<string[]> InfoList = new List<string[]>();
                 // Parsitaan tieto ensin splittaamalla , kohdalta ja sitten korvataan "" tyhjällä.
-               
                 foreach(string splitti in pys) {
                     string s = splitti.Replace('"', ' ').Trim();
                     string[] parts = s.Split(',');
                     string stopname = parts[2];
                     int stopid = int.Parse(parts[0]);
                     double lon = double.Parse(parts[4]);
-                    double lat = double.Parse(parts[5]);
-                    // Luodaan olio tietojen perusteella
-                    stops.Add(new BussStops {StopName = stopname, StopID = stopid, Latitude = lat, LonTitude = lon});
-                    double longt = lon;
-                    double latt = lat;
-                    ShowRouteOnMap();
+                    double lat;
+                    // Tiedosto ottaa vain 1200 riviä ja heittää sitten exceptionia
+                    if (double.TryParse(parts[3], out lat))
+                    stops.Add(new BussStops { StopName = stopname, StopID = stopid, Latitude = lat, LonTitude = lon });
 
                 }
             }
@@ -210,14 +205,15 @@ namespace MapAPP
             }
 
         }
-        private async void ShowStops()
+        private void ShowStops()
         {
             stoptextblock.Text = "Stops:" + Environment.NewLine;
             foreach (BussStops stop in stops)
             {
                 Debug.Write(stop.ToString());
-                stoptextblock.Text += stop.StopID + " " + stop.StopName + Environment.NewLine;
+                stoptextblock.Text += stop.StopID + " " + stop.StopName + + stop.LonTitude + stop.LonTitude + Environment.NewLine;
                 Debug.Write(stop.Latitude + stop.LonTitude);
+
                 BasicGeoposition snPosition = new BasicGeoposition() { Latitude = stop.Latitude, Longitude = stop.LonTitude };
                 Geopoint snPoint = new Geopoint(snPosition);
                 // Luodaan uusi stop 
@@ -226,7 +222,7 @@ namespace MapAPP
                 stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
                 stopoint.Title = stop.StopName;
                 // ALLA VOIT VAIHTAA BUSSIN KUVAN
-                // stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/StoreLogo.png"));
+                //stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/jaa.png"));
                 JKLmap.MapElements.Add(stopoint);
 
             }

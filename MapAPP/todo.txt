@@ -1,0 +1,10 @@
+﻿Toteutettavat toiminnallisuudet:
+-Näytä pysäkit
+-Näytä reitti 2 GPS-pisteen välillä
+-Näytä Bussi Kartalla
+------------------------------------
+GUI:
+-Valitse bussit / linjat
+-Näytä Pysäkit ASYNC?
+-Piirrä reitit
+-Valitse bussi(numero)
