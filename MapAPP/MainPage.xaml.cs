@@ -249,6 +249,13 @@ namespace MapAPP
         {
             Application.Current.Exit();
         }
+
+        private void clearmap_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            stops.Clear();
+            
+            
+         }
+       }
     }
 
-}

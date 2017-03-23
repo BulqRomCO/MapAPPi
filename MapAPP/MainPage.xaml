@@ -24,14 +24,17 @@
                 <AppBarButton>
                     <FontIcon Glyph="&#xE7E8;" Tapped="FontIcon_Tapped"/>
                 </AppBarButton>
-                <AppBarButton x:Name="stopsonmap" Label="Show stops on map" Tapped="stopsonmap_Click">
+                <AppBarButton x:Name="stopsonmap" Label="SHOW ALL STOPS ON MAP" Tapped="stopsonmap_Click">
                     <FontIcon/>
                 </AppBarButton>
-                <AppBarButton x:Name="savestopdata" Label="Read stops data to objects" Tapped="savestopdata_Click">
+                <AppBarButton x:Name="savestopdata" Label="READ STOPS FROM FILE" Tapped="savestopdata_Click">
                     <FontIcon/>
                 </AppBarButton>
-                <AppBarButton x:Name="chooseBus" Label="Choose Bus" Tapped="chooseBus_Click" >
+                <AppBarButton x:Name="chooseBus" Label="CHOOSE BUSS" Tapped="chooseBus_Click" >
                     <FontIcon/>
+                </AppBarButton>
+                <AppBarButton Label="CLEAR MAP" x:Name="clearmap" Tapped="clearmap_Tapped">
+                    <FontIcon Glyph="&#xE107;" Tapped="FontIcon_Tapped"/>
                 </AppBarButton>
             </StackPanel>
         </AppBar>
@@ -229,8 +232,8 @@
             <TextBlock x:Name="timeTextBox" TextWrapping="Wrap" Text="Time:"/>
             <TimePicker Width="110" HorizontalAlignment="Center" FontFamily="OCR A Extended"/>
             <Button x:Name="showButton" Content="Show" Margin="0,20,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-            <Button x:Name="chooseBus" Content="Choose Bus" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,50,0,0" Click="chooseBus_Click"/>
-            <Button x:Name="savestopdata" Content="Read stops data to objects" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,50,0,0" Click="savestopdata_Click"/>
+
+
             <ScrollViewer Height="340">
                 <StackPanel>
                     <TextBlock x:Name="stoptextblock" Text=""/>
