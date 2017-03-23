@@ -135,16 +135,17 @@ namespace MapAPP
                 // Lista mihin lisätään parsittu tieto
                 List<string[]> InfoList = new List<string[]>();
                 // Parsitaan tieto ensin splittaamalla , kohdalta ja sitten korvataan "" tyhjällä.
-               
                 foreach(string splitti in pys) {
                     string s = splitti.Replace('"', ' ').Trim();
                     string[] parts = s.Split(',');
                     string stopname = parts[2];
                     int stopid = int.Parse(parts[0]);
                     double lon = double.Parse(parts[4]);
-                    double lat = double.Parse(parts[5]);
-                    // Luodaan olio tietojen perusteella
-                    stops.Add(new BussStops {StopName = stopname, StopID = stopid, Latitude = lat, LonTitude = lon});
+                    double lat;
+                    // Tiedosto ottaa vain 1200 riviä ja heittää sitten exceptionia
+                    if (double.TryParse(parts[3], out lat))
+                    stops.Add(new BussStops { StopName = stopname, StopID = stopid, Latitude = lat, LonTitude = lon });
+
                 }
             }
 
@@ -152,8 +153,8 @@ namespace MapAPP
             {
                 Debug.Write("Virhe:", e.Message);
             }
-        //stops.Add(new BussStops { StopName = "Forum", StopID = 6000, Latitude = 62.2416403, LonTitude = 25.7474285 });
-        //stops.Add(new BussStops { StopName = "Jupari", StopID = 6000, Latitude = 62.236496, LonTitude = 25.723306 });
+        stops.Add(new BussStops { StopName = "Forum", StopID = 6000, Latitude = 62.2416403, LonTitude = 25.7474285 });
+        stops.Add(new BussStops { StopName = "Jupari", StopID = 6000, Latitude = 62.236496, LonTitude = 25.723306 });
 
         }
         // Tallenetaan oliot-tiedostoon
@@ -203,14 +204,15 @@ namespace MapAPP
             }
 
         }
-        private async void ShowStops()
+        private void ShowStops()
         {
             stoptextblock.Text = "Stops:" + Environment.NewLine;
             foreach (BussStops stop in stops)
             {
                 Debug.Write(stop.ToString());
-                stoptextblock.Text += stop.StopID + " " + stop.StopName + Environment.NewLine;
+                stoptextblock.Text += stop.StopID + " " + stop.StopName + + stop.LonTitude + stop.LonTitude + Environment.NewLine;
                 Debug.Write(stop.Latitude + stop.LonTitude);
+
                 BasicGeoposition snPosition = new BasicGeoposition() { Latitude = stop.Latitude, Longitude = stop.LonTitude };
                 Geopoint snPoint = new Geopoint(snPosition);
                 // Luodaan uusi stop 

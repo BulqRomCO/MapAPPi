@@ -24,6 +24,7 @@
     
     <Grid Background="#cccccc">
 
+
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="Auto"/>
@@ -215,6 +216,7 @@
             <Button x:Name="showButton" Content="Show" Margin="0,20,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
             <Button x:Name="chooseBus" Content="Choose Bus" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,50,0,0" Click="chooseBus_Click"/>
             <Button x:Name="savestopdata" Content="Read stops data to objects" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,50,0,0" Click="savestopdata_Click"/>
+            
             <ScrollViewer Height="340">
                 <StackPanel>
                     <TextBlock x:Name="stoptextblock" Text=""/>
