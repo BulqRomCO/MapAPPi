@@ -86,8 +86,6 @@ namespace MapAPP
             JKLmap.LandmarksVisible = true;
         }
 
-
-
         private void OK_Click(object sender, RoutedEventArgs e)
         {
             if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
@@ -221,7 +219,7 @@ namespace MapAPP
                 stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
                 stopoint.Title = stop.StopName;
                 // ALLA VOIT VAIHTAA BUSSIN KUVAN
-                // stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/StoreLogo.png"));
+                //stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/jaa.png"));
                 JKLmap.MapElements.Add(stopoint);
 
             }
