@@ -10,6 +10,18 @@
     xmlns:bm="using:MapAPP"
     >
 
+    <Page.BottomAppBar>
+        <AppBar>
+            <StackPanel HorizontalAlignment="Right">
+                <AppBarButton Label="Directions">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xE1D1;"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </StackPanel>
+        </AppBar>
+    </Page.BottomAppBar>
+    
     <Grid Background="#cccccc">
 
         <Grid.RowDefinitions>

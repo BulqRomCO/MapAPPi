@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Services.Maps;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI;
@@ -31,13 +32,40 @@ namespace MapAPP
     public sealed partial class MainPage : Page
     {
         private Windows.Storage.StorageFile sampleFile;
-        // public object BackColor { get; set; }
 
         public MainPage()
         {
             this.InitializeComponent();
-        }
 
+        }
+        // Drawing route on map
+        private async void ShowRouteOnMap()
+        {
+            // Start point
+            BasicGeoposition startPoint = new BasicGeoposition() { Latitude = 62.2416403, Longitude = 25.7474285 };
+
+            // End point
+            BasicGeoposition endPoint = new BasicGeoposition() { Latitude = 62.236496, Longitude = 25.723306 };
+
+
+            // Get the route between the points
+            MapRouteFinderResult routeResult =
+                  await MapRouteFinder.GetDrivingRouteAsync(
+                  new Geopoint(startPoint),
+                  new Geopoint(endPoint),
+                  MapRouteOptimization.Time,
+                  MapRouteRestrictions.None);
+
+            if (routeResult.Status == MapRouteFinderStatus.Success)
+            {
+                // Initialize the route on map
+                MapRouteView viewOfRoute = new MapRouteView(routeResult.Route);
+                viewOfRoute.RouteColor = Colors.ForestGreen;
+                viewOfRoute.OutlineColor = Colors.Black;
+                JKLmap.Routes.Add(viewOfRoute);
+
+            }
+        }
 
         private void chooseBus_Click(object sender, RoutedEventArgs e)
         {
@@ -226,7 +254,11 @@ namespace MapAPP
         private void stopsonmap_Click(object sender, RoutedEventArgs e)
         {
             ShowStops();
+            ShowRouteOnMap();
         }
+
+        
+
     }
 
 }
