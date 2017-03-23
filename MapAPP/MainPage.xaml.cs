@@ -245,7 +245,7 @@ namespace MapAPP
             GenerateStopsData();
         }
 
-        private void FontIcon_Tapped(object sender, TappedRoutedEventArgs e)
+        private void EXIT_Tapped(object sender, TappedRoutedEventArgs e)
         {
             Application.Current.Exit();
         }
