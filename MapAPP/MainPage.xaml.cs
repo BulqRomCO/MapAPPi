@@ -32,6 +32,10 @@ namespace MapAPP
     public sealed partial class MainPage : Page
     {
         private Windows.Storage.StorageFile sampleFile;
+        private double sLatitude = 62.2416403;
+        private double sLongtitude = 25.7474285;
+        private double eLatitude = 62.236496;
+        private double eLongtitude = 25.723306;
         // public object BackColor { get; set; }
 
         public MainPage()
@@ -43,10 +47,10 @@ namespace MapAPP
         private async void ShowRouteOnMap()
         {
             // Start point
-            BasicGeoposition startPoint = new BasicGeoposition() { Latitude = 62.2416403, Longitude = 25.7474285 };
-
+            BasicGeoposition startPoint = new BasicGeoposition() { Latitude = sLatitude, Longitude = sLongtitude };
+        
             // End point
-            BasicGeoposition endPoint = new BasicGeoposition() { Latitude = 62.236496, Longitude = 25.723306 };
+            BasicGeoposition endPoint = new BasicGeoposition() { Latitude = eLatitude, Longitude = eLongtitude };
 
 
             // Get the route between the points
@@ -64,7 +68,6 @@ namespace MapAPP
                 viewOfRoute.RouteColor = Colors.ForestGreen;
                 viewOfRoute.OutlineColor = Colors.Black;
                 JKLmap.Routes.Add(viewOfRoute);
-
             }
         }
 
@@ -145,6 +148,10 @@ namespace MapAPP
                     double lat = double.Parse(parts[5]);
                     // Luodaan olio tietojen perusteella
                     stops.Add(new BussStops {StopName = stopname, StopID = stopid, Latitude = lat, LonTitude = lon});
+                    double longt = lon;
+                    double latt = lat;
+                    ShowRouteOnMap();
+
                 }
             }
 
@@ -230,19 +237,22 @@ namespace MapAPP
             
         }
 
-        private void exitButton_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Exit();
-        }
 
         private void stopsonmap_Click(object sender, RoutedEventArgs e)
         {
             ShowStops();
-            ShowRouteOnMap();
+            
         }
 
-        
+        private void AppBarButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            GenerateStopsData();
+        }
 
+        private void FontIcon_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Application.Current.Exit();
+        }
     }
 
 }

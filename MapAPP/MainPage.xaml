@@ -12,11 +12,26 @@
 
     <Page.BottomAppBar>
         <AppBar>
-            <StackPanel HorizontalAlignment="Right">
-                <AppBarButton Label="Directions">
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+                <AppBarButton Label="KA-POW!" Tapped="AppBarButton_Tapped">
                     <AppBarButton.Icon>
-                        <FontIcon Glyph="&#xE1D1;"/>
+                        <FontIcon Glyph="&#xE7C0;"/>
                     </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton Label="KA-CHING!" RenderTransformOrigin="1.456,-0.5">
+                    <FontIcon Glyph="&#xE7C0;"/>
+                </AppBarButton>
+                <AppBarButton>
+                    <FontIcon Glyph="&#xE7E8;" Tapped="FontIcon_Tapped"/>
+                </AppBarButton>
+                <AppBarButton x:Name="stopsonmap" Label="Show stops on map" Tapped="stopsonmap_Click">
+                    <FontIcon/>
+                </AppBarButton>
+                <AppBarButton x:Name="savestopdata" Label="Read stops data to objects" Tapped="savestopdata_Click">
+                    <FontIcon/>
+                </AppBarButton>
+                <AppBarButton x:Name="chooseBus" Label="Choose Bus" Tapped="chooseBus_Click" >
+                    <FontIcon/>
                 </AppBarButton>
             </StackPanel>
         </AppBar>
@@ -213,14 +228,11 @@
             <TextBlock x:Name="timeTextBox" TextWrapping="Wrap" Text="Time:"/>
             <TimePicker Width="110" HorizontalAlignment="Center" FontFamily="OCR A Extended"/>
             <Button x:Name="showButton" Content="Show" Margin="0,20,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-            <Button x:Name="chooseBus" Content="Choose Bus" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,50,0,0" Click="chooseBus_Click"/>
-            <Button x:Name="savestopdata" Content="Read stops data to objects" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,50,0,0" Click="savestopdata_Click"/>
             <ScrollViewer Height="340">
                 <StackPanel>
                     <TextBlock x:Name="stoptextblock" Text=""/>
                 </StackPanel>
             </ScrollViewer>
-            <Button x:Name="stopsonmap" Content="Show stops on map" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="stopsonmap_Click"/>
         </StackPanel>
 
 
@@ -235,7 +247,6 @@
 
 
         <StackPanel x:Name="toolbar1Stack"  Grid.Column="0" Grid.Row="4" Background="#b3b3b3" BorderThickness="0,2,0,0" BorderBrush="Black">
-            <Button Background="Red" x:Name="exitButton" Content="Exit" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding=" 0,12,0,12" Click="exitButton_Click"/>
         </StackPanel>
 
 
