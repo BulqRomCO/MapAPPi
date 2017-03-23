@@ -23,19 +23,10 @@
                     <FontIcon Glyph="&#xE7C0;"/>
                 </AppBarButton>
                 <AppBarButton>
-                    <FontIcon Glyph="&#xE7E8;" Tapped="FontIcon_Tapped"/>
-                </AppBarButton>
-                <AppBarButton x:Name="stopsonmap" Label="Show stops on map" Tapped="stopsonmap_Click">
-                    <FontIcon/>
-                </AppBarButton>
-                <AppBarButton x:Name="savestopdata" Label="Read stops data to objects" Tapped="savestopdata_Click">
-                    <FontIcon/>
-                </AppBarButton>
-                <AppBarButton x:Name="chooseBus" Label="Choose Bus" Tapped="chooseBus_Click" >
-                    <FontIcon/>
+                    <FontIcon Glyph="&#xE7E8;" Tapped="EXIT_Tapped"/>
                 </AppBarButton>
                 <AppBarButton Label="CLEAR MAP" x:Name="clearmap" Tapped="clearmap_Tapped">
-                    <FontIcon Glyph="&#xE107;" Tapped="FontIcon_Tapped"/>
+                    <FontIcon Glyph="&#xE107;"/>
                 </AppBarButton>
             </StackPanel>
         </AppBar>
