@@ -13,17 +13,17 @@
     <Page.BottomAppBar>
         <AppBar Width="400" HorizontalAlignment="Left">
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="70" Orientation="Horizontal">
-                <AppBarButton x:Name="stopsonmap" Label="Show stops on map" Tapped="stopsonmap_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="70" Width="68">
-                    <FontIcon Glyph="&#xE1C4;"/>
-                </AppBarButton>
-                <AppBarButton x:Name="savestopdata" Label="Read stops data to objects" Tapped="savestopdata_Click" Height="70">
+                <AppBarButton x:Name="savestopdata" Label="READ FILE" Tapped="savestopdata_Click" Height="70">
                     <FontIcon Glyph="&#xE7BC;"/>
                 </AppBarButton>
-                <AppBarButton x:Name="chooseBus" Label="Choose Bus" Tapped="chooseBus_Click" Height="70" >
+                <AppBarButton x:Name="stopsonmap" Label="SHOW STOPS" Tapped="stopsonmap_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="70" Width="68">
+                    <FontIcon Glyph="&#xE1C4;"/>
+                </AppBarButton>
+                <AppBarButton x:Name="chooseBus" Label="CHOOSE BUS" Tapped="chooseBus_Click" Height="70" >
                     <FontIcon Glyph="&#xE7C0;"/>
                 </AppBarButton>
                 <AppBarButton Label="CLEAR MAP" x:Name="clearmap" Tapped="clearmap_Tapped">
-                    <FontIcon Glyph="&#xE107;"/>
+                    <FontIcon Glyph="&#xE107;" Tapped="FontIcon_Tapped"/>
                 </AppBarButton>
                 <AppBarButton x:Name="exitButton" Label="EXIT" Tapped="EXIT_Tapped">
                     <FontIcon Glyph="&#xE7E8;"/>
