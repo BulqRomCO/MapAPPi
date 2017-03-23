@@ -119,6 +119,7 @@ namespace MapAPP
             }
 
         }
+        // BussStops luokan tyyppinen oliolista
         private List<MapAPP.BussStops> stops = new List<MapAPP.BussStops>();
         private async void GenerateStopsData()
         {
@@ -142,19 +143,17 @@ namespace MapAPP
                     int stopid = int.Parse(parts[0]);
                     double lon = double.Parse(parts[4]);
                     double lat = double.Parse(parts[5]);
-                    stops.Add(new BussStops {LonTitude = lon, Latitude = lat, StopID = stopid, StopName = stopname});
+                    // Luodaan olio tietojen perusteella
+                    stops.Add(new BussStops {StopName = stopname, StopID = stopid, Latitude = lat, LonTitude = lon});
                 }
-               
-                
-                
             }
 
             catch (Exception e)
             {
                 Debug.Write("Virhe:", e.Message);
             }
-        stops.Add(new BussStops { StopName = "Forum", StopID = 6000, Latitude = 62.2416403, LonTitude = 25.7474285 });
-        stops.Add(new BussStops { StopName = "Jupari", StopID = 6000, Latitude = 62.236496, LonTitude = 25.723306 });
+        //stops.Add(new BussStops { StopName = "Forum", StopID = 6000, Latitude = 62.2416403, LonTitude = 25.7474285 });
+        //stops.Add(new BussStops { StopName = "Jupari", StopID = 6000, Latitude = 62.236496, LonTitude = 25.723306 });
 
         }
         // Tallenetaan oliot-tiedostoon
@@ -204,7 +203,7 @@ namespace MapAPP
             }
 
         }
-        private void ShowStops()
+        private async void ShowStops()
         {
             stoptextblock.Text = "Stops:" + Environment.NewLine;
             foreach (BussStops stop in stops)
@@ -218,7 +217,6 @@ namespace MapAPP
                 MapIcon stopoint = new MapIcon();
                 stopoint.Location = snPoint;
                 stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
-                Debug.Write(stopoint.Title = stop.StopName);
                 stopoint.Title = stop.StopName;
                 // ALLA VOIT VAIHTAA BUSSIN KUVAN
                 // stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/StoreLogo.png"));
@@ -229,7 +227,6 @@ namespace MapAPP
         private void savestopdata_Click(object sender, RoutedEventArgs e)
         {
             GenerateStopsData();
-            //ShowStops();
             
         }
 
