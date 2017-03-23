@@ -136,6 +136,7 @@ namespace MapAPP
                 // Lista mihin lisätään parsittu tieto
                 List<string[]> InfoList = new List<string[]>();
                 // Parsitaan tieto ensin splittaamalla , kohdalta ja sitten korvataan "" tyhjällä.
+                
                 foreach(string splitti in pys) {
                     string s = splitti.Replace('"', ' ').Trim();
                     string[] parts = s.Split(',');
@@ -146,6 +147,8 @@ namespace MapAPP
                     // Tiedosto ottaa vain 1200 riviä ja heittää sitten exceptionia
                     if (double.TryParse(parts[3], out lat))
                     stops.Add(new BussStops { StopName = stopname, StopID = stopid, Latitude = lat, LonTitude = lon });
+                    loadingdata.Value += 1;
+                    
 
                 }
             }

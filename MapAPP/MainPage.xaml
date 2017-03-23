@@ -223,12 +223,15 @@
             <CalendarDatePicker Height="27" Width="124" HorizontalAlignment="Center" FontFamily="OCR A Extended"/>
             <TextBlock x:Name="timeTextBox" TextWrapping="Wrap" Text="Time:"/>
             <TimePicker Width="110" HorizontalAlignment="Center" FontFamily="OCR A Extended"/>
-            <Button x:Name="showButton" Content="Show" Margin="0,20,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+             <Button x:Name="showButton" Content="Show" Margin="0,20,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            
             <ScrollViewer Height="340">
+                
                 <StackPanel>
                     <TextBlock x:Name="stoptextblock" Text=""/>
                 </StackPanel>
             </ScrollViewer>
+            <ProgressBar x:Name="loadingdata" Value="0" Maximum="1000"/>
         </StackPanel>
 
 
