@@ -121,44 +121,14 @@ namespace MapAPP
                 // string text = await FileIO.ReadTextAsync(sampleFile);
                 // Luetaan tiedostosta kaikki rivit yksitellen
                 IList<string> pys = await FileIO.ReadLinesAsync(sampleFile);
-                
-               
-                // REGEX TOIMII HYVIN TIEDOSTON SPLITTAAMISEEN
-                Regex reg = new Regex("\"([^\"]*?)\"");
-
-                List<string> parsed_gps = new List<string>();
-                int lines = 0;
-                foreach (string text in pys)
-                {
-                    var matches = reg.Matches(text);
-                    foreach (Match match in matches)
-                    {
-                        var theData = match.Groups[1].Value;
-                        parsed_gps.Add(theData);
-                    }
-                    lines++;
+                List<string> Testi = new List<string>();
+                foreach(string splitti in pys) {
+                    string[] doit = splitti.Split(',');
+                    Testi.Add(doit[2]);
                 }
-                Debug.Write(parsed_gps.Count);
-                Debug.Write("Pysäkkejä" + lines);
-                Debug.Write("GPS TIETO " + parsed_gps[6]);
-
-
-                /*
-              for(int i = 0; i < text.Length; i++) {
-                    stops.Add(new BussStops
-                    {
-                        StopName = parsed_gps[2],
-                        StopID = Int32.Parse(parsed_gps[0]),
-                        Latitude = Double.Parse(parsed_gps[4]),
-                        LonTitude = Double.Parse(parsed_gps[5])
-                        
-                    });
-                  
-                }*/
-               
-                
-              
-               
+                foreach(string s in Testi) {
+                    Debug.Write(s);
+                }
                 
             }
 
