@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -37,7 +38,6 @@ namespace MapAPP
         private double eLatitude = 62.236496;
         private double eLongtitude = 25.723306;
         // public object BackColor { get; set; }
-
         public MainPage()
         {
             this.InitializeComponent();
@@ -236,7 +236,6 @@ namespace MapAPP
             
         }
 
-
         private void stopsonmap_Click(object sender, RoutedEventArgs e)
         {
             ReadStops();
@@ -256,6 +255,10 @@ namespace MapAPP
             
             
          }
-       }
+        private void StopsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+         
+        }
+    }
     }
 
