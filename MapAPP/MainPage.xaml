@@ -23,7 +23,7 @@
                     <FontIcon Glyph="&#xE7C0;"/>
                 </AppBarButton>
                 <AppBarButton Label="CLEAR MAP" x:Name="clearmap" Tapped="clearmap_Tapped">
-                    <FontIcon Glyph="&#xE107;" Tapped="FontIcon_Tapped"/>
+                    <FontIcon Glyph="&#xE107;"/>
                 </AppBarButton>
                 <AppBarButton x:Name="exitButton" Label="EXIT" Tapped="EXIT_Tapped">
                     <FontIcon Glyph="&#xE7E8;"/>

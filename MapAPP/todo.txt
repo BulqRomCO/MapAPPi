@@ -1,10 +1,15 @@
 ﻿Toteutettavat toiminnallisuudet:
--Näytä pysäkit
+-Näytä pysäkit OK 
 -Näytä reitti 2 GPS-pisteen välillä
 -Näytä Bussi Kartalla
 ------------------------------------
 GUI:
 -Valitse bussit / linjat
--Näytä Pysäkit ASYNC?
+-Näytä Pysäkit ASYNC? OK 
 -Piirrä reitit
 -Valitse bussi(numero)
+
+Ville:
+- 30.3
+Pysäkkien luku kartalta ok ja pysäkki-olioiden tallennus tiedostoon stops.dat.
+Luku stops.dat tiedostosta ja kaikkien näyttäminen kartalla ok
