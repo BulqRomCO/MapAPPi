@@ -13,17 +13,22 @@
     <Page.BottomAppBar>
         <AppBar Width="400" HorizontalAlignment="Left">
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="70" Orientation="Horizontal">
+                <!--
                 <AppBarButton x:Name="savestopdata" Label="READ FILE" Tapped="savestopdata_Click" Height="70">
                     <FontIcon Glyph="&#xE7BC;"/>
+                </AppBarButton>
+                -->
+                <AppBarButton x:Name="destination" Label="DESTINATION" Tapped="destination_Tapped">
+                    <FontIcon Glyph="&#xE787;"/>
                 </AppBarButton>
                 <AppBarButton x:Name="stopsonmap" Label="SHOW STOPS" Tapped="stopsonmap_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="70" Width="68">
                     <FontIcon Glyph="&#xE1C4;"/>
                 </AppBarButton>
                 <AppBarButton x:Name="chooseBus" Label="CHOOSE BUS" Tapped="chooseBus_Click" Height="70" >
-                    <FontIcon Glyph="&#xE7C0;"/>
+                    <FontIcon Glyph="&#xE806;"/>
                 </AppBarButton>
                 <AppBarButton Label="CLEAR MAP" x:Name="clearmap" Tapped="clearmap_Tapped">
-                    <FontIcon Glyph="&#xE107;" Tapped="FontIcon_Tapped"/>
+                    <FontIcon Glyph="&#xE107;"/>
                 </AppBarButton>
                 <AppBarButton x:Name="exitButton" Label="EXIT" Tapped="EXIT_Tapped">
                     <FontIcon Glyph="&#xE7E8;"/>
@@ -52,6 +57,28 @@
 
         <StackPanel x:Name="nameStack"  Grid.Column="0" Grid.Row="0" Background="#b3b3b3" BorderThickness="0,0,2,2" BorderBrush="Black">
             <TextBlock x:Name="title" TextWrapping="Wrap" Text="MapAPP" FontSize="80" TextAlignment="Center" Foreground="#FF7A7A7A" FontFamily="PMingLiU-ExtB"/>
+        </StackPanel>
+        <StackPanel>
+            <Popup x:Name="destinationWindow" Height="300" Width="400" Margin="0,150,0,0">
+
+                <StackPanel>
+                    <TextBlock x:Name="fromTextBox" TextWrapping="Wrap" Text="From:"/>
+                    <TextBox x:Name="fromTextBlock" TextWrapping="Wrap" Text="" TextChanged="fromTextBlock_TextChanged"/>
+                    <TextBlock x:Name="destinationTextBox" TextWrapping="Wrap" Text="Destination:"/>
+                    <TextBox x:Name="destinationBlock" TextWrapping="Wrap" Text=""/>
+                    <TextBlock x:Name="dateTextBox" TextWrapping="Wrap" Text="Date:"/>
+                    <CalendarDatePicker Height="27" Width="124" HorizontalAlignment="Center" FontFamily="OCR A Extended"/>
+                    <TextBlock x:Name="timeTextBox" TextWrapping="Wrap" Text="Time:"/>
+                    <TimePicker Width="110" HorizontalAlignment="Center" FontFamily="OCR A Extended"/>
+                    <AppBarButton x:Name="showButton" Label="Show">
+                        <FontIcon Glyph="&#xE819;"/>
+                    </AppBarButton>
+                    <AppBarButton x:Name="closedestination" Label="Close" Tapped="closedestination_Tapped">
+                        <FontIcon Glyph="&#xE8BB;"/>
+                    </AppBarButton>
+                </StackPanel>
+            
+        </Popup>
         </StackPanel>
         <StackPanel>
             <Popup x:Name="popupWindow" Height="590" Width="400" Margin="0,150,0,0">
@@ -215,18 +242,7 @@
 
 
         <StackPanel x:Name="optionStack"  Grid.Column="0" Grid.Row="3" BorderThickness="0,2,2,0" BorderBrush="Black">
-            <TextBlock x:Name="fromTextBox" TextWrapping="Wrap" Text="From:"/>
-            <TextBox x:Name="fromTextBlock" TextWrapping="Wrap" Text=""/>
-            <TextBlock x:Name="destinationTextBox" TextWrapping="Wrap" Text="Destination:"/>
-            <TextBox x:Name="destinationBlock" TextWrapping="Wrap" Text=""/>
-            <TextBlock x:Name="dateTextBox" TextWrapping="Wrap" Text="Date:"/>
-            <CalendarDatePicker Height="27" Width="124" HorizontalAlignment="Center" FontFamily="OCR A Extended"/>
-            <TextBlock x:Name="timeTextBox" TextWrapping="Wrap" Text="Time:"/>
-            <TimePicker Width="110" HorizontalAlignment="Center" FontFamily="OCR A Extended"/>
-             <Button x:Name="showButton" Content="Show" Margin="0,20,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-            
             <ScrollViewer Height="340">
-                
                 <StackPanel>
                     <TextBlock x:Name="stoptextblock" Text=""/>
                 </StackPanel>

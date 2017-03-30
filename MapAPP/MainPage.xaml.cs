@@ -76,6 +76,7 @@ namespace MapAPP
             if (!popupWindow.IsOpen) { popupWindow.IsOpen = true; }
 
         }
+
         // Kun kartta ladataan oletus GPS paikka on JKL koordinaatit !
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -225,8 +226,9 @@ namespace MapAPP
                 stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
                 stopoint.Title = stop.StopName;
                 // ALLA VOIT VAIHTAA BUSSIN KUVAN
-                //stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/jaa.png"));
+                stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
                 JKLmap.MapElements.Add(stopoint);
+                ShowRouteOnMap();
 
             }
         }
@@ -259,6 +261,21 @@ namespace MapAPP
             
             
          }
-       }
+
+        private void fromTextBlock_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void destination_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (!destinationWindow.IsOpen) { destinationWindow.IsOpen = true; }
+        }
+
+        private void closedestination_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (destinationWindow.IsOpen) { destinationWindow.IsOpen = false; }
+        }
+    }
     }
 
