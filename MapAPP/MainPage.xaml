@@ -13,19 +13,14 @@
     <Page.BottomAppBar>
         <AppBar Width="400" HorizontalAlignment="Left">
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="70" Orientation="Horizontal">
-                <!--
-                <AppBarButton x:Name="savestopdata" Label="READ FILE" Tapped="savestopdata_Click" Height="70">
-                    <FontIcon Glyph="&#xE7BC;"/>
+                <AppBarButton x:Name="chooseBus" Label="CHOOSE BUS" Tapped="chooseBus_Click" Height="70" >
+                    <FontIcon Glyph="&#xE806;"/>
                 </AppBarButton>
-                -->
                 <AppBarButton x:Name="destination" Label="DESTINATION" Tapped="destination_Tapped">
                     <FontIcon Glyph="&#xE787;"/>
                 </AppBarButton>
                 <AppBarButton x:Name="stopsonmap" Label="SHOW STOPS" Tapped="stopsonmap_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="70" Width="68">
                     <FontIcon Glyph="&#xE1C4;"/>
-                </AppBarButton>
-                <AppBarButton x:Name="chooseBus" Label="CHOOSE BUS" Tapped="chooseBus_Click" Height="70" >
-                    <FontIcon Glyph="&#xE806;"/>
                 </AppBarButton>
                 <AppBarButton Label="CLEAR MAP" x:Name="clearmap" Tapped="clearmap_Tapped">
                     <FontIcon Glyph="&#xE107;"/>
@@ -241,7 +236,7 @@
         </StackPanel>
 
 
-        <StackPanel x:Name="optionStack"  Grid.Column="0" Grid.Row="3" BorderThickness="0,2,2,0" BorderBrush="Black">
+        <!--<StackPanel x:Name="optionStack"  Grid.Column="0" Grid.Row="3" BorderThickness="0,2,2,0" BorderBrush="Black">
             <ScrollViewer Height="340">
                 <StackPanel>
                     <TextBlock x:Name="stoptextblock" Text=""/>
@@ -249,7 +244,7 @@
             </ScrollViewer>
             <ProgressBar x:Name="loadingdata" Value="0" Maximum="1000"/>
         </StackPanel>
-
+-->
 
         <StackPanel x:Name="mapStack"  Grid.Column="1" Grid.Row="3">
             <Maps:MapControl

@@ -41,7 +41,7 @@ namespace MapAPP
         public MainPage()
         {
             this.InitializeComponent();
-
+            GenerateStopsData();
         }
         // Drawing route on map
         private async void ShowRouteOnMap()
@@ -148,7 +148,7 @@ namespace MapAPP
                     // Tiedosto ottaa vain 1200 riviä ja heittää sitten exceptionia
                     if (double.TryParse(parts[3], out lat))
                     stops.Add(new BussStops { StopName = stopname, StopID = stopid, Latitude = lat, LonTitude = lon });
-                    loadingdata.Value += 1;
+                    //loadingdata.Value += 1;
                     
 
                 }
@@ -160,6 +160,7 @@ namespace MapAPP
             }
         //stops.Add(new BussStops { StopName = "Forum", StopID = 6000, Latitude = 62.2416403, LonTitude = 25.7474285 });
         //stops.Add(new BussStops { StopName = "Jupari", StopID = 6000, Latitude = 62.236496, LonTitude = 25.723306 });
+
 
         }
         // Tallenetaan oliot-tiedostoon
@@ -185,7 +186,7 @@ namespace MapAPP
             }
         }
         // Save stops data napin funktio joka kutsuu SaveStopsInfo funktiota ja kirjoittaa pysäkkien tiedot tiedostoon stops.dat
-     
+
         private async void ReadStops()
         {
             try
@@ -210,11 +211,11 @@ namespace MapAPP
         }
         private void ShowStops()
         {
-            stoptextblock.Text = "Stops:" + Environment.NewLine;
+            //stoptextblock.Text = "Stops:" + Environment.NewLine;
             foreach (BussStops stop in stops)
             {
                 Debug.Write(stop.ToString());
-                stoptextblock.Text += stop.StopID + " " + stop.StopName + + stop.LonTitude + stop.LonTitude + Environment.NewLine;
+              //  stoptextblock.Text += stop.StopID + " " + stop.StopName + + stop.LonTitude + stop.LonTitude + Environment.NewLine;
                 Debug.Write(stop.Latitude + stop.LonTitude);
 
                 BasicGeoposition snPosition = new BasicGeoposition() { Latitude = stop.Latitude, Longitude = stop.LonTitude };
@@ -252,7 +253,7 @@ namespace MapAPP
 
         private void clearmap_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            stops.Clear();
+            //stops.Clear();
             JKLmap.MapElements.Clear();
             
             
