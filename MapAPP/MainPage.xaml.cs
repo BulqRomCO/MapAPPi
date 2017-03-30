@@ -152,6 +152,7 @@ namespace MapAPP
                     
 
                 }
+                SaveStopsInfo();
             }
 
             catch (Exception e)
@@ -230,12 +231,6 @@ namespace MapAPP
                 JKLmap.MapElements.Add(stopoint);
 
             }
-        }
-        private void savestopdata_Click(object sender, RoutedEventArgs e)
-        {
-            GenerateStopsData();
-            SaveStopsInfo();
-            
         }
 
         private void stopsonmap_Click(object sender, RoutedEventArgs e)
