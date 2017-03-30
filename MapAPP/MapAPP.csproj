@@ -110,6 +110,7 @@
     <None Include="MapAPP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\bus_stop_icon.png" />
     <Content Include="Linkkidata\agency.txt" />
     <Content Include="Linkkidata\calendar.txt" />
     <Content Include="Linkkidata\calendar_dates.txt" />
