@@ -170,7 +170,7 @@ namespace MapAPP
                 // open/create a file
 
                 StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-                StorageFile stopsfile = await storageFolder.CreateFileAsync("stops.txt", CreationCollisionOption.OpenIfExists);
+                StorageFile stopsfile = await storageFolder.CreateFileAsync("stops.dat", CreationCollisionOption.OpenIfExists);
 
                 // save employees to disk
                 Stream stream = await stopsfile.OpenStreamForWriteAsync();
@@ -192,15 +192,14 @@ namespace MapAPP
             {
                 // find a file
                 StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-                Stream stream = await storageFolder.OpenStreamForReadAsync("stops.txt");
+                Stream stream = await storageFolder.OpenStreamForReadAsync("stops.dat");
 
                 // is it empty
                 if (stream == null) stops = new List<BussStops>();
 
                 // read data
                 DataContractSerializer serializer = new DataContractSerializer(typeof(List<BussStops>));
-                stops = (List<BussStops>)serializer.ReadObject(stream);
-                // älä näytä vielä pysäkkejä koska prossu 100%
+                stops = (List<BussStops>)serializer.ReadObject(stream);             
                 ShowStops();
             }
             catch (Exception ex)
@@ -226,29 +225,25 @@ namespace MapAPP
                 stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
                 stopoint.Title = stop.StopName;
                 // ALLA VOIT VAIHTAA BUSSIN KUVAN
-                stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
+                //stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/jaa.png"));
                 JKLmap.MapElements.Add(stopoint);
-                ShowRouteOnMap();
 
             }
         }
         private void savestopdata_Click(object sender, RoutedEventArgs e)
         {
             GenerateStopsData();
+            SaveStopsInfo();
             
         }
 
 
         private void stopsonmap_Click(object sender, RoutedEventArgs e)
         {
+            ReadStops();
             ShowStops();
             
-        }
-
-        private void AppBarButton_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            GenerateStopsData();
-        }
+        } 
 
         private void EXIT_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -258,6 +253,7 @@ namespace MapAPP
         private void clearmap_Tapped(object sender, TappedRoutedEventArgs e)
         {
             stops.Clear();
+            JKLmap.MapElements.Clear();
             
             
          }
