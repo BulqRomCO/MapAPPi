@@ -45,15 +45,14 @@ namespace MapAPP
             GenerateStopsData();
             ListView itemListView = new ListView();
             // StopsList.ItemsSource = listItems;
-            StopsList.ItemsSource = stops;
+            // StopsList.ItemsSource = stops;
         }
         // Drawing route on map
-        private async void ShowRouteOnMap()
+        private async void ShowRouteOnMap(List<double> lista)
         {
+            
             // Start point
-            BasicGeoposition startPoint = new BasicGeoposition() { Latitude = sLatitude, Longitude = sLongtitude };
-        
-            // End point
+            BasicGeoposition startPoint = new BasicGeoposition() { Latitude = sLatitude, Longitude = sLongtitude};
             BasicGeoposition endPoint = new BasicGeoposition() { Latitude = eLatitude, Longitude = eLongtitude };
 
 
@@ -293,13 +292,16 @@ namespace MapAPP
 
         private void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
-            if (args.ChosenSuggestion != null)
+            if (args.ChosenSuggestion != null) {
 
                 Searchbox.Text = args.ChosenSuggestion.ToString();
-
-            else
+                // Ota Haun perusteella GPS tiewto
+            }
+            
+            else {
 
                 Searchbox.Text = sender.Text;
+            }
         }
 
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
@@ -307,10 +309,13 @@ namespace MapAPP
             
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
-
-                sender.ItemsSource = stops;
+                List<string> names = new List<string>();
+                foreach(BussStops name in stops) { names.Add(name.StopName); }
+                sender.ItemsSource = names;
             }
         }
+        
+
     }
     }
 

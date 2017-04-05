@@ -60,9 +60,25 @@
 
                 <StackPanel>
                     <TextBlock x:Name="fromTextBox" TextWrapping="Wrap" Text="From:"/>
-                    <TextBox x:Name="fromTextBlock" TextWrapping="Wrap" Text="" TextChanged="fromTextBlock_TextChanged"/>
+                    <!--<TextBox x:Name="fromTextBlock" TextWrapping="Wrap" Text="" TextChanged="fromTextBlock_TextChanged"/>-->
+                    <AutoSuggestBox
+                                        x:Name="Searchbox"
+                                        QueryIcon="Find"
+                                        SuggestionChosen="AutoSuggestBox_SuggestionChosen"
+                                        QuerySubmitted="AutoSuggestBox_QuerySubmitted"
+                                        TextChanged="AutoSuggestBox_TextChanged">
+                        
+                    </AutoSuggestBox>
                     <TextBlock x:Name="destinationTextBox" TextWrapping="Wrap" Text="Destination:"/>
-                    <TextBox x:Name="destinationBlock" TextWrapping="Wrap" Text=""/>
+                    <AutoSuggestBox
+                                       
+                                        QueryIcon="Find"
+                                        SuggestionChosen="AutoSuggestBox_SuggestionChosen"
+                                        QuerySubmitted="AutoSuggestBox_QuerySubmitted"
+                                        TextChanged="AutoSuggestBox_TextChanged">
+
+                    </AutoSuggestBox>
+                    <!--<TextBox x:Name="destinationBlock" TextWrapping="Wrap" Text=""/>-->
                     <TextBlock x:Name="dateTextBox" TextWrapping="Wrap" Text="Date:"/>
                     <CalendarDatePicker Height="27" Width="124" HorizontalAlignment="Center" FontFamily="OCR A Extended"/>
                     <TextBlock x:Name="timeTextBox" TextWrapping="Wrap" Text="Time:"/>
@@ -316,12 +332,13 @@
                         <Popup x:Name="popstops" Height="600" Width="400" Margin="0,150,0,0">
                             <ScrollViewer Height="596" Width="392">
                                 <StackPanel Grid.Row="11" Grid.Column="0" Background="#bfbfbf">
-                                    <AutoSuggestBox
+                                    <!--<AutoSuggestBox
                                         x:Name="Searchbox"
                                         QueryIcon="Find"
                                         SuggestionChosen="AutoSuggestBox_SuggestionChosen"
                                         QuerySubmitted="AutoSuggestBox_QuerySubmitted"
                                         TextChanged="AutoSuggestBox_TextChanged"/>
+                                     
                                     <ListView x:Name="StopsList">
                                         <ListView.ItemTemplate>
 
@@ -339,6 +356,7 @@
                                         </ListView.ItemTemplate>
 
                                     </ListView>
+                                    -->
                                 </StackPanel>
                             </ScrollViewer>
                         </Popup>
