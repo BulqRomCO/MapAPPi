@@ -315,8 +315,11 @@ namespace MapAPP
                 sender.ItemsSource = names;
             }
         }
-        
 
+        private void showButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            // show route
+        }
     }
     }
 
