@@ -349,6 +349,7 @@
         </StackPanel>
         <StackPanel x:Name="timeDateStack"  Grid.Column="1" Grid.Row="0" Background="#bfbfbf" BorderThickness="2,0,0,2" BorderBrush="Black">
             <TextBlock x:Name="Time" Text="TÄHÄHN AIKA" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            
         </StackPanel>
 
 
