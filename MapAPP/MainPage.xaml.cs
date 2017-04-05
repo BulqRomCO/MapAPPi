@@ -50,10 +50,10 @@ namespace MapAPP
         }
         // Drawing route on map
        
-        private async void ShowRouteOnMap(string nameofstop)
+        private async void ShowRouteOnMap(List<double> lista)
         {
             
-            BasicGeoposition startPoint = new BasicGeoposition() { Latitude = lista[0], Longitude = lista[1] };
+            BasicGeoposition startPoint = new BasicGeoposition() { Latitude = lista[0], Longitude = lista[1]};
             BasicGeoposition endPoint = new BasicGeoposition() { Latitude = lista[2], Longitude = lista[3] };
 
 
@@ -299,14 +299,14 @@ namespace MapAPP
             {
                 Searchbox.Text = args.ChosenSuggestion.ToString();
                 ShowPoint(args.ChosenSuggestion.ToString());
-                ShowRouteOnMap(args.ChosenSuggestion.ToString());
+                routeto.Add(args.ChosenSuggestion.ToString());
             }
             else
             {
                 Searchbox.Text = sender.Text;
             }
         }
-
+        List<string> routeto = new List<string>();
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             List<string> names = new List<string>();
@@ -339,7 +339,7 @@ namespace MapAPP
             {
                 DestinationSuggestBox.Text = args.ChosenSuggestion.ToString();
                 ShowPoint(args.ChosenSuggestion.ToString());
-                ShowRouteOnMap(args.ChosenSuggestion.ToString());
+                routeto.Add(args.ChosenSuggestion.ToString());
 
             }
 
@@ -373,7 +373,21 @@ namespace MapAPP
 
         private void showButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            List<double> route = new List<double>();
+            foreach (BussStops stop in stops)
+            {
 
+                foreach (string n in routeto)
+                {
+                    if (n == stop.StopName)
+                    {
+                        route.Add(stop.Latitude);
+                        route.Add(stop.LonTitude);
+                    }
+                }
+            }
+            ShowRouteOnMap(route);
+            route.Clear();
         }
         public void ShowPoint(string name)
         {
