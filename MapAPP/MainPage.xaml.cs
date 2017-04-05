@@ -260,11 +260,8 @@ namespace MapAPP
         {
             //stops.Clear();
             JKLmap.MapElements.Clear();
-
-
+            JKLmap.Routes.Clear();
         }
-
-
         private void fromTextBlock_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -328,7 +325,6 @@ namespace MapAPP
                 
             }
         }
-
 
         private void DestinationSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
