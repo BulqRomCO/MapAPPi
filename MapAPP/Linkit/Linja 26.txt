@@ -1,0 +1,54 @@
+ Keskusta 2 
+ Urhonkatu 4 
+ Kauppatori 12 
+ Keski-Suomen talo 
+ Harjun oppilaitos 2 
+ Ammattikorkeakoulu 2 
+ Kunnantalo 2 
+ Taulumäki 2 
+ Lahjaharjuntie 22 
+ Yläpaula 2 
+ Paloniemi 2 
+ Verkkokatu 2 
+ LohikoskiI 2 
+ Nuottakatu 2 
+ Tyyppälänlahti 2 
+ Lahjaharju 2 
+ Ukonniementie P 
+ Kaislikkotie 2 
+ Ulpukkatie 2 
+ Sammaltie 
+ Ulpukkatie 1 
+ Kaislikkotie 1 
+ Heinälammentie P 
+ Heinäoja P 
+ Ritoniemi P 
+ Ritopohja P 
+ Palokan terveyskeskus P 
+ Pappilanvuori P 
+ Pappilanrinne P 
+ Jokela th P 
+ Piilola P 
+ Ollila th P 
+ Martikaisentie P 
+ Heikkilä P 
+ Koivumutka P 
+ Hiekkapohjantie 13 I 
+ Väliläntie I 
+ Karhulammentie I 
+ Saarenmäentie I 
+ Mutapohja I 
+ Karhunrinta I 
+ Hiekkapohjantie 242 P 
+ Perälamminmäki P 
+ Perälä P 
+ Hiekkapohja P 
+ Osmolantie P 
+ Vähäjärventie P 
+ Katvela P 
+ Koivurinne P 
+ Salmela P 
+ Jylhä I 
+ Kuukanpää I 
+ Riuttamäentie I 
+ Hiidenjärventie KP 

@@ -1,0 +1,47 @@
+ Jaakkola 
+ Emännäntie 1 
+ Muonamiehentie 1 
+ Verkkoniemi th P 
+ Virastotie P 
+ Mikkolantie P 
+ Säynätsalo th I 
+ Kotirannantie I 
+ Paavalinvuori th I 
+ Karkaussaari th I 
+ Kinkovuori I 
+ Karkauspohja I 
+ Ss-Säynätsalo 1 
+ ss-Kunnantalo 1 
+ Ss-Peekorpi 1 
+ Ss-Kangastie 1 
+ Ss-Hannala 1 
+ Riihelä L 
+ Kinkovuorentie th P 
+ Ss-Vuorensyrjä P 
+ Betonivalimo P 
+ Kertuntie P 
+ Kinkomaan sairaala th P 
+ Olympiakylä P 
+ Kinkomäki P 
+ Ahosenveräjä P 
+ Erkintie P 
+ Tapani P 
+ Sääkslahti P 
+ Sääksvuorentie P 
+ Välitie P 
+ Keljonkangas 1 
+ Sorvi 1 
+ Keljonkankaan koulu 1 
+ Sysmälä P 
+ Keljonranta P 
+ Valimontie P 
+ Tervala P 
+ Tarhamäki 1 
+ Keljonkatu 1 
+ Purokatu 1 
+ Yliopisto 1 
+ Älylä 
+ Kirjasto 6 
+ Keskusta 1 
+ Urhonkatu 4 
+ Kauppatori 11 

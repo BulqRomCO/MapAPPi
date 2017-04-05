@@ -1,0 +1,51 @@
+ Parolantie E 
+ Naarantie E 
+ Kiilakatu I 
+ Tikkakoski koulu I 
+ Myllykatu I 
+ Teollisuustalo 1 
+ Kirkkokatu 1 
+ Mestarinkatu I 
+ Martinkatu I 
+ Lennostontie I 
+ Tikansalontie I 
+ Elementtitie I 
+ Tikkamannilantie I 
+ Tikka I 
+ Tikkakoski th E 
+ Tervajärventie E 
+ Tikkamannilantie E 
+ Puuppola th E 
+ Makkarajoentie I 
+ Lehesjärventie I 
+ Matinmäentie 555 I 
+ Kappeliahontie E 
+ Huittilantie E 
+ Lehtoniemi th E 
+ Syvälahdentie E 
+ Isolahti E 
+ Hiekkapohjan th E 
+ Koivumutka E 
+ Heikkilä E 
+ Martikaisentie E 
+ Ollila th E 
+ Piilola E 
+ Jokela th E 
+ Pappilanrinne E 
+ Palokan terveyskeskus E 
+ Ritopohja E 
+ Ritoniemi E 
+ Heinäoja E 
+ Heinälammentie E 
+ Ukonniementie E 
+ Seppäläntien jatke 1 
+ Seppälän th E 
+ Lahjaharjun hautausmaa E 
+ Lohitalot E 
+ Niskakuja 1 
+ Kunnantalo 1 
+ Ammattikorkeakoulu 1 
+ Harjun oppilaitos 1 
+ Kauppatori 10 
+ Urhonkatu 1 
+ Keskusta 7 

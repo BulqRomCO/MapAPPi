@@ -1,0 +1,55 @@
+ Muuratsalo 
+ Uohua 1 
+ Kokko 1 
+ Uimala 1 
+ Vuorenlahti 1 
+ Vuorenlahti L 
+ Satasarvinen L 
+ Lemmensilta P 
+ Lehtisaari P 
+ Koppikylä P 
+ Ss-Säynätsalo 1 
+ ss-Kunnantalo 1 
+ Ss-Peekorpi 1 
+ Ss-Kangastie 1 
+ Ss-Hannala 1 
+ Riihelä L 
+ Kinkovuorentie th P 
+ Ss-Vuorensyrjä P 
+ Betonivalimo P 
+ Kertuntie P 
+ Kinkomaan sairaala th P 
+ Olympiakylä P 
+ Kinkomäki P 
+ Ahosenveräjä P 
+ Erkintie P 
+ Tapani P 
+ Sääkslahti P 
+ Sääksvuorentie P 
+ Välitie P 
+ Keljonkangas 1 
+ Sorvi 1 
+ Keljonkankaan koulu 1 
+ Sysmälä P 
+ Keljonranta P 
+ Valimontie P 
+ Keljonkeskus 1 
+ Tervala 22 
+ Tervala P 
+ Tarhamäki 1 
+ Keljonkatu 1 
+ Purokatu 1 
+ Yliopisto 1 
+ Älylä 
+ Kirjasto 6 
+ Keskusta 1 
+ Urhonkatu 4 
+ Kauppatori 11 
+ Keski-Suomen talo 
+ Keskikatu 2 
+ Vellamonkatu 2 
+ Voionmaan koulu 2 
+ Jäähalli 2 
+ Rautpohja 2 
+ Valimo 2 
+ Keskussairaala 2 

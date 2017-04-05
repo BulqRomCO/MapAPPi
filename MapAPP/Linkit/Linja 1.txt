@@ -1,0 +1,49 @@
+ Haapaniemi päätepysäkki 
+ Noukanniementie 1 
+ Haapaniemi 1 
+ Suvimäki P 
+ Kankarsaarentie P 
+ Sammallahti P 
+ Hutunki P 
+ Kalustetehdas P 
+ Amiraali P 
+ Konttisentie L 
+ Vesmanninmäki L 
+ Kotimäki th L 
+ Latostenmäki L 
+ Pitkäsilta L 
+ Jyskä L 
+ Varastomyymälä L 
+ Tammitie 1 
+ Koivuranta 1 
+ Ilveskuja 1 
+ Halssilan koulu 1 
+ Kivistö 1 
+ Aittorinne 1 
+ Aholaita 1 
+ Tourutorni 1 
+ Tourula 1 
+ Tourunsilta 1 
+ Urhonkatu 1 
+ Keskusta 7 
+ Kirjasto 2 
+ Pitkäkatu 2 
+ Cygnaeuksen koulu 2 
+ Voionmaan koulu 1 
+ Jäähalli 2 
+ Rautpohja 2 
+ Valimo 2 
+ Keskussairaala 2 
+ Kyllö 2 
+ Rihlaperä 2 
+ Salokatu 2 
+ Kypärämäen koulu 2 
+ Kahakatu 2 
+ Köhniönjärvi 2 
+ Vekarokatu 2 
+ Killeri 22 
+ Liikuntakeskus Killeri 1 
+ Hankurainen 2 
+ Ruutisarvi 2 
+ Tähtäin 2 
+ Kortemäki 

@@ -1,0 +1,67 @@
+ Keskussairaala 1 
+ Valimo 1 
+ Yliopisto 1 
+ Kirjasto 5 
+ Keskusta 4 
+ Urhonkatu 2 
+ Tourunsilta 2 
+ Tourula 2 
+ Aholaita 2 
+ Aittorinne 2 
+ Kivistö 2 
+ Halssilan koulu 2 
+ Halssilanrinne 2 
+ Koivuranta 2 
+ Tammitie 2 I 
+ Varastomyymälä I 
+ Jyskä I 
+ Pitkäsilta I 
+ Latostenmäki I 
+ Kotimäki th I 
+ Vesmanninmäki I 
+ Vaajakummun koulu 2 
+ Konttisentie I 
+ Siperianpolku E 
+ Hupeli E 
+ Laurinniemi th E 
+ Kanavuori E 
+ Kairahta E 
+ Jussila E 
+ Jussilanmutka E 
+ Hokkatuomas E 
+ Mäntylahti E 
+ Tura th E 
+ Jääskelä E 
+ Kotalahti E 
+ Pölönen E 
+ Aijasaho E 
+ Oravasaari E 
+ Harjulantie E 
+ Multamäentie E 
+ Kurkisuontie E 
+ Keskinen E 
+ Ilmoniemi th 
+ Puroharju P 
+ Keskinen P 
+ Kurkisuontie P 
+ Multamäentie P 
+ Sikoharju P 
+ Haukanmaa E 
+ Multamäki E 
+ Kaukaanlahti E 
+ Korpelantie I 
+ Isojoki I 
+ Syvälahti I 
+ Majalahti E 
+ Kiviriihi E 
+ Kuorekallio E 
+ Norolantie E 
+ Kaarre E 
+ Pohjoonlahti E 
+ Syrjälä E 
+ Vehmaantie P 
+ Kiikarvuori P 
+ Kakaravaara P 
+ Kanervakuja P 
+ Paloisentie P 
+ TOIVAKKA, Toivakantie 47 

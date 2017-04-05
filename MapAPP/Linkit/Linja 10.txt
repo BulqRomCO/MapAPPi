@@ -1,0 +1,33 @@
+ Helokantie 
+ Keltinmäen koulu 1 
+ Kultalakintie 1 
+ Keltinsilta 1 
+ Petäjävedentie 1 
+ Pajatie 1 
+ Kyllö 1 
+ Keskussairaala 1 
+ Valimo 11 
+ Rautpohja 1 
+ Jäähalli 1 
+ Vellamonkatu 1 
+ Keskikatu 1 
+ Harjun oppilaitos 1 
+ Kauppatori 9 
+ Keskusta 3 
+ Urhonkatu 2 
+ Tourunsilta 2 
+ Tourula 2 
+ Seppäläntie 2 
+ Prisma 2 
+ Alasinkatu 2 
+ Kangasvuori 2 
+ Huhtasuo 2 
+ Sairaala 2 
+ Nevakatu 2 
+ Marjapolku 2 
+ Vesojantie 2 
+ Kulottajantie 
+ Vesojantie 1 
+ Huhtasuon koulu 2 
+ Kaakonsiipi 2 
+ Kaakkolampi 

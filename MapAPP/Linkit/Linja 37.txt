@@ -1,0 +1,51 @@
+ Keskusta 6 
+ Kirjasto 3 
+ Pitkäkatu 2 
+ Cygnaeuksen koulu 2 
+ Voionmaan koulu 2 
+ Jäähalli 2 
+ Rautpohja 2 
+ Valimo 2 
+ Kyllö 2 
+ Rihlaperä 2 
+ Salokatu 2 
+ Kypärämäen koulu 2 
+ Kahakatu 2 
+ Köhniönjärvi 2 
+ Vekarokatu 2 
+ Killeri 2 
+ Könkkölä 2 
+ Ruokepuolinen P 
+ Timolantie P 
+ Vesangantie th P 
+ Suomäentie P 
+ Porttilantie P 
+ Soikkalantie P 
+ Kesärannantie I 
+ Majajärvi I 
+ Yijälä I 
+ Koskelanmutka I 
+ Koskelantie I 
+ Rippalanmäki I 
+ Syväojankuja I 
+ Laajavuorentie I 
+ Rantaniemeläntie P 
+ Korppumäki L 
+ Elokuja P 
+ Syystie P 
+ Elokuja E 
+ Korppumäki I 
+ Korppumäki E 
+ Palokankeskus E 
+ Hakatalot E 
+ Viihdekeskus E 
+ Sarvikallio E 
+ Mannila E 
+ Niinitie 1 
+ Löylyjoki 1 
+ Kivelänranta 1 
+ Lahjaharjuntie 1 
+ Taulumäki 1 
+ Vanha hautausmaa 1 
+ Puistokoulu 1 
+ Urhonkatu 4 
