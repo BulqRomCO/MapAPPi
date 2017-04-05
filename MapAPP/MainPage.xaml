@@ -32,15 +32,13 @@
         </AppBar>
     </Page.BottomAppBar>
 
-    <Grid Background="#cccccc">
+    <Grid>
 
 
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="233*"/>
-            <RowDefinition Height="12*"/>
         </Grid.RowDefinitions>
 
 
@@ -72,8 +70,8 @@
                         <FontIcon Glyph="&#xE8BB;"/>
                     </AppBarButton>
                 </StackPanel>
-            
-        </Popup>
+
+            </Popup>
         </StackPanel>
         <StackPanel>
             <Popup x:Name="popupWindow" Height="590" Width="400" Margin="0,150,0,0">
@@ -250,18 +248,9 @@
             <Maps:MapControl
                  x:Name="JKLmap"
                  MapServiceToken="yxdffEuO5bMUnJ8WmmKR~TJMM6J-5G2qUihFfRMFSfQ~AjI7WnPIoqIr32u5piUZSyx4-YlEpk11IPbqP_CTlYXcP05mzhwigUi5a_hLShGZ"
-                 Height="934"
-                 Margin="0,0,0,0">
+                 Height="978"
+                 Margin="-400,0,0,0">
             </Maps:MapControl>
-        </StackPanel>
-
-
-        <StackPanel x:Name="toolbar1Stack"  Grid.Column="0" Grid.Row="4" Background="#b3b3b3" BorderThickness="0,2,0,0" BorderBrush="Black">
-        </StackPanel>
-
-
-        <StackPanel x:Name="toolbar2Stack"  Grid.Column="1" Grid.Row="4" Background="#b3b3b3" BorderThickness="0,2,0,0" BorderBrush="Black">
-
         </StackPanel>
 
     </Grid>

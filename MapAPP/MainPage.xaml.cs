@@ -267,6 +267,7 @@ namespace MapAPP
         {
             if (destinationWindow.IsOpen) { destinationWindow.IsOpen = false; }
         }
+
     }
     }
 
