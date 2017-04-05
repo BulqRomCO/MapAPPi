@@ -46,7 +46,8 @@ namespace MapAPP
             // Listaan itemit
             listItems.Add(new BussStops { StopName = "Forum", StopID = 6000, Latitude = 62.2416403, LonTitude = 25.7474285 });
             ListView itemListView = new ListView();
-            StopsList.ItemsSource = listItems;
+            // StopsList.ItemsSource = listItems;
+            StopsList.ItemsSource = stops;
         }
         // Drawing route on map
         private async void ShowRouteOnMap()
@@ -128,6 +129,7 @@ namespace MapAPP
         }
         // BussStops luokan tyyppinen oliolista
         private List<MapAPP.BussStops> stops = new List<MapAPP.BussStops>();
+        
         private async void GenerateStopsData()
         {
             try
@@ -274,6 +276,11 @@ namespace MapAPP
             if (destinationWindow.IsOpen) { destinationWindow.IsOpen = false; }
         }
 
+        private void popstopsbutton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (!popstops.IsOpen) { popstops.IsOpen = true; }
+
+        }
     }
     }
 
