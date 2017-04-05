@@ -18,5 +18,10 @@ namespace MapAPP
         {
             return "ID " + StopID + " Name " + StopName + " Lon: " + LonTitude + " Lat: " + Latitude; 
         }
+
+        internal bool StartsWith(string text, StringComparison ordinalIgnoreCase)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

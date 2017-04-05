@@ -43,8 +43,6 @@ namespace MapAPP
         {
             this.InitializeComponent();
             GenerateStopsData();
-            // Listaan itemit
-            listItems.Add(new BussStops { StopName = "Forum", StopID = 6000, Latitude = 62.2416403, LonTitude = 25.7474285 });
             ListView itemListView = new ListView();
             // StopsList.ItemsSource = listItems;
             StopsList.ItemsSource = stops;
@@ -286,6 +284,32 @@ namespace MapAPP
             if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
             if (destinationWindow.IsOpen) { destinationWindow.IsOpen = false; }
 
+        }
+
+        private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+
+        }
+
+        private void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            if (args.ChosenSuggestion != null)
+
+                Searchbox.Text = args.ChosenSuggestion.ToString();
+
+            else
+
+                Searchbox.Text = sender.Text;
+        }
+
+        private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+
+                sender.ItemsSource = stops;
+            }
         }
     }
     }
