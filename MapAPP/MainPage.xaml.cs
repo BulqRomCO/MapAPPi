@@ -79,6 +79,7 @@ namespace MapAPP
         private void chooseBus_Click(object sender, RoutedEventArgs e)
         {
             if (!popupWindow.IsOpen) { popupWindow.IsOpen = true; }
+            if (destinationWindow.IsOpen) { destinationWindow.IsOpen = false; }
 
         }
 
@@ -267,6 +268,7 @@ namespace MapAPP
         private void destination_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (!destinationWindow.IsOpen) { destinationWindow.IsOpen = true; }
+            if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
         }
 
         private void closedestination_Tapped(object sender, TappedRoutedEventArgs e)
