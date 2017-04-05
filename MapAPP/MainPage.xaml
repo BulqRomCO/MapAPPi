@@ -74,7 +74,7 @@
             </Popup>
         </StackPanel>
         <StackPanel>
-            <Popup x:Name="popupWindow" Height="590" Width="400" Margin="0,150,0,0">
+            <Popup x:Name="popupWindow" Height="600" Width="400" Margin="0,150,0,0">
                 <ScrollViewer>
                     <Grid x:Name="popupGrid" Background="#bfbfbf" BorderBrush="Black" BorderThickness="2">
                         <Grid.ColumnDefinitions>
@@ -224,9 +224,28 @@
                         <StackPanel Grid.Column="3" Grid.Row="10">
                             <Button x:Name="cancelButton" Content="Cancel" HorizontalContentAlignment="Center" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="cancelButton_Click" BorderBrush="Black" BorderThickness="2"/>
                         </StackPanel>
-
+                        <ListView x:Name="StopsList">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding StopName}" 
+                           Margin="20,0,20,8"
+                           FontSize="24" 
+                           FontStyle="Italic" 
+                           FontWeight="SemiBold"
+                           Foreground="DarkBlue" />
+                                        <TextBlock Text="{Binding StopID}" 
+                           Margin="20,0,20,8"
+                           FontSize="16"
+                           Foreground="DarkGray" 
+                           Opacity="0.8" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </Grid>
                 </ScrollViewer>
+        
             </Popup>
         </StackPanel>
         <StackPanel x:Name="timeDateStack"  Grid.Column="1" Grid.Row="0" Background="#bfbfbf" BorderThickness="2,0,0,2" BorderBrush="Black">

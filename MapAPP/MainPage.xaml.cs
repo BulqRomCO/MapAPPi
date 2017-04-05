@@ -38,10 +38,15 @@ namespace MapAPP
         private double eLatitude = 62.236496;
         private double eLongtitude = 25.723306;
         // public object BackColor { get; set; }
+        ObservableCollection<BussStops> listItems = new ObservableCollection<BussStops>();
         public MainPage()
         {
             this.InitializeComponent();
             GenerateStopsData();
+            // Listaan itemit
+            listItems.Add(new BussStops { StopName = "Forum", StopID = 6000, Latitude = 62.2416403, LonTitude = 25.7474285 });
+            ListView itemListView = new ListView();
+            StopsList.ItemsSource = listItems;
         }
         // Drawing route on map
         private async void ShowRouteOnMap()
@@ -227,7 +232,7 @@ namespace MapAPP
                 stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
                 stopoint.Title = stop.StopName;
                 // ALLA VOIT VAIHTAA BUSSIN KUVAN
-                //stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/jaa.png"));
+                stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
                 JKLmap.MapElements.Add(stopoint);
 
             }
@@ -252,6 +257,7 @@ namespace MapAPP
             
             
          }
+        
 
         private void fromTextBlock_TextChanged(object sender, TextChangedEventArgs e)
         {
