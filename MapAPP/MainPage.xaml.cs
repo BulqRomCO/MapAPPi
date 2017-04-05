@@ -51,11 +51,11 @@ namespace MapAPP
 
 
         // Drawing route on map
-       
+
         private async void ShowRouteOnMap(List<double> lista)
         {
-            
-            BasicGeoposition startPoint = new BasicGeoposition() { Latitude = lista[0], Longitude = lista[1]};
+
+            BasicGeoposition startPoint = new BasicGeoposition() { Latitude = lista[0], Longitude = lista[1] };
             BasicGeoposition endPoint = new BasicGeoposition() { Latitude = lista[2], Longitude = lista[3] };
 
 
@@ -74,6 +74,7 @@ namespace MapAPP
                 viewOfRoute.RouteColor = Colors.ForestGreen;
                 viewOfRoute.OutlineColor = Colors.Black;
                 JKLmap.Routes.Add(viewOfRoute);
+                routeto.Clear();
             }
         }
 
@@ -126,7 +127,10 @@ namespace MapAPP
             {
                 origcolor = (SolidColorBrush)btn.Background;
                 btn.Background = onbusclick;
+
             }
+            string buttonlabel = btn.Label.ToString();
+            ReadLineData(buttonlabel);
 
         }
         // BussStops luokan tyyppinen oliolista
@@ -314,7 +318,7 @@ namespace MapAPP
             //sender.ItemsSource = names;
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
-                if(sender.Text.Length > 1)
+                if (sender.Text.Length > 1)
                 {
                     suggestion = names.Where(x => x.Contains(sender.Text)).ToList();
                     sender.ItemsSource = suggestion;
@@ -323,7 +327,7 @@ namespace MapAPP
                 {
                     sender.ItemsSource = new string[] { "Ei löydy" };
                 }
-                
+
             }
         }
 
@@ -404,6 +408,36 @@ namespace MapAPP
                     // ALLA VOIT VAIHTAA BUSSIN KUVAN
                     stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
                     JKLmap.MapElements.Add(stopoint);
+                }
+            }
+        }
+        private async void ReadLineData(string label)
+        {
+
+            // KESKEN VITUSTIOI !!!!
+            StorageFolder storageFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+            Debug.Write("Bussi " + label.ToString());
+            string PathToGPSFile = @"Linkit\" + label + ".txt";
+            StorageFile linkkitieto = await storageFolder.GetFileAsync(PathToGPSFile);
+            IList<string> linjadata = await FileIO.ReadLinesAsync(linkkitieto);
+            foreach (string n in linjadata)
+            {  
+                foreach (BussStops stop in stops)
+                {
+                    if (n == stop.StopName)
+                    {
+                        
+                        BasicGeoposition snPosition = new BasicGeoposition() { Latitude = stop.Latitude, Longitude = stop.LonTitude };
+                        Geopoint snPoint = new Geopoint(snPosition);
+                        // Luodaan uusi stop 
+                        MapIcon stopoint = new MapIcon();
+                        stopoint.Location = snPoint;
+                        stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
+                        stopoint.Title = stop.StopName;
+                        // ALLA VOIT VAIHTAA BUSSIN KUVAN
+                        stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
+                        JKLmap.MapElements.Add(stopoint);
+                    }
                 }
             }
         }
