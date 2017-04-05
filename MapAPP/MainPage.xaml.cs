@@ -387,6 +387,7 @@ namespace MapAPP
                     }
                 }
             }
+
             ShowRouteOnMap(route);
             route.Clear();
         }
