@@ -80,8 +80,8 @@ namespace MapAPP
         private void chooseBus_Click(object sender, RoutedEventArgs e)
         {
             if (!popupWindow.IsOpen) { popupWindow.IsOpen = true; }
-            if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
             if (destinationWindow.IsOpen) { destinationWindow.IsOpen = false; }
+            if (popstops.IsOpen) { popstops.IsOpen = false; }
 
         }
 
