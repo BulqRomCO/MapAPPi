@@ -49,12 +49,12 @@ namespace MapAPP
             // StopsList.ItemsSource = stops;
         }
         // Drawing route on map
-        private async void ShowRouteOnMap()
+       
+        private async void ShowRouteOnMap(string nameofstop)
         {
-
-            // Start point
-            BasicGeoposition startPoint = new BasicGeoposition() { Latitude = sLatitude, Longitude = sLongtitude };
-            BasicGeoposition endPoint = new BasicGeoposition() { Latitude = eLatitude, Longitude = eLongtitude };
+            
+            BasicGeoposition startPoint = new BasicGeoposition() { Latitude = lista[0], Longitude = lista[1] };
+            BasicGeoposition endPoint = new BasicGeoposition() { Latitude = lista[2], Longitude = lista[3] };
 
 
             // Get the route between the points
@@ -299,6 +299,7 @@ namespace MapAPP
             {
                 Searchbox.Text = args.ChosenSuggestion.ToString();
                 ShowPoint(args.ChosenSuggestion.ToString());
+                ShowRouteOnMap(args.ChosenSuggestion.ToString());
             }
             else
             {
@@ -338,7 +339,7 @@ namespace MapAPP
             {
                 DestinationSuggestBox.Text = args.ChosenSuggestion.ToString();
                 ShowPoint(args.ChosenSuggestion.ToString());
-
+                ShowRouteOnMap(args.ChosenSuggestion.ToString());
 
             }
 

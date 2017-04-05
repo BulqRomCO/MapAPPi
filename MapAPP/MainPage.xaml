@@ -58,7 +58,7 @@
         <StackPanel>
             <Popup x:Name="destinationWindow" Height="300" Width="400" Margin="0,150,0,0">
 
-                <StackPanel>
+                <StackPanel Background="Bisque">
                     <TextBlock x:Name="fromTextBox" TextWrapping="Wrap" Text="From:"/>
                     <!--<TextBox x:Name="fromTextBlock" TextWrapping="Wrap" Text="" TextChanged="fromTextBlock_TextChanged"/>-->
                     <AutoSuggestBox
