@@ -37,6 +37,7 @@ namespace MapAPP
         private double sLongtitude = 25.7474285;
         private double eLatitude = 62.236496;
         private double eLongtitude = 25.723306;
+
         // public object BackColor { get; set; }
         ObservableCollection<BussStops> listItems = new ObservableCollection<BussStops>();
         public MainPage()
@@ -49,12 +50,12 @@ namespace MapAPP
         }
 
         // Drawing route on map
-        private async void ShowRouteOnMap(List<double> lista)
+       
+        private async void ShowRouteOnMap(string nameofstop)
         {
             
-            // Start point
-            BasicGeoposition startPoint = new BasicGeoposition() { Latitude = sLatitude, Longitude = sLongtitude};
-            BasicGeoposition endPoint = new BasicGeoposition() { Latitude = eLatitude, Longitude = eLongtitude };
+            BasicGeoposition startPoint = new BasicGeoposition() { Latitude = lista[0], Longitude = lista[1] };
+            BasicGeoposition endPoint = new BasicGeoposition() { Latitude = lista[2], Longitude = lista[3] };
 
 
             // Get the route between the points
@@ -104,18 +105,18 @@ namespace MapAPP
 
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
-            
+
             if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
             // do nothing in this function
         }
 
-        SolidColorBrush onbusclick = new SolidColorBrush(Color.FromArgb(1,179, 255, 153));
+        SolidColorBrush onbusclick = new SolidColorBrush(Color.FromArgb(1, 179, 255, 153));
         SolidColorBrush origcolor;
 
         void bus_Click(object sender, RoutedEventArgs e)
         {
             AppBarButton btn = sender as AppBarButton;
-               
+
             if ((SolidColorBrush)btn.Background == onbusclick)
             {
                 btn.Background = origcolor;
@@ -129,7 +130,9 @@ namespace MapAPP
         }
         // BussStops luokan tyyppinen oliolista
         private List<MapAPP.BussStops> stops = new List<MapAPP.BussStops>();
-        
+
+        public object ContactSampleDataSource { get; private set; }
+
         private async void GenerateStopsData()
         {
             try
@@ -144,8 +147,9 @@ namespace MapAPP
                 // Lista mihin lisätään parsittu tieto
                 List<string[]> InfoList = new List<string[]>();
                 // Parsitaan tieto ensin splittaamalla , kohdalta ja sitten korvataan "" tyhjällä.
-                
-                foreach(string splitti in pys) {
+
+                foreach (string splitti in pys)
+                {
                     string s = splitti.Replace('"', ' ').Trim();
                     string[] parts = s.Split(',');
                     string stopname = parts[2];
@@ -154,9 +158,9 @@ namespace MapAPP
                     double lat;
                     // Tiedosto ottaa vain 1200 riviä ja heittää sitten exceptionia
                     if (double.TryParse(parts[3], out lat))
-                    stops.Add(new BussStops { StopName = stopname, StopID = stopid, Latitude = lat, LonTitude = lon });
+                        stops.Add(new BussStops { StopName = stopname, StopID = stopid, Latitude = lat, LonTitude = lon });
                     //loadingdata.Value += 1;
-                    
+
 
                 }
                 SaveStopsInfo();
@@ -166,8 +170,8 @@ namespace MapAPP
             {
                 Debug.Write("Virhe:", e.Message);
             }
-        //stops.Add(new BussStops { StopName = "Forum", StopID = 6000, Latitude = 62.2416403, LonTitude = 25.7474285 });
-        //stops.Add(new BussStops { StopName = "Jupari", StopID = 6000, Latitude = 62.236496, LonTitude = 25.723306 });
+            //stops.Add(new BussStops { StopName = "Forum", StopID = 6000, Latitude = 62.2416403, LonTitude = 25.7474285 });
+            //stops.Add(new BussStops { StopName = "Jupari", StopID = 6000, Latitude = 62.236496, LonTitude = 25.723306 });
 
 
         }
@@ -208,7 +212,7 @@ namespace MapAPP
 
                 // read data
                 DataContractSerializer serializer = new DataContractSerializer(typeof(List<BussStops>));
-                stops = (List<BussStops>)serializer.ReadObject(stream);             
+                stops = (List<BussStops>)serializer.ReadObject(stream);
                 ShowStops();
             }
             catch (Exception ex)
@@ -223,7 +227,7 @@ namespace MapAPP
             foreach (BussStops stop in stops)
             {
                 Debug.Write(stop.ToString());
-              //  stoptextblock.Text += stop.StopID + " " + stop.StopName + + stop.LonTitude + stop.LonTitude + Environment.NewLine;
+                //  stoptextblock.Text += stop.StopID + " " + stop.StopName + + stop.LonTitude + stop.LonTitude + Environment.NewLine;
                 Debug.Write(stop.Latitude + stop.LonTitude);
 
                 BasicGeoposition snPosition = new BasicGeoposition() { Latitude = stop.Latitude, Longitude = stop.LonTitude };
@@ -244,8 +248,8 @@ namespace MapAPP
         {
             ReadStops();
             ShowStops();
-            
-        } 
+
+        }
 
         private void EXIT_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -256,10 +260,10 @@ namespace MapAPP
         {
             //stops.Clear();
             JKLmap.MapElements.Clear();
-            
-            
-         }
-        
+
+
+        }
+
 
         private void fromTextBlock_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -288,38 +292,109 @@ namespace MapAPP
 
         private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
-
         }
 
         private void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
-            if (args.ChosenSuggestion != null) {
-
+            if (args.ChosenSuggestion != null)
+            {
                 Searchbox.Text = args.ChosenSuggestion.ToString();
-                // Ota Haun perusteella GPS tiewto
+                ShowPoint(args.ChosenSuggestion.ToString());
+                ShowRouteOnMap(args.ChosenSuggestion.ToString());
             }
-            
-            else {
-
+            else
+            {
                 Searchbox.Text = sender.Text;
             }
         }
 
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
-            
+            List<string> names = new List<string>();
+            List<string> suggestion = new List<string>();
+            foreach (BussStops name in stops) { names.Add(name.StopName); }
+            //sender.ItemsSource = names;
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
-                List<string> names = new List<string>();
-                foreach(BussStops name in stops) { names.Add(name.StopName); }
-                sender.ItemsSource = names;
+                if(sender.Text.Length > 1)
+                {
+                    suggestion = names.Where(x => x.Contains(sender.Text)).ToList();
+                    sender.ItemsSource = suggestion;
+                }
+                else
+                {
+                    sender.ItemsSource = new string[] { "Ei löydy" };
+                }
+                
             }
         }
 
+
+        private void DestinationSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+
+        }
+        private void DestinationSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            if (args.ChosenSuggestion != null)
+            {
+                DestinationSuggestBox.Text = args.ChosenSuggestion.ToString();
+                ShowPoint(args.ChosenSuggestion.ToString());
+                ShowRouteOnMap(args.ChosenSuggestion.ToString());
+
+            }
+
+            else
+            {
+                DestinationSuggestBox.Text = sender.Text;
+            }
+        }
+
+        private void DestinationSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            List<string> names = new List<string>();
+            List<string> suggestion = new List<string>();
+            foreach (BussStops name in stops) { names.Add(name.StopName); }
+            //sender.ItemsSource = names;
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                if (sender.Text.Length > 1)
+                {
+                    suggestion = names.Where(x => x.Contains(sender.Text)).ToList();
+                    sender.ItemsSource = suggestion;
+                }
+                else
+                {
+                    sender.ItemsSource = new string[] { "Ei löydy" };
+                }
+
+            }
+        }
+
+
         private void showButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            // show route
+
+        }
+        public void ShowPoint(string name)
+        {
+            foreach (BussStops stop in stops)
+            {
+                if (name == stop.StopName)
+                {
+                    BasicGeoposition snPosition = new BasicGeoposition() { Latitude = stop.Latitude, Longitude = stop.LonTitude };
+                    Geopoint snPoint = new Geopoint(snPosition);
+                    // Luodaan uusi stop 
+                    MapIcon stopoint = new MapIcon();
+                    stopoint.Location = snPoint;
+                    stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
+                    stopoint.Title = stop.StopName;
+                    // ALLA VOIT VAIHTAA BUSSIN KUVAN
+                    stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
+                    JKLmap.MapElements.Add(stopoint);
+                }
+            }
         }
     }
-    }
+}
 
