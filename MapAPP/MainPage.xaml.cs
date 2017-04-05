@@ -116,7 +116,7 @@ namespace MapAPP
 
         void bus_Click(object sender, RoutedEventArgs e)
         {
-            Button btn = sender as Button;
+            AppBarButton btn = sender as AppBarButton;
                
             if ((SolidColorBrush)btn.Background == onbusclick)
             {
