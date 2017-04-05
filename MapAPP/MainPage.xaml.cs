@@ -49,6 +49,7 @@ namespace MapAPP
             // StopsList.ItemsSource = stops;
         }
 
+
         // Drawing route on map
        
         private async void ShowRouteOnMap(List<double> lista)
