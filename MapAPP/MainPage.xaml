@@ -71,11 +71,11 @@
                     </AutoSuggestBox>
                     <TextBlock x:Name="destinationTextBox" TextWrapping="Wrap" Text="Destination:"/>
                     <AutoSuggestBox
-                                       
+                                       x:Name="DestinationSuggestBox"
                                         QueryIcon="Find"
-                                        SuggestionChosen="AutoSuggestBox_SuggestionChosen"
-                                        QuerySubmitted="AutoSuggestBox_QuerySubmitted"
-                                        TextChanged="AutoSuggestBox_TextChanged">
+                                        SuggestionChosen="DestinationSuggestBox_SuggestionChosen"
+                                        QuerySubmitted="DestinationSuggestBox_QuerySubmitted"
+                                        TextChanged="DestinationSuggestBox_TextChanged">
 
                     </AutoSuggestBox>
                     <!--<TextBox x:Name="destinationBlock" TextWrapping="Wrap" Text=""/>-->
@@ -83,7 +83,7 @@
                     <CalendarDatePicker Height="27" Width="124" HorizontalAlignment="Center" FontFamily="OCR A Extended"/>
                     <TextBlock x:Name="timeTextBox" TextWrapping="Wrap" Text="Time:"/>
                     <TimePicker Width="110" HorizontalAlignment="Center" FontFamily="OCR A Extended"/>
-                    <AppBarButton x:Name="showButton" Label="Show">
+                    <AppBarButton x:Name="showButton" Label="Show" Tapped="showButton_Tapped">
                         <FontIcon Glyph="&#xE819;"/>
                     </AppBarButton>
                     <AppBarButton x:Name="closedestination" Label="Close" Tapped="closedestination_Tapped">

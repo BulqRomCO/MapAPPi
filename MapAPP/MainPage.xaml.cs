@@ -37,6 +37,7 @@ namespace MapAPP
         private double sLongtitude = 25.7474285;
         private double eLatitude = 62.236496;
         private double eLongtitude = 25.723306;
+        
         // public object BackColor { get; set; }
         ObservableCollection<BussStops> listItems = new ObservableCollection<BussStops>();
         public MainPage()
@@ -48,9 +49,9 @@ namespace MapAPP
             // StopsList.ItemsSource = stops;
         }
         // Drawing route on map
-        private async void ShowRouteOnMap(List<double> lista)
+        private async void ShowRouteOnMap()
         {
-            
+           
             // Start point
             BasicGeoposition startPoint = new BasicGeoposition() { Latitude = sLatitude, Longitude = sLongtitude};
             BasicGeoposition endPoint = new BasicGeoposition() { Latitude = eLatitude, Longitude = eLongtitude };
@@ -287,19 +288,15 @@ namespace MapAPP
 
         private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
-
         }
 
         private void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             if (args.ChosenSuggestion != null) {
-
                 Searchbox.Text = args.ChosenSuggestion.ToString();
-                // Ota Haun perusteella GPS tiewto
+                
             }
-            
             else {
-
                 Searchbox.Text = sender.Text;
             }
         }
@@ -314,8 +311,40 @@ namespace MapAPP
                 sender.ItemsSource = names;
             }
         }
+
+        private void DestinationSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+
+        }
+        private void DestinationSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            if (args.ChosenSuggestion != null)
+            {
+                Searchbox.Text = args.ChosenSuggestion.ToString();
+            
+            }
+
+            else
+            {
+                Searchbox.Text = sender.Text;
+            }
+        }
+
+        private void DestinationSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                List<string> names = new List<string>();
+                foreach (BussStops name in stops) { names.Add(name.StopName); }
+                sender.ItemsSource = names;
+            }
+        }
         
 
+        private void showButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            ShowRouteOnMap()
+        }
     }
     }
 
