@@ -1,0 +1,12 @@
+Ylistönmäki 1
+Kylmänoro 1
+Ainola 1
+Patteritie 1
+Korpela 1
+Satama 1
+Kirjasto 6
+Keskusta 1
+Urhonkatu 4
+Kauppatori 11
+Keski-Suomen talo
+Ammattikoulu 1

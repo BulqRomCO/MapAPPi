@@ -1,0 +1,22 @@
+Kuokkalan Kartano 1
+Suksipajantie 1
+Salmirannantie 1
+Raivio 1
+Hämeenlahdentie th 1
+Lampitie th 1
+Kansanopisto 1
+Kuokkala 1
+Korpela 1
+Messukeskus 1
+Schaumanin linna 1
+Heikinkatu 1
+Urhonkatu 1
+Keskusta 7
+Kirjasto 2
+Pitkäkatu 2
+Cygnaeuksen koulu 2
+Voionmaan koulu 2
+Jäähalli 2
+Rautpohja 2
+Valimo 2
+Keskussairaala 2
