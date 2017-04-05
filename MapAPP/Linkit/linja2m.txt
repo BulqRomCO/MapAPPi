@@ -1,0 +1,18 @@
+Keskussairaala 11
+Valimo 1
+Yliopisto 1
+Älylä
+Kirjasto 6
+Keskusta 4
+Urhonkatu 2
+Tourunsilta 2
+Kotimäki th I
+Vesmanninmäki I
+Panda P
+Tölskä th P
+Pöytäkangas P
+Rahkosentie P
+Kivilampi th P
+Kaunisharjuntie 2
+Kovasentie 2
+Kotamäentie kp

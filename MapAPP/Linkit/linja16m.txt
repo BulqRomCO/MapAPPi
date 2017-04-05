@@ -1,0 +1,47 @@
+Ammattikoulu 1
+Viitaniemi 1
+Sepänkatu 1
+Ammattikoulu 2
+Harjun oppilaitos 1
+Kauppatori 9
+Urhonkatu 1
+Keskusta 5
+Kirjasto 1
+Lounaispuisto 2
+Yliopisto 2
+Purokatu 2
+Keljonkatu 2
+Tarhamäki 2
+Tervala E
+Eteläväylä 22 I
+Sohlberginkatu I
+Keljonkangas E
+Välitie E
+Sääksvuorentie E
+Sääkslahti E
+Tapani E
+Erkintie E
+Ahosenveräjä E
+Kinkomäki E
+Olympiakylä E
+Kinkomaan sairaala th E
+Kertuntie E
+Betonivalimo E
+Vuorensyrjä E
+Karkauspohja L
+Ss-Riihelä 2
+Ss-Hannala 2
+Ss-Kangastie 2
+Ss-Peekorpi 2
+Ss-Kunnantalo 2
+Ss-Säynätsalo 2
+Koppikylä E
+Lehtisaari E
+Lemmensilta I
+Satasarvinen I
+Vuorenlahti I
+Vuorenlahti 2
+Uimala 2
+Kokko 2
+Uohua 2
+Muuratsalo

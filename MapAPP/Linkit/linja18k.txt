@@ -1,0 +1,24 @@
+Nenäinniemi
+Hirvirinne 1
+Sääksmäentie 1
+Nenäinmutka 1
+Hauhontie 1
+Masonmutka 1
+Pohjanlahti 1
+Pohjanpelto 1
+Pohjanlampi 1
+Kuokkala 1
+Korpela 1
+Messukeskus 1
+Schaumanin linna 1
+Heikinkatu 1
+Urhonkatu 1
+Keskusta 6
+Kirjasto 3
+Pitkäkatu 2
+Cygnaeuksen koulu 2
+Syrjälä 2
+Palokunnankatu 2
+Oppilaitokset 2
+Kortesuo 2
+Taitoniekantie
