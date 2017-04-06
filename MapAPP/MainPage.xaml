@@ -67,7 +67,7 @@
                                         SuggestionChosen="AutoSuggestBox_SuggestionChosen"
                                         QuerySubmitted="AutoSuggestBox_QuerySubmitted"
                                         TextChanged="AutoSuggestBox_TextChanged">
-                        
+
                     </AutoSuggestBox>
                     <TextBlock x:Name="destinationTextBox" TextWrapping="Wrap" Text="Destination:"/>
                     <AutoSuggestBox
@@ -327,7 +327,7 @@
         </StackPanel>
         <StackPanel x:Name="timeDateStack"  Grid.Column="1" Grid.Row="0" Background="#bfbfbf" BorderThickness="2,0,0,2" BorderBrush="Black">
             <TextBlock x:Name="Time" Text="TÄHÄHN AIKA" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            
+
         </StackPanel>
 
 
@@ -342,13 +342,14 @@
 -->
 
         <StackPanel x:Name="mapStack"  Grid.Column="1" Grid.Row="3">
-            <Maps:MapControl
+            <Canvas x:Name="BusCanvas">
+                <Maps:MapControl
                  x:Name="JKLmap"
                  MapServiceToken="yxdffEuO5bMUnJ8WmmKR~TJMM6J-5G2qUihFfRMFSfQ~AjI7WnPIoqIr32u5piUZSyx4-YlEpk11IPbqP_CTlYXcP05mzhwigUi5a_hLShGZ"
-                 Height="978"
-                 Margin="-400,0,0,0">
-            </Maps:MapControl>
+                 Height="978" Canvas.Left="-398" Canvas.Top="-2" Width="1916"/>
+            </Canvas>
         </StackPanel>
+
 
     </Grid>
 

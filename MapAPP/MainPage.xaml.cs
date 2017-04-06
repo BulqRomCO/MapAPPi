@@ -33,10 +33,8 @@ namespace MapAPP
     public sealed partial class MainPage : Page
     {
         private Windows.Storage.StorageFile sampleFile;
-        private double sLatitude = 62.2416403;
-        private double sLongtitude = 25.7474285;
-        private double eLatitude = 62.236496;
-        private double eLongtitude = 25.723306;
+        private Bussi bussi;
+
 
         // public object BackColor { get; set; }
         ObservableCollection<BussStops> listItems = new ObservableCollection<BussStops>();
@@ -47,6 +45,11 @@ namespace MapAPP
             ListView itemListView = new ListView();
             // StopsList.ItemsSource = listItems;
             // StopsList.ItemsSource = stops;
+            bussi = new Bussi
+            {
+                LocationX = BusCanvas.Width / 2,
+                LocationY = BusCanvas.Height / 2
+            };
         }
 
 
