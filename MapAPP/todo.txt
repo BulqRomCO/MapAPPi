@@ -1,13 +1,12 @@
 ﻿Toteutettavat toiminnallisuudet:
 -Näytä pysäkit OK 
--Näytä reitti 2 GPS-pisteen välillä
+-Näytä reitti 2 GPS-pisteen välillä OK 
 -Näytä Bussi Kartalla
 ------------------------------------
 GUI:
--Valitse bussit / linjat
+-Valitse bussit / linjat OK
 -Näytä Pysäkit ASYNC? OK 
 -Piirrä reitit
--Valitse bussi(numero)
 
 Ville:
 - 30.3
