@@ -95,6 +95,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Bussi.xaml.cs">
+      <DependentUpon>Bussi.xaml</DependentUpon>
+    </Compile>
     <Compile Include="BussStops.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -110,6 +113,7 @@
     <None Include="MapAPP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\bussi.png" />
     <Content Include="Assets\bus_stop_icon.png" />
     <Content Include="Linkit\Linja 1.txt" />
     <Content Include="Linkit\Linja 10.txt" />
@@ -167,6 +171,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Bussi.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -26,6 +26,7 @@ using Windows.UI.Xaml.Navigation;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace MapAPP
+
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -33,10 +34,8 @@ namespace MapAPP
     public sealed partial class MainPage : Page
     {
         private Windows.Storage.StorageFile sampleFile;
-        private double sLatitude = 62.2416403;
-        private double sLongtitude = 25.7474285;
-        private double eLatitude = 62.236496;
-        private double eLongtitude = 25.723306;
+        private Bussi bussi;
+
 
         // public object BackColor { get; set; }
         ObservableCollection<BussStops> listItems = new ObservableCollection<BussStops>();
@@ -47,6 +46,11 @@ namespace MapAPP
             ListView itemListView = new ListView();
             // StopsList.ItemsSource = listItems;
             // StopsList.ItemsSource = stops;
+            bussi = new Bussi
+            {
+                LocationX = BusCanvas.Width / 2,
+                LocationY = BusCanvas.Height / 2
+            };
         }
 
 
@@ -411,23 +415,24 @@ namespace MapAPP
                 }
             }
         }
+        List<double> showroutebyname = new List<double>();
         private async void ReadLineData(string label)
         {
-
-            // KESKEN VITUSTIOI !!!!
+            showroutebyname.Clear();
             StorageFolder storageFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
             Debug.Write("Bussi " + label.ToString());
             string PathToGPSFile = @"Linkit\" + label + ".txt";
             StorageFile linkkitieto = await storageFolder.GetFileAsync(PathToGPSFile);
             IList<string> linjadata = await FileIO.ReadLinesAsync(linkkitieto);
             foreach (string n in linjadata)
-            {  
+            {
                 foreach (BussStops stop in stops)
                 {
                     if (n == stop.StopName)
                     {
-                        
+
                         BasicGeoposition snPosition = new BasicGeoposition() { Latitude = stop.Latitude, Longitude = stop.LonTitude };
+                        // Näytä linjan perusteella reitit 
                         Geopoint snPoint = new Geopoint(snPosition);
                         // Luodaan uusi stop 
                         MapIcon stopoint = new MapIcon();
@@ -437,10 +442,46 @@ namespace MapAPP
                         // ALLA VOIT VAIHTAA BUSSIN KUVAN
                         stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
                         JKLmap.MapElements.Add(stopoint);
+                        showroutebyname.Add(stop.Latitude);
+                        Debug.Write("Lisätään " + stop.Latitude.ToString());
+                        showroutebyname.Add(stop.LonTitude);
+                        Debug.Write("Lisätään " + stop.LonTitude.ToString());
                     }
                 }
             }
+            int count = showroutebyname.Count;
+            for(int j = 0; j < count; j++)
+            {
+                ShowRoutesLines(showroutebyname);
+                showroutebyname.RemoveRange(0, 2);
+                count = showroutebyname.Count;
+            }
+           
+            
+
         }
-    }
-}
+        private async void ShowRoutesLines(List<double> lista)
+        {
+            Debug.Write(lista[0] + " " + lista[1] + " " + lista[2] + " " + lista[3]);
+            BasicGeoposition startPoint = new BasicGeoposition() { Latitude = lista[0], Longitude = lista[1] };
+            BasicGeoposition endPoint = new BasicGeoposition() { Latitude = lista[2], Longitude = lista[3] };
+            MapRouteFinderResult routeResult =
+                      await MapRouteFinder.GetDrivingRouteAsync(
+                      new Geopoint(startPoint),
+                      new Geopoint(endPoint),
+                      MapRouteOptimization.Time,
+                      MapRouteRestrictions.None);
+            
+                if (routeResult.Status == MapRouteFinderStatus.Success)
+                {
+                Debug.Write("Added" );
+                    MapRouteView viewOfRoute = new MapRouteView(routeResult.Route);
+                    viewOfRoute.RouteColor = Colors.ForestGreen;
+                    viewOfRoute.OutlineColor = Colors.Black;
+                    JKLmap.Routes.Add(viewOfRoute);
+            }
+            
+        }
+        }
+ }
 
