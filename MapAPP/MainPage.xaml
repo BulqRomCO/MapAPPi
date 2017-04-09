@@ -9,6 +9,7 @@
     xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps"
     xmlns:bm="using:MapAPP"
     >
+    
 
     <Page.BottomAppBar>
         <AppBar Width="500" HorizontalAlignment="Left">
