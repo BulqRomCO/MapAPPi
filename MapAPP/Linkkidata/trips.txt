@@ -1,4 +1,3 @@
-"route_id","service_id","trip_id","trip_headsign","direction_id","block_id"
 "9011","M-P kesä","fe8ad47e-e0db-4d5b-be89-8ec759ecd6d3","","1",""
 "9011","M-P kesä","e0712884-6c6c-4bec-95da-342f8d371aa4","","1",""
 "9011","M-P kesä","761460fd-410d-4401-bd3e-0ee25a07a55e","","1",""

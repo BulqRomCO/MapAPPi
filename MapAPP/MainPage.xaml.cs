@@ -44,18 +44,21 @@ namespace MapAPP
             this.InitializeComponent();
             GenerateStopsData();
             ListView itemListView = new ListView();
-            // StopsList.ItemsSource = listItems;
-            // StopsList.ItemsSource = stops;
             bussi = new Bussi
             {
                 LocationX = BusCanvas.Width / 2,
                 LocationY = BusCanvas.Height / 2
             };
+            ReadRoutes();
             ReadStopTimesInfo();
+            ReadTripsInfo();
         }
-
-
-        // Drawing route on map
+        // Olio-kokoelmat
+        List<Trips> trips = new List<Trips>();
+        List<Routes> routes = new List<Routes>();
+        List<BussStops> stops = new List<MapAPP.BussStops>();
+        List<StopTimes> stoptimes = new List<StopTimes>();
+        List<string> routeto = new List<string>();
 
         private async void ShowRouteOnMap(List<double> lista)
         {
@@ -82,7 +85,6 @@ namespace MapAPP
                 routeto.Clear();
             }
         }
-
         private void chooseBus_Click(object sender, RoutedEventArgs e)
         {
             if (!popupWindow.IsOpen) { popupWindow.IsOpen = true; }
@@ -90,7 +92,6 @@ namespace MapAPP
             if (popstops.IsOpen) { popstops.IsOpen = false; }
 
         }
-
         // Kun kartta ladataan oletus GPS paikka on JKL koordinaatit !
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -103,23 +104,19 @@ namespace MapAPP
             JKLmap.ZoomLevel = 13;
             JKLmap.LandmarksVisible = true;
         }
-
         private void OK_Click(object sender, RoutedEventArgs e)
         {
             if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
             // show elements on map here
         }
-
         private void cancelButton_Click(object sender, RoutedEventArgs e)
         {
 
             if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
             // do nothing in this function
         }
-
         SolidColorBrush onbusclick = new SolidColorBrush(Color.FromArgb(1, 179, 255, 153));
         SolidColorBrush origcolor;
-
         void bus_Click(object sender, RoutedEventArgs e)
         {
             AppBarButton btn = sender as AppBarButton;
@@ -139,10 +136,7 @@ namespace MapAPP
 
         }
         // BussStops luokan tyyppinen oliolista
-        private List<MapAPP.BussStops> stops = new List<MapAPP.BussStops>();
-
         public object ContactSampleDataSource { get; private set; }
-
         private async void GenerateStopsData()
         {
             try
@@ -208,7 +202,6 @@ namespace MapAPP
             }
         }
         // Save stops data napin funktio joka kutsuu SaveStopsInfo funktiota ja kirjoittaa pysäkkien tiedot tiedostoon stops.dat
-
         private async void ReadStops()
         {
             try
@@ -253,19 +246,16 @@ namespace MapAPP
 
             }
         }
-
         private void stopsonmap_Click(object sender, RoutedEventArgs e)
         {
             ReadStops();
             ShowStops();
 
         }
-
         private void EXIT_Tapped(object sender, TappedRoutedEventArgs e)
         {
             Application.Current.Exit();
         }
-
         private void clearmap_Tapped(object sender, TappedRoutedEventArgs e)
         {
             //stops.Clear();
@@ -276,19 +266,16 @@ namespace MapAPP
         {
 
         }
-
         private void destination_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (!destinationWindow.IsOpen) { destinationWindow.IsOpen = true; }
             if (popstops.IsOpen) { popstops.IsOpen = false; }
             if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
         }
-
         private void closedestination_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (destinationWindow.IsOpen) { destinationWindow.IsOpen = false; }
         }
-
         private void popstopsbutton_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (!popstops.IsOpen) { popstops.IsOpen = true; }
@@ -296,11 +283,9 @@ namespace MapAPP
             if (destinationWindow.IsOpen) { destinationWindow.IsOpen = false; }
 
         }
-
         private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
         }
-
         private void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             if (args.ChosenSuggestion != null)
@@ -314,7 +299,6 @@ namespace MapAPP
                 Searchbox.Text = sender.Text;
             }
         }
-        List<string> routeto = new List<string>();
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             List<string> names = new List<string>();
@@ -335,7 +319,6 @@ namespace MapAPP
 
             }
         }
-
         private void DestinationSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
 
@@ -347,7 +330,6 @@ namespace MapAPP
                 DestinationSuggestBox.Text = args.ChosenSuggestion.ToString();
                 ShowPoint(args.ChosenSuggestion.ToString());
                 routeto.Add(args.ChosenSuggestion.ToString());
-        
                 
             }
 
@@ -356,7 +338,6 @@ namespace MapAPP
                 DestinationSuggestBox.Text = sender.Text;
             }
         }
-
         private void DestinationSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             List<string> names = new List<string>();
@@ -377,8 +358,6 @@ namespace MapAPP
 
             }
         }
-
-
         private void showButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
             List<double> route = new List<double>();
@@ -484,7 +463,6 @@ namespace MapAPP
             }
 
         }
-        List<StopTimes> stoptimes = new List<StopTimes>();
         private async void ReadStopTimes()
         {
             try
@@ -504,9 +482,10 @@ namespace MapAPP
                     string s = splitti.Replace('"', ' ').Trim();
                     string[] parts = s.Split(',');
                     string arrivetime = parts[1];
+                    string tripid = parts[0];
                     int stopid = int.Parse(parts[3]);
                     int sequence = int.Parse(parts[4]);
-                    stoptimes.Add(new StopTimes { StopTime = arrivetime, StopID = stopid, Sequence = sequence });
+                    stoptimes.Add(new StopTimes { StopTime = arrivetime, StopID = stopid, Sequence = sequence, TripID = tripid });
                     // Debug.Write(stopid);
 
                 }
@@ -520,7 +499,6 @@ namespace MapAPP
             }
             
         }
-           
         private async void SaveStopTimesInfo()
         {
             try
@@ -563,8 +541,113 @@ namespace MapAPP
                 Debug.WriteLine("Following exception has happend (reading): " + ex.ToString());
             }
 
-        }
+        }      
+        private async void ReadTrips()
+        {
+            try
+            {
+                // Avaa paikallinen kansio missä on asennettu tämä softa
+                StorageFolder storageFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                string PathToGPSFile = @"Linkkidata\trips.txt";
+                StorageFile linkkitieto = await storageFolder.GetFileAsync(PathToGPSFile);
+                IList<string> pys = await FileIO.ReadLinesAsync(linkkitieto);
+                List<string[]> InfoList = new List<string[]>();
+                
+                foreach (string splitti in pys)
+                {
+                    string s = splitti.Replace('"', ' ').Trim();
+                    string[] parts = s.Split(',');
+                    string tripid= parts[2];
+                    int routeid = int.Parse(parts[0]);
+                    string serviceid = parts[1];
+                    trips.Add(new Trips { TripID = tripid, RouteID = routeid, ServiceID = serviceid});   
 
+                }
+                Debug.Write("All parsed");
+                Debug.Write(trips.Count);
+                SaveTripsInfo();
+            }
+            catch (Exception e)
+            {
+                Debug.Write("Virhe:", e.Message);
+            }
+
+        }
+        private async void SaveTripsInfo()
+        {
+            try
+            {
+
+
+                StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+                StorageFile stopsfile = await storageFolder.CreateFileAsync("trips.dat", CreationCollisionOption.ReplaceExisting);
+
+                // save employees to disk
+                Stream stream = await stopsfile.OpenStreamForWriteAsync();
+                DataContractSerializer serializer = new DataContractSerializer(typeof(List<Trips>));
+                serializer.WriteObject(stream, trips);
+                await stream.FlushAsync();
+                stream.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Following exception has happend (writing): " + ex.ToString());
+            }
+        }
+        private async void ReadTripsInfo()
+        {
+            try
+            {
+                // find a file
+                StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+                Stream stream = await storageFolder.OpenStreamForReadAsync("trips.dat");
+
+                // is it empty
+                if (stream == null) trips = new List<Trips>();
+
+                // read data
+                DataContractSerializer serializer = new DataContractSerializer(typeof(List<Trips>));
+                trips = (List<Trips>)serializer.ReadObject(stream);
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Following exception has happend (reading): " + ex.ToString());
+            }
+
+        }
+        private async void ReadRoutes()
+        {
+            try
+            {
+                // Avaa paikallinen kansio missä on asennettu tämä softa
+                StorageFolder storageFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                string PathToGPSFile = @"Linkkidata\routes.txt";
+                StorageFile linkkitieto = await storageFolder.GetFileAsync(PathToGPSFile);
+                IList<string> pys = await FileIO.ReadLinesAsync(linkkitieto);
+                List<string[]> InfoList = new List<string[]>();
+
+                foreach (string splitti in pys)
+                {
+                    string s = splitti.Replace('"', ' ').Trim();
+                    string[] parts = s.Split(',');
+                    int routeid = int.Parse(parts[0]);
+                    int agencyid = int.Parse(parts[1]);
+                    string routeshortname = parts[2];
+                    string routelongname = parts[3];    
+                    routes.Add(new Routes { RouteID = routeid, AgencyID = agencyid, RouteShortName = routeshortname, RouteLongName = routelongname });
+                   
+                }
+                Debug.Write("All parsed");
+                Debug.Write(trips.Count);
+                SaveRoutesInfo();
+            }
+            catch (Exception e)
+            {
+                Debug.Write("Virhe:", e.Message);
+            }
+
+        }
     }
     }
 
