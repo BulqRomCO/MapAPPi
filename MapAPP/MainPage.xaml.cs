@@ -231,6 +231,8 @@ namespace MapAPP
         private void ShowStops()
         {
             //stoptextblock.Text = "Stops:" + Environment.NewLine;
+            MapIcon buspoint = new MapIcon();
+            List<Geopoint> lista = new List<Geopoint>();
             foreach (BussStops stop in stops)
             {
                 // Debug.Write(stop.ToString());
@@ -248,15 +250,15 @@ namespace MapAPP
                 stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
                 JKLmap.MapElements.Add(stopoint);
                 // TESMINKIÄ
-                MapIcon buspoint = new MapIcon();
-                List<Geopoint> lista = new List<Geopoint>();
                 lista.Add(snPoint);
-                buspoint.Location = lista[0];
                 buspoint.NormalizedAnchorPoint = new Point(0.1, 0.4);
                 buspoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bussi.png"));
-                JKLmap.MapElements.Add(buspoint);
 
             }
+            buspoint.Location = lista[0];
+            JKLmap.MapElements.Add(buspoint);
+            lista.Remove(lista[0]);
+
         }
         private void stopsonmap_Click(object sender, RoutedEventArgs e)
         {
@@ -652,7 +654,7 @@ namespace MapAPP
                 }
                 Debug.Write("All parsed");
                 Debug.Write(trips.Count);
-                SaveRoutesInfo();
+                //SaveRoutesInfo();
             }
             catch (Exception e)
             {
