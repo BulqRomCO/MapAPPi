@@ -51,7 +51,7 @@ namespace MapAPP
                 LocationX = BusCanvas.Width / 2,
                 LocationY = BusCanvas.Height / 2
             };
-            //ReadStopTimes();
+            ReadStopTimesInfo();
         }
 
 
@@ -236,9 +236,9 @@ namespace MapAPP
             //stoptextblock.Text = "Stops:" + Environment.NewLine;
             foreach (BussStops stop in stops)
             {
-                Debug.Write(stop.ToString());
+                // Debug.Write(stop.ToString());
                 //  stoptextblock.Text += stop.StopID + " " + stop.StopName + + stop.LonTitude + stop.LonTitude + Environment.NewLine;
-                Debug.Write(stop.Latitude + stop.LonTitude);
+                // Debug.Write(stop.Latitude + stop.LonTitude);
 
                 BasicGeoposition snPosition = new BasicGeoposition() { Latitude = stop.Latitude, Longitude = stop.LonTitude };
                 Geopoint snPoint = new Geopoint(snPosition);
@@ -347,7 +347,8 @@ namespace MapAPP
                 DestinationSuggestBox.Text = args.ChosenSuggestion.ToString();
                 ShowPoint(args.ChosenSuggestion.ToString());
                 routeto.Add(args.ChosenSuggestion.ToString());
-
+               
+                
             }
 
             else
@@ -444,9 +445,9 @@ namespace MapAPP
                         stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
                         JKLmap.MapElements.Add(stopoint);
                         showroutebyname.Add(stop.Latitude);
-                        Debug.Write("Lisätään " + stop.Latitude.ToString());
+                        //Debug.Write("Lisätään " + stop.Latitude.ToString());
                         showroutebyname.Add(stop.LonTitude);
-                        Debug.Write("Lisätään " + stop.LonTitude.ToString());
+                        //Debug.Write("Lisätään " + stop.LonTitude.ToString());
                     }
                 }
             }
@@ -490,7 +491,6 @@ namespace MapAPP
             {
                 // Avaa paikallinen kansio missä on asennettu tämä softa
                 StorageFolder storageFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-                // Linkkidatan sijainti 
                 string PathToGPSFile = @"Linkkidata\stop_times.txt";
                 StorageFile linkkitieto = await storageFolder.GetFileAsync(PathToGPSFile);
                 // Luetaan tiedostosta kaikki rivit yksitellen
@@ -507,15 +507,18 @@ namespace MapAPP
                     int stopid = int.Parse(parts[3]);
                     int sequence = int.Parse(parts[4]);
                     stoptimes.Add(new StopTimes { StopTime = arrivetime, StopID = stopid, Sequence = sequence });
-
+                    // Debug.Write(stopid);
 
                 }
+                Debug.Write("All parsed");
+                Debug.Write(stoptimes.Count);
+                SaveStopTimesInfo();
             }
             catch (Exception e)
             {
                 Debug.Write("Virhe:", e.Message);
             }
-            SaveStopTimesInfo();
+            
         }
            
         private async void SaveStopTimesInfo()
@@ -525,7 +528,7 @@ namespace MapAPP
                 
 
                 StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-                StorageFile stopsfile = await storageFolder.CreateFileAsync("stoptimes.dat", CreationCollisionOption.OpenIfExists);
+                StorageFile stopsfile = await storageFolder.CreateFileAsync("stoptimes.dat", CreationCollisionOption.ReplaceExisting);
 
                 // save employees to disk
                 Stream stream = await stopsfile.OpenStreamForWriteAsync();

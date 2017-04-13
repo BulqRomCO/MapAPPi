@@ -90,6 +90,9 @@
                     <AppBarButton x:Name="closedestination" Label="Close" Tapped="closedestination_Tapped">
                         <FontIcon Glyph="&#xE8BB;"/>
                     </AppBarButton>
+                    <ListBox>
+                        <TextBlock x:Name="arrivaltime" Text=""/>
+                    </ListBox>
                 </StackPanel>
 
             </Popup>
