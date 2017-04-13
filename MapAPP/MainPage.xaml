@@ -9,7 +9,7 @@
     xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps"
     xmlns:bm="using:MapAPP"
     >
-    
+
 
     <Page.BottomAppBar>
         <AppBar Width="500" HorizontalAlignment="Left">
@@ -293,31 +293,8 @@
                         <Popup x:Name="popstops" Height="600" Width="400" Margin="0,150,0,0">
                             <ScrollViewer Height="596" Width="392">
                                 <StackPanel Grid.Row="11" Grid.Column="0" Background="#bfbfbf">
-                                    <!--<AutoSuggestBox
-                                        x:Name="Searchbox"
-                                        QueryIcon="Find"
-                                        SuggestionChosen="AutoSuggestBox_SuggestionChosen"
-                                        QuerySubmitted="AutoSuggestBox_QuerySubmitted"
-                                        TextChanged="AutoSuggestBox_TextChanged"/>
-                                     
-                                    <ListView x:Name="StopsList">
-                                        <ListView.ItemTemplate>
-
-                                            <DataTemplate>
-
-                                                <StackPanel>
-
-                                                    <TextBlock Text="{Binding StopName}"/>
-                                                    <TextBlock Text="{Binding StopID}" />
-
-                                                </StackPanel>
-
-                                            </DataTemplate>
-
-                                        </ListView.ItemTemplate>
-
-                                    </ListView>
-                                    -->
+                                
+                                  
                                 </StackPanel>
                             </ScrollViewer>
                         </Popup>
@@ -328,6 +305,8 @@
         </StackPanel>
         <StackPanel x:Name="timeDateStack"  Grid.Column="1" Grid.Row="0" Background="#bfbfbf" BorderThickness="2,0,0,2" BorderBrush="Black">
             <TextBlock x:Name="Time" Text="TÄHÄHN AIKA" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+       
+        
 
         </StackPanel>
 

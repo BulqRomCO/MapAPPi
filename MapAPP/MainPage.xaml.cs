@@ -51,6 +51,7 @@ namespace MapAPP
                 LocationX = BusCanvas.Width / 2,
                 LocationY = BusCanvas.Height / 2
             };
+            //ReadStopTimes();
         }
 
 
@@ -450,14 +451,14 @@ namespace MapAPP
                 }
             }
             int count = showroutebyname.Count;
-            for(int j = 0; j < count; j++)
+            for (int j = 0; j < count; j++)
             {
                 ShowRoutesLines(showroutebyname);
                 showroutebyname.RemoveRange(0, 2);
                 count = showroutebyname.Count;
             }
-           
-            
+
+
 
         }
         private async void ShowRoutesLines(List<double> lista)
@@ -471,17 +472,96 @@ namespace MapAPP
                       new Geopoint(endPoint),
                       MapRouteOptimization.Time,
                       MapRouteRestrictions.None);
-            
-                if (routeResult.Status == MapRouteFinderStatus.Success)
-                {
-                Debug.Write("Added" );
-                    MapRouteView viewOfRoute = new MapRouteView(routeResult.Route);
-                    viewOfRoute.RouteColor = Colors.ForestGreen;
-                    viewOfRoute.OutlineColor = Colors.Black;
-                    JKLmap.Routes.Add(viewOfRoute);
+
+            if (routeResult.Status == MapRouteFinderStatus.Success)
+            {
+                Debug.Write("Added");
+                MapRouteView viewOfRoute = new MapRouteView(routeResult.Route);
+                viewOfRoute.RouteColor = Colors.ForestGreen;
+                viewOfRoute.OutlineColor = Colors.Black;
+                JKLmap.Routes.Add(viewOfRoute);
             }
-            
+
         }
+        List<StopTimes> stoptimes = new List<StopTimes>();
+        private async void ReadStopTimes()
+        {
+            try
+            {
+                // Avaa paikallinen kansio missä on asennettu tämä softa
+                StorageFolder storageFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                // Linkkidatan sijainti 
+                string PathToGPSFile = @"Linkkidata\stop_times.txt";
+                StorageFile linkkitieto = await storageFolder.GetFileAsync(PathToGPSFile);
+                // Luetaan tiedostosta kaikki rivit yksitellen
+                IList<string> pys = await FileIO.ReadLinesAsync(linkkitieto);
+                // Lista mihin lisätään parsittu tieto
+                List<string[]> InfoList = new List<string[]>();
+                // Parsitaan tieto ensin splittaamalla , kohdalta ja sitten korvataan "" tyhjällä.
+                // "2827af93-c63b-4433-90c8-9b5893001884","06:05:00","06:05:00","207773","26",""
+                foreach (string splitti in pys)
+                {
+                    string s = splitti.Replace('"', ' ').Trim();
+                    string[] parts = s.Split(',');
+                    string arrivetime = parts[1];
+                    int stopid = int.Parse(parts[3]);
+                    int sequence = int.Parse(parts[4]);
+                    stoptimes.Add(new StopTimes { StopTime = arrivetime, StopID = stopid, Sequence = sequence });
+
+
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.Write("Virhe:", e.Message);
+            }
+            SaveStopTimesInfo();
         }
- }
+           
+        private async void SaveStopTimesInfo()
+        {
+            try
+            {
+                
+
+                StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+                StorageFile stopsfile = await storageFolder.CreateFileAsync("stoptimes.dat", CreationCollisionOption.OpenIfExists);
+
+                // save employees to disk
+                Stream stream = await stopsfile.OpenStreamForWriteAsync();
+                DataContractSerializer serializer = new DataContractSerializer(typeof(List<StopTimes>));
+                serializer.WriteObject(stream, stoptimes);
+                await stream.FlushAsync();
+                stream.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Following exception has happend (writing): " + ex.ToString());
+            }
+        }
+        private async void ReadStopTimesInfo()
+        {
+            try
+            {
+                // find a file
+                StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+                Stream stream = await storageFolder.OpenStreamForReadAsync("stoptimes.dat");
+
+                // is it empty
+                if (stream == null) stops = new List<BussStops>();
+
+                // read data
+                DataContractSerializer serializer = new DataContractSerializer(typeof(List<StopTimes>));
+                stoptimes = (List<StopTimes>)serializer.ReadObject(stream);
+                
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Following exception has happend (reading): " + ex.ToString());
+            }
+
+        }
+
+    }
+    }
 
