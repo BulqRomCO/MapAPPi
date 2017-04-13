@@ -52,7 +52,11 @@ namespace MapAPP
             ReadRoutes();
             ReadStopTimesInfo();
             ReadTripsInfo();
-        }
+            ObservableCollection<Routes> dataList = new ObservableCollection<Routes>();
+            ListaLaatikko.ItemsSource = dataList;
+        
+
+    }
         // Olio-kokoelmat
         List<Trips> trips = new List<Trips>();
         List<Routes> routes = new List<Routes>();
@@ -706,11 +710,7 @@ namespace MapAPP
             }
 
         }
-        public void Data()
-        {
-            ObservableCollection<Routes> dataList = new ObservableCollection<Routes>();
-            ListaLaatikko.ItemsSource = dataList;
-        }
+     
     }
 
     }

@@ -299,7 +299,10 @@
                                     <ListView x:Name="ListaLaatikko">
                                         <DataTemplate>
                                             <Grid>
-                                                <TextBlock Text="{Binding RouteLongName}"/>
+                                               <!--
+                                                Oispa kaliaa
+                                                
+                                                -->
                                             </Grid>
                                         </DataTemplate>
                                     </ListView>
