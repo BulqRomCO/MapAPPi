@@ -296,8 +296,14 @@
                         <Popup x:Name="popstops" Height="600" Width="400" Margin="0,150,0,0">
                             <ScrollViewer Height="596" Width="392">
                                 <StackPanel Grid.Row="11" Grid.Column="0" Background="#bfbfbf">
-                                
-                                  
+                                    <ListView x:Name="ListaLaatikko">
+                                        <DataTemplate>
+                                            <Grid>
+                                                <TextBlock Text="{Binding RouteLongName}"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListView>
+
                                 </StackPanel>
                             </ScrollViewer>
                         </Popup>

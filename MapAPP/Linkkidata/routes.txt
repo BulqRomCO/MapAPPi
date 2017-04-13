@@ -1,4 +1,3 @@
-"route_id","agency_id","route_short_name","route_long_name","route_type"
 "1001","54836","1_vi","Vip 1 HUHTASUO-LOHIKOSKI","3"
 "1002","54836","1_vi","Vip 1 KUOKKALA","3"
 "1003","54836","2_vi","Vip 2 HALSSILA","3"

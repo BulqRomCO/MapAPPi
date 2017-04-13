@@ -50,8 +50,7 @@ namespace MapAPP
                 LocationY = BusCanvas.Height / 2
             };
             ReadRoutes();
-            ReadStopTimesInfo();
-            ReadTripsInfo();
+            
         }
         // Olio-kokoelmat
         List<Trips> trips = new List<Trips>();
@@ -278,6 +277,9 @@ namespace MapAPP
         }
         private void popstopsbutton_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            
+            
+           
             if (!popstops.IsOpen) { popstops.IsOpen = true; }
             if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
             if (destinationWindow.IsOpen) { destinationWindow.IsOpen = false; }
@@ -639,7 +641,7 @@ namespace MapAPP
                    
                 }
                 Debug.Write("All parsed");
-                Debug.Write(trips.Count);
+                Debug.Write(routes.Count);
                 SaveRoutesInfo();
             }
             catch (Exception e)
@@ -648,6 +650,55 @@ namespace MapAPP
             }
 
         }
+        private async void SaveRoutesInfo()
+        {
+            try
+            {
+
+
+                StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+                StorageFile stopsfile = await storageFolder.CreateFileAsync("routes.dat", CreationCollisionOption.ReplaceExisting);
+
+                // save employees to disk
+                Stream stream = await stopsfile.OpenStreamForWriteAsync();
+                DataContractSerializer serializer = new DataContractSerializer(typeof(List<Routes>));
+                serializer.WriteObject(stream, routes);
+                await stream.FlushAsync();
+                stream.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Following exception has happend (writing): " + ex.ToString());
+            }
+        }
+        private async void ReadRoutesInfo()
+        {
+            try
+            {
+                // find a file
+                StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+                Stream stream = await storageFolder.OpenStreamForReadAsync("routes.dat");
+
+                // is it empty
+                if (stream == null) routes = new List<Routes>();
+
+                // read data
+                DataContractSerializer serializer = new DataContractSerializer(typeof(List<Trips>));
+                routes = (List<Routes>)serializer.ReadObject(stream);
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Following exception has happend (reading): " + ex.ToString());
+            }
+
+        }
+        public void Data()
+        {
+            ObservableCollection<Routes> dataList = new ObservableCollection<Routes>();
+            ListaLaatikko.ItemsSource = dataList;
+        }
     }
+
     }
 
