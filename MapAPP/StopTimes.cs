@@ -11,11 +11,11 @@ namespace MapAPP
             public int StopID { get; set; }
             public string StopTime { get; set; }
             public int Sequence { get; set; }
-
+            public string TripID { get; set; }
 
         public override string ToString()
         {
-            return StopID + StopTime + Sequence;
+            return StopID + StopTime + Sequence + TripID;
         }
 
     }
