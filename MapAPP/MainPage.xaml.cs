@@ -347,7 +347,7 @@ namespace MapAPP
                 DestinationSuggestBox.Text = args.ChosenSuggestion.ToString();
                 ShowPoint(args.ChosenSuggestion.ToString());
                 routeto.Add(args.ChosenSuggestion.ToString());
-               
+        
                 
             }
 
