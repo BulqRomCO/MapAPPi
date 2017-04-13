@@ -52,8 +52,8 @@ namespace MapAPP
                 LocationY = BusCanvas.Height / 2
             };
             ReadStopTimesInfo();
+            BusCanvas.Children.Add(bussi);
         }
-
 
         // Drawing route on map
 
@@ -79,6 +79,7 @@ namespace MapAPP
                 viewOfRoute.RouteColor = Colors.ForestGreen;
                 viewOfRoute.OutlineColor = Colors.Black;
                 JKLmap.Routes.Add(viewOfRoute);
+                
                 routeto.Clear();
             }
         }
@@ -250,6 +251,14 @@ namespace MapAPP
                 // ALLA VOIT VAIHTAA BUSSIN KUVAN
                 stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
                 JKLmap.MapElements.Add(stopoint);
+                // TESMINKIÄ
+                MapIcon buspoint = new MapIcon();
+                List<Geopoint> lista = new List<Geopoint>();
+                lista.Add(snPoint);
+                buspoint.Location = lista[0];
+                buspoint.NormalizedAnchorPoint = new Point(0.1, 0.4);
+                buspoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bussi.png"));
+                JKLmap.MapElements.Add(buspoint);
 
             }
         }

@@ -24,7 +24,6 @@ namespace MapAPP
     {
         public double LocationX { get; set; }
         public double LocationY { get; set; }
-
         public Bussi()
         {
             this.InitializeComponent();
@@ -33,6 +32,10 @@ namespace MapAPP
         {
             SetValue(Canvas.LeftProperty, LocationX);
             SetValue(Canvas.TopProperty, LocationY);
+
+        }
+        public void MoveBusIcon()
+        {
 
         }
     }

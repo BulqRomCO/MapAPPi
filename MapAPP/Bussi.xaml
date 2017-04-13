@@ -6,11 +6,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="75"
-    d:DesignWidth="40">
+    d:DesignHeight="39"
+    d:DesignWidth="20">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Rectangle Width="40" Height="75">
+    <Grid>
+        <Rectangle Width="20" Height="39">
             <Rectangle.Fill>
                 <ImageBrush ImageSource="Assets/bussi.png" Stretch="None" AlignmentX="Left" AlignmentY="Top">
                     <ImageBrush.Transform>
@@ -18,6 +18,9 @@
                     </ImageBrush.Transform>
                 </ImageBrush>
             </Rectangle.Fill>
+            <Rectangle.RenderTransform>
+                <RotateTransform x:Name="ButterflyRotateAngle" Angle="0" CenterX="75" CenterY="66"/>
+            </Rectangle.RenderTransform>
         </Rectangle>
     </Grid>
 </Page>
