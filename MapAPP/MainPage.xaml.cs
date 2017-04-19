@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -54,9 +55,12 @@ namespace MapAPP
             ReadTripsInfo();
             ObservableCollection<Routes> dataList = new ObservableCollection<Routes>();
             ListaLaatikko.ItemsSource = dataList;
-        
+            ReadFakeGpsData();
+            WaitDraw();
+            
 
-    }
+
+        }
         // Olio-kokoelmat
         List<Trips> trips = new List<Trips>();
         List<Routes> routes = new List<Routes>();
@@ -711,6 +715,63 @@ namespace MapAPP
                 Debug.WriteLine("Following exception has happend (reading): " + ex.ToString());
             }
 
+        }
+        List<FakeData> fakedata = new List<FakeData>();
+        public async void ReadFakeGpsData()
+        {
+            try
+            {
+                StorageFolder storageFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+                string PathToGPSFile = @"FakeData\fakedata.txt";
+                StorageFile linkkitieto = await storageFolder.GetFileAsync(PathToGPSFile);
+                IList<string> data = await FileIO.ReadLinesAsync(linkkitieto);
+               
+                foreach(string gps in data)
+                {
+                    string[] parts = gps.Split(',');
+                    fakedata.Add(new FakeData { lon = double.Parse(parts[0]), lat = double.Parse(parts[1])});
+                }
+
+            }
+            catch (Exception e)
+            {
+
+            }
+
+        }
+        
+        public void DrawFakeGpsRoute(int i)
+        {
+            try
+            {
+                JKLmap.MapElements.RemoveAt(0);
+            }
+            catch (Exception e)
+            {
+                Debug.Write(e.Message);
+            }
+            finally
+            {
+
+                BasicGeoposition snPosition = new BasicGeoposition() { Latitude = fakedata[i].lon, Longitude = fakedata[i].lat };
+                Geopoint snPoint = new Geopoint(snPosition);
+                MapIcon stopoint = new MapIcon();
+                stopoint.Location = snPoint;
+                stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
+                stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bussi.png"));
+                JKLmap.MapElements.Add(stopoint);
+                
+            }
+            
+        }
+        public async Task WaitDraw()
+        {
+            for(int i = 0; i < fakedata.Count; i++)
+            {
+                await Task.Delay(3000);
+                DrawFakeGpsRoute(i);
+            }
+           
         }
      
     }

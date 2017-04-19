@@ -99,6 +99,7 @@
       <DependentUpon>Bussi.xaml</DependentUpon>
     </Compile>
     <Compile Include="BussStops.cs" />
+    <Compile Include="FakeData.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -118,6 +119,7 @@
   <ItemGroup>
     <Content Include="Assets\bussi.png" />
     <Content Include="Assets\bus_stop_icon.png" />
+    <Content Include="FakeData\fakedata.txt" />
     <Content Include="Linkit\Linja 1.txt" />
     <Content Include="Linkit\Linja 10.txt" />
     <Content Include="Linkit\Linja 12.txt" />
