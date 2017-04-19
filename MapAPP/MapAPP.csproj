@@ -101,6 +101,7 @@
     </Compile>
     <Compile Include="BussStops.cs" />
     <Compile Include="FakeData.cs" />
+    <Compile Include="Homes.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -121,6 +122,7 @@
     <Content Include="Assets\bussi.png" />
     <Content Include="Assets\bus_stop_icon.png" />
     <Content Include="Assets\home_stop_icon.png" />
+    <Content Include="Assets\superpippeli.png" />
     <Content Include="FakeData\fakedata.txt" />
     <Content Include="Linkit\Linja 1.txt" />
     <Content Include="Linkit\Linja 10.txt" />

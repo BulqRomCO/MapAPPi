@@ -55,8 +55,7 @@ namespace MapAPP
             ReadStopTimesInfo();
            
             ReadTrips();
-            ObservableCollection<Routes> dataList = new ObservableCollection<Routes>();
-            ListaLaatikko.ItemsSource = dataList;
+            
             ReadFakeGpsData();
 
             ReadStopTimes();
@@ -70,6 +69,7 @@ namespace MapAPP
         List<Routes> routes = new List<Routes>();
         List<BussStops> stops = new List<MapAPP.BussStops>();
         List<StopTimes> stoptimes = new List<StopTimes>();
+        List<Homes> homes = new List<Homes>();
         List<string> routeto = new List<string>();
 
 
@@ -756,6 +756,14 @@ namespace MapAPP
             }
 
         }
+
+        string image = "bussi.png";
+        private void ChangeImage_Click(object sender, RoutedEventArgs e)
+        {
+            image = "superpippeli.png";
+        }
+        
+
         int i = 0;
         public void DrawFakeGpsRoute()
         {
@@ -778,9 +786,10 @@ namespace MapAPP
                     stopoint.Location = snPoint;
                     stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
                     stopoint.Title = stops[i].StopName;
-                    stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bussi.png"));
+                //stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bussi.png"));
+                    stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/"+image));
                     JKLmap.MapElements.Add(stopoint);
-                    i++;
+                        i++;
                 
             }
             
@@ -799,7 +808,17 @@ namespace MapAPP
             
            
         }
-     
+
+        private void Something_Click(object sender, RoutedEventArgs e)
+        {
+            ShowHomes();
+        }
+        public void ShowHomes()
+        {
+           
+        }
+
+
     }
 
     }
