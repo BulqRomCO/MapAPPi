@@ -20,7 +20,7 @@
                 <AppBarButton x:Name="destination" Label="DESTINATION" Tapped="destination_Tapped">
                     <FontIcon Glyph="&#xE787;"/>
                 </AppBarButton>
-                <AppBarButton x:Name="popstopsbutton" Label="STOPS LIST" Tapped="popstopsbutton_Tapped">
+                <AppBarButton x:Name="popstopsbutton" Label="SHOW GPS" Tapped="popstopsbutton_Tapped">
                     <FontIcon Glyph="&#xE14C;"/>
                 </AppBarButton>
                 <AppBarButton x:Name="stopsonmap" Label="SHOW STOPS" Tapped="stopsonmap_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="70" Width="68">

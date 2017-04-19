@@ -60,7 +60,7 @@ namespace MapAPP
             ReadFakeGpsData();
 
             ReadStopTimes();
-            WaitDraw();
+            //WaitDraw();
             
 
 
@@ -75,7 +75,7 @@ namespace MapAPP
 
         // Drawing route on map
 
-        private async void ShowRouteOnMap(List<double> lista)
+      private async void ShowRouteOnMap(List<double> lista)
         {
 
             BasicGeoposition startPoint = new BasicGeoposition() { Latitude = lista[0], Longitude = lista[1] };
@@ -97,10 +97,11 @@ namespace MapAPP
                 viewOfRoute.RouteColor = Colors.ForestGreen;
                 viewOfRoute.OutlineColor = Colors.Black;
                 JKLmap.Routes.Add(viewOfRoute);
-                
+
                 routeto.Clear();
             }
         }
+        
         private void chooseBus_Click(object sender, RoutedEventArgs e)
         {
             if (!popupWindow.IsOpen) { popupWindow.IsOpen = true; }
@@ -242,34 +243,44 @@ namespace MapAPP
         }
         private void ShowStops()
         {
-            //stoptextblock.Text = "Stops:" + Environment.NewLine;
-            MapIcon buspoint = new MapIcon();
-            List<Geopoint> lista = new List<Geopoint>();
+            //stoptextblock.Text = "Stops:" + Environment.NewLine;       
             foreach (BussStops stop in stops)
             {
                 // Debug.Write(stop.ToString());
                 //  stoptextblock.Text += stop.StopID + " " + stop.StopName + + stop.LonTitude + stop.LonTitude + Environment.NewLine;
                 // Debug.Write(stop.Latitude + stop.LonTitude);
 
+               
+                
+
+             
                 BasicGeoposition snPosition = new BasicGeoposition() { Latitude = stop.Latitude, Longitude = stop.LonTitude };
                 Geopoint snPoint = new Geopoint(snPosition);
-                // Luodaan uusi stop 
+        
                 MapIcon stopoint = new MapIcon();
                 stopoint.Location = snPoint;
                 stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
                 stopoint.Title = stop.StopName;
-                // ALLA VOIT VAIHTAA BUSSIN KUVAN
-                stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
+                
+                if (stop.StopName == " Pupuhuhta ")
+                {
+                    stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/home_stop_icon.png"));
+                }
+                else
+                {
+                    stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
+                }
                 JKLmap.MapElements.Add(stopoint);
                 // TESMINKIÄ
-                lista.Add(snPoint);
-                buspoint.NormalizedAnchorPoint = new Point(0.1, 0.4);
-                buspoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bussi.png"));
+               
+                
+                //buspoint.NormalizedAnchorPoint = new Point(0.1, 0.4);
+                //buspoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bussi.png"));
 
             }
-            buspoint.Location = lista[0];
+            /*buspoint.Location = lista[0];
             JKLmap.MapElements.Add(buspoint);
-            lista.Remove(lista[0]);
+            lista.Remove(lista[0]);*/
 
         }
         private void stopsonmap_Click(object sender, RoutedEventArgs e)
@@ -304,6 +315,7 @@ namespace MapAPP
         }
         private void popstopsbutton_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            WaitDraw();
             
             
            
@@ -459,13 +471,14 @@ namespace MapAPP
                     }
                 }
             }
+            /*
             int count = showroutebyname.Count;
             for (int j = 0; j < count; j++)
             {
                 ShowRoutesLines(showroutebyname);
                 showroutebyname.RemoveRange(0, 2);
                 count = showroutebyname.Count;
-            }
+            }*/
 
 
 
@@ -739,14 +752,14 @@ namespace MapAPP
             }
             catch (Exception e)
             {
-
+                Debug.Write("ReadFakeGpsdata error" + e.Message);
             }
 
         }
         int i = 0;
         public void DrawFakeGpsRoute()
         {
-            try
+           try
             {
                 JKLmap.MapElements.RemoveAt(0);
             }
@@ -756,24 +769,33 @@ namespace MapAPP
             }
             finally
             {
-                while(fakedata.Count != 0) {
-                    BasicGeoposition snPosition = new BasicGeoposition() { Latitude = fakedata[i].lon, Longitude = fakedata[i].lat };
+                    
+                    
+                     //BasicGeoposition snPosition = new BasicGeoposition() { Latitude = fakedata[i].lon, Longitude = fakedata[i].lat };
+                    BasicGeoposition snPosition = new BasicGeoposition() { Latitude = stops[i].Latitude, Longitude = stops[i].LonTitude };
                     Geopoint snPoint = new Geopoint(snPosition);
                     MapIcon stopoint = new MapIcon();
                     stopoint.Location = snPoint;
                     stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
+                    stopoint.Title = stops[i].StopName;
                     stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bussi.png"));
                     JKLmap.MapElements.Add(stopoint);
                     i++;
-                }
+                
             }
             
         }
         public async Task WaitDraw()
         {
+            Debug.Write(fakedata.Count);
             
-                await Task.Delay(5000);
+            while (true)
+            {
                 DrawFakeGpsRoute();
+                await Task.Delay(5000);
+                
+                
+            }
             
            
         }
