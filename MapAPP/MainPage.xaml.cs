@@ -739,7 +739,7 @@ namespace MapAPP
             try
             {
                 StorageFolder storageFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-                string PathToGPSFile = @"FakeData\fakedata.txt";
+                string PathToGPSFile = @"FakeData\linja20.txt";
                 StorageFile linkkitieto = await storageFolder.GetFileAsync(PathToGPSFile);
                 IList<string> data = await FileIO.ReadLinesAsync(linkkitieto);
                
@@ -780,7 +780,7 @@ namespace MapAPP
                     
                     
                      //BasicGeoposition snPosition = new BasicGeoposition() { Latitude = fakedata[i].lon, Longitude = fakedata[i].lat };
-                    BasicGeoposition snPosition = new BasicGeoposition() { Latitude = stops[i].Latitude, Longitude = stops[i].LonTitude };
+                    BasicGeoposition snPosition = new BasicGeoposition() { Latitude = fakedata[i].lat, Longitude = fakedata[i].lon };
                     Geopoint snPoint = new Geopoint(snPosition);
                     MapIcon stopoint = new MapIcon();
                     stopoint.Location = snPoint;
