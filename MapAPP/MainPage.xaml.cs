@@ -51,11 +51,15 @@ namespace MapAPP
                 LocationY = BusCanvas.Height / 2
             };
             ReadRoutes();
+
             ReadStopTimesInfo();
-            ReadTripsInfo();
+           
+            ReadTrips();
             ObservableCollection<Routes> dataList = new ObservableCollection<Routes>();
             ListaLaatikko.ItemsSource = dataList;
             ReadFakeGpsData();
+
+            ReadStopTimes();
             WaitDraw();
             
 
@@ -739,8 +743,8 @@ namespace MapAPP
             }
 
         }
-        
-        public void DrawFakeGpsRoute(int i)
+        int i = 0;
+        public void DrawFakeGpsRoute()
         {
             try
             {
@@ -752,25 +756,25 @@ namespace MapAPP
             }
             finally
             {
-
-                BasicGeoposition snPosition = new BasicGeoposition() { Latitude = fakedata[i].lon, Longitude = fakedata[i].lat };
-                Geopoint snPoint = new Geopoint(snPosition);
-                MapIcon stopoint = new MapIcon();
-                stopoint.Location = snPoint;
-                stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
-                stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bussi.png"));
-                JKLmap.MapElements.Add(stopoint);
-                
+                while(fakedata.Count != 0) {
+                    BasicGeoposition snPosition = new BasicGeoposition() { Latitude = fakedata[i].lon, Longitude = fakedata[i].lat };
+                    Geopoint snPoint = new Geopoint(snPosition);
+                    MapIcon stopoint = new MapIcon();
+                    stopoint.Location = snPoint;
+                    stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
+                    stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bussi.png"));
+                    JKLmap.MapElements.Add(stopoint);
+                    i++;
+                }
             }
             
         }
         public async Task WaitDraw()
         {
-            for(int i = 0; i < fakedata.Count; i++)
-            {
-                await Task.Delay(3000);
-                DrawFakeGpsRoute(i);
-            }
+            
+                await Task.Delay(5000);
+                DrawFakeGpsRoute();
+            
            
         }
      
