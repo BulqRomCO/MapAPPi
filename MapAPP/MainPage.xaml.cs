@@ -731,6 +731,7 @@ namespace MapAPP
 
         }
         string image = "bussi.png";
+        IList<MapElement> fakedatalist = new List<MapElement>();
         int i = 0;
         public void DrawFakeGpsRoute()
         {
@@ -745,8 +746,6 @@ namespace MapAPP
             }
             finally
             {
-
-
                 double latitude = fakedata[i].lat;
                 double longtitude = fakedata[i].lon;
                 BasicGeoposition snPosition = new BasicGeoposition() { Latitude = latitude, Longitude = longtitude };
@@ -756,7 +755,9 @@ namespace MapAPP
                 stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
                 stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bussi.png"));
                 stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/"+image));
-                JKLmap.MapElements.Add(stopoint);
+               // JKLmap.MapElements.Add(stopoint);
+                JKLmap.MapElements.Insert(0, stopoint);
+                JKLmap.MapElements.
                 i++;
                    
 
