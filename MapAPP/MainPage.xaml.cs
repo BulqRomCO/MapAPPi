@@ -427,6 +427,7 @@ namespace MapAPP
                     stopoint.Title = stop.StopName;      
                     stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
                     JKLmap.MapElements.Add(stopoint);
+                    display3DLocation(stop.Latitude, stop.LonTitude, 2);
                    
                 }
             }
@@ -757,7 +758,6 @@ namespace MapAPP
                 stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/"+image));
                // JKLmap.MapElements.Add(stopoint);
                 JKLmap.MapElements.Insert(0, stopoint);
-                
                 i++;
                    
 
