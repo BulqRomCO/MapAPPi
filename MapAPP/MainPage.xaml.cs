@@ -91,7 +91,6 @@ namespace MapAPP
                 viewOfRoute.RouteColor = Colors.ForestGreen;
                 viewOfRoute.OutlineColor = Colors.Black;
                 JKLmap.Routes.Add(viewOfRoute);
-
                 routeto.Clear();
             }
         }
@@ -428,7 +427,7 @@ namespace MapAPP
                     stopoint.Title = stop.StopName;      
                     stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
                     JKLmap.MapElements.Add(stopoint);
-                    display3DLocation(stop.Latitude, stop.LonTitude);
+                   
                 }
             }
         }
@@ -456,27 +455,14 @@ namespace MapAPP
                         stopoint.Location = snPoint;
                         stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
                         stopoint.Title = stop.StopName;
-                        // ALLA VOIT VAIHTAA BUSSIN KUVAN
-                        stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
+                        stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/home_stop_icon.png"));
                         JKLmap.MapElements.Add(stopoint);
                         showroutebyname.Add(stop.Latitude);
-                        //Debug.Write("Lisätään " + stop.Latitude.ToString());
                         showroutebyname.Add(stop.LonTitude);
-                        //Debug.Write("Lisätään " + stop.LonTitude.ToString());
                     }
                 }
             }
-            /*
-            int count = showroutebyname.Count;
-            for (int j = 0; j < count; j++)
-            {
-                ShowRoutesLines(showroutebyname);
-                showroutebyname.RemoveRange(0, 2);
-                count = showroutebyname.Count;
-            }*/
-
-
-
+      
         }
         private async void ShowRoutesLines(List<double> lista)
         {
@@ -710,17 +696,11 @@ namespace MapAPP
         {
             try
             {
-                // find a file
                 StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
                 Stream stream = await storageFolder.OpenStreamForReadAsync("routes.dat");
-
-                // is it empty
                 if (stream == null) routes = new List<Routes>();
-
-                // read data
                 DataContractSerializer serializer = new DataContractSerializer(typeof(List<Trips>));
                 routes = (List<Routes>)serializer.ReadObject(stream);
-
             }
             catch (Exception ex)
             {
@@ -755,9 +735,9 @@ namespace MapAPP
         public void DrawFakeGpsRoute()
         {
            try
-            {
-                
+            {      
                JKLmap.MapElements.RemoveAt(0);
+               
             }
             catch (Exception e)
             {
@@ -785,10 +765,11 @@ namespace MapAPP
         }
         public async Task WaitDraw()
         {
-            Debug.Write(fakedata.Count);
+           
             
             while (true)
             {
+                
                 DrawFakeGpsRoute();
                 await Task.Delay(5000);
       
@@ -797,25 +778,17 @@ namespace MapAPP
            
         }
 
-        private void Something_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-        public void ShowHomes()
-        {
-           
-        }
-        private async void display3DLocation(double latitude, double longtitude)
+
+
+        private async void display3DLocation(double latitude = 62.2417, double longtitude = 25.7473)
         {
             if (JKLmap.Is3DSupported)
             {
+              
                 JKLmap.Style = MapStyle.Aerial3DWithRoads;
                 BasicGeoposition hwGeoposition = new BasicGeoposition() { Latitude = latitude, Longitude = longtitude };
                 Geopoint hwPoint = new Geopoint(hwGeoposition);
-                MapScene hwScene = MapScene.CreateFromLocationAndRadius(hwPoint,
-                                                                                     80, /* show this many meters around */
-                                                                                     0, /* looking at it to the North*/
-                                                                                     60 /* degrees pitch */);
+                MapScene hwScene = MapScene.CreateFromLocationAndRadius(hwPoint,80, /* Metrit */0, /* Pohjois */ 60 /* Asteluku */);
                 await JKLmap.TrySetSceneAsync(hwScene, MapAnimationKind.Bow);
             }
             else
@@ -830,6 +803,10 @@ namespace MapAPP
             }
         }
 
+        private void Show3DRoute_Click(object sender, RoutedEventArgs e)
+        {
+            display3DLocation();
+        }
     }
     }
 
