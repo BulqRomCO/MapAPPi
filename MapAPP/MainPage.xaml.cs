@@ -32,48 +32,43 @@ namespace MapAPP
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private Windows.Storage.StorageFile sampleFile;
         private Bussi bussi;
-
-
-        // public object BackColor { get; set; }
-        ObservableCollection<BussStops> listItems = new ObservableCollection<BussStops>();
         public MainPage()
         {
-            this.InitializeComponent();
-            GenerateStopsData();
-            ListView itemListView = new ListView();
+            this.InitializeComponent();  
+                     
             bussi = new Bussi
             {
                 LocationX = BusCanvas.Width / 2,
                 LocationY = BusCanvas.Height / 2
             };
+            // Ajetaan seuraavat functiot heti ohjelman käynnistyttyä
+            //--------------------------------------------------------
+            GenerateStopsData();
             ReadRoutes();
-
             ReadStopTimesInfo();
-           
-            ReadTrips();
-            
+            ReadTrips();  
             ReadFakeGpsData();
-
             ReadStopTimes();
             WaitDraw();
-            
 
+            //-------------------------------------------------------
 
         }
         // Olio-kokoelmat
-        List<Trips>     trips = new List<Trips>();
-        List<Routes>    routes = new List<Routes>();
-        List<BussStops> stops = new List<MapAPP.BussStops>();
+        List<Trips>     trips = new     List<Trips>();
+        List<Routes>    routes = new    List<Routes>();
+        List<BussStops> stops = new     List<MapAPP.BussStops>();
         List<StopTimes> stoptimes = new List<StopTimes>();
-        List<Homes>     homes = new List<Homes>();
-        List<string>    routeto = new List<string>();
-        List<FakeData>  fakedata = new List<FakeData>();
+        List<Homes>     homes = new     List<Homes>();
+        List<FakeData>  fakedata = new  List<FakeData>();
+        List<string>    routeto = new   List<string>();
+        
 
-
-        // Drawing route on map
-
+        /// <summary>
+        /// 2 GPS-pisteen välille piirrettävä lyhin reitti
+        /// </summary>
+        /// <param name="lista"></param>
         private async void ShowRouteOnMap(List<double> lista)
         {
 
@@ -732,7 +727,6 @@ namespace MapAPP
             }
 
         }
-       
         public async void ReadFakeGpsData()
         {
             try
@@ -755,14 +749,7 @@ namespace MapAPP
             }
 
         }
-
         string image = "bussi.png";
-        private void ChangeImage_Click(object sender, RoutedEventArgs e)
-        {
-            image = "superpippeli.png";
-        }
-        
-
         int i = 0;
         public void DrawFakeGpsRoute()
         {
