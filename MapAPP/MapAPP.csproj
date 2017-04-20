@@ -121,6 +121,7 @@
   <ItemGroup>
     <Content Include="Assets\bussi.png" />
     <Content Include="Assets\bus_stop_icon.png" />
+    <Content Include="Assets\home.png" />
     <Content Include="Assets\home_stop_icon.png" />
     <Content Include="Assets\superpippeli.png" />
     <Content Include="FakeData\fakedata.txt" />

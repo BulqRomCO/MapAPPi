@@ -69,28 +69,37 @@ namespace MapAPP
         /// <param name="lista"></param>
         private async void ShowRouteOnMap(List<double> lista)
         {
+            
+            try
+            { 
+                BasicGeoposition startPoint = new BasicGeoposition() { Latitude = lista[0], Longitude = lista[1] };
+                BasicGeoposition endPoint = new BasicGeoposition() { Latitude = lista[2], Longitude = lista[3] };
 
-            BasicGeoposition startPoint = new BasicGeoposition() { Latitude = lista[0], Longitude = lista[1] };
-            BasicGeoposition endPoint = new BasicGeoposition() { Latitude = lista[2], Longitude = lista[3] };
+                // Get the route between the points
+                MapRouteFinderResult routeResult =
+                      await MapRouteFinder.GetDrivingRouteAsync(
+                      new Geopoint(startPoint),
+                      new Geopoint(endPoint),
+                      MapRouteOptimization.Time,
+                      MapRouteRestrictions.None);
 
-
-            // Get the route between the points
-            MapRouteFinderResult routeResult =
-                  await MapRouteFinder.GetDrivingRouteAsync(
-                  new Geopoint(startPoint),
-                  new Geopoint(endPoint),
-                  MapRouteOptimization.Time,
-                  MapRouteRestrictions.None);
-
-            if (routeResult.Status == MapRouteFinderStatus.Success)
-            {
-                // Initialize the route on map
-                MapRouteView viewOfRoute = new MapRouteView(routeResult.Route);
-                viewOfRoute.RouteColor = Colors.ForestGreen;
-                viewOfRoute.OutlineColor = Colors.Black;
-                JKLmap.Routes.Add(viewOfRoute);
-                routeto.Clear();
+                if (routeResult.Status == MapRouteFinderStatus.Success)
+                {
+                    // Initialize the route on map
+                    MapRouteView viewOfRoute = new MapRouteView(routeResult.Route);
+                    viewOfRoute.RouteColor = Colors.ForestGreen;
+                    viewOfRoute.OutlineColor = Colors.Black;
+                    JKLmap.Routes.Add(viewOfRoute);
+                    routeto.Clear();
+                }
+                arrivaltime.Text = "";
             }
+            catch (Exception e)
+            {
+
+                arrivaltime.Text = "Add another point to show route!!";
+            }
+        
         }
         
         private void chooseBus_Click(object sender, RoutedEventArgs e)
@@ -164,7 +173,7 @@ namespace MapAPP
             }
             catch (Exception e)
             {
-                Debug.Write("Virhe:", e.Message);
+                arrivaltime.Text = e.Message.ToString();
             }
         }
         // Tallenetaan oliot-tiedostoon
@@ -206,9 +215,9 @@ namespace MapAPP
                 stops = (List<BussStops>)serializer.ReadObject(stream);
                 ShowStops();
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                Debug.WriteLine("Following exception has happend (reading): " + ex.ToString());
+                arrivaltime.Text = e.ToString();
             }
 
         }
@@ -222,7 +231,7 @@ namespace MapAPP
                 stopoint.Location = snPoint;
                 stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
                 stopoint.Title = stop.StopName;
-                if (stop.StopName == " Pupuhuhta ") stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/home_stop_icon.png"));
+                if (stop.StopName == " Pupuhuhta ") stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/home.png"));
                 else stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
                 JKLmap.MapElements.Add(stopoint);
             }
@@ -363,7 +372,7 @@ namespace MapAPP
                     stopoint.Title = stop.StopName;      
                     stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
                     JKLmap.MapElements.Add(stopoint);
-                    display3DLocation(stop.Latitude, stop.LonTitude, 2);
+                    
                 }
             }
         }
@@ -452,7 +461,7 @@ namespace MapAPP
             }
             catch (Exception e)
             {
-                Debug.Write("Virhe:", e.Message);
+                arrivaltime.Text = e.ToString();
             }
             
         }
@@ -491,7 +500,7 @@ namespace MapAPP
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Following exception has happend (reading): " + ex.ToString());
+                arrivaltime.Text = ex.ToString();
             }
 
         }      
@@ -544,7 +553,7 @@ namespace MapAPP
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Following exception has happend (writing): " + ex.ToString());
+                arrivaltime.Text = ex.ToString();
             }
         }
         private async void ReadTripsInfo()
@@ -705,15 +714,9 @@ namespace MapAPP
         {
             if (JKLmap.Is3DSupported)
             {
-                switch (style)
-                {
-                    case 1:
-                        JKLmap.Style = MapStyle.Terrain;
-                        break;
-                    case 2:
-                        JKLmap.Style = MapStyle.Aerial3DWithRoads;
-                        break;
-                }
+
+
+                JKLmap.Style = MapStyle.Aerial3D;
                 BasicGeoposition hwGeoposition = new BasicGeoposition() { Latitude = latitude, Longitude = longtitude };
                 Geopoint hwPoint = new Geopoint(hwGeoposition);
                 MapScene hwScene = MapScene.CreateFromLocationAndRadius(hwPoint,80, /* Metrit */0, /* Pohjois */ 60 /* Asteluku */);
