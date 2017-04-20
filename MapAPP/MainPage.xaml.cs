@@ -24,8 +24,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
-
 namespace MapAPP
 
 {
@@ -59,23 +57,24 @@ namespace MapAPP
             ReadFakeGpsData();
 
             ReadStopTimes();
-            //WaitDraw();
+            WaitDraw();
             
 
 
         }
         // Olio-kokoelmat
-        List<Trips> trips = new List<Trips>();
-        List<Routes> routes = new List<Routes>();
+        List<Trips>     trips = new List<Trips>();
+        List<Routes>    routes = new List<Routes>();
         List<BussStops> stops = new List<MapAPP.BussStops>();
         List<StopTimes> stoptimes = new List<StopTimes>();
-        List<Homes> homes = new List<Homes>();
-        List<string> routeto = new List<string>();
+        List<Homes>     homes = new List<Homes>();
+        List<string>    routeto = new List<string>();
+        List<FakeData>  fakedata = new List<FakeData>();
 
 
         // Drawing route on map
 
-      private async void ShowRouteOnMap(List<double> lista)
+        private async void ShowRouteOnMap(List<double> lista)
         {
 
             BasicGeoposition startPoint = new BasicGeoposition() { Latitude = lista[0], Longitude = lista[1] };
@@ -733,7 +732,7 @@ namespace MapAPP
             }
 
         }
-        List<FakeData> fakedata = new List<FakeData>();
+       
         public async void ReadFakeGpsData()
         {
             try
@@ -746,7 +745,7 @@ namespace MapAPP
                 foreach(string gps in data)
                 {
                     string[] parts = gps.Split(',');
-                    fakedata.Add(new FakeData { lon = double.Parse(parts[0]), lat = double.Parse(parts[1])});
+                    fakedata.Add(new FakeData { lat = double.Parse(parts[0]), lon = double.Parse(parts[1])});
                 }
 
             }
@@ -779,13 +778,15 @@ namespace MapAPP
             {
                     
                     
-                     //BasicGeoposition snPosition = new BasicGeoposition() { Latitude = fakedata[i].lon, Longitude = fakedata[i].lat };
+                    //BasicGeoposition snPosition = new BasicGeoposition() { Latitude = fakedata[i].lon, Longitude = fakedata[i].lat };
                     BasicGeoposition snPosition = new BasicGeoposition() { Latitude = fakedata[i].lat, Longitude = fakedata[i].lon };
+              
+                    // BasicGeoposition snPosition = new BasicGeoposition() { Latitude = stops[i].Latitude, Longitude = stops[i].LonTitude };
                     Geopoint snPoint = new Geopoint(snPosition);
                     MapIcon stopoint = new MapIcon();
                     stopoint.Location = snPoint;
                     stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
-                    stopoint.Title = stops[i].StopName;
+                    //stopoint.Title = stops[i].StopName;
                 //stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bussi.png"));
                     stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/"+image));
                     JKLmap.MapElements.Add(stopoint);
@@ -802,8 +803,7 @@ namespace MapAPP
             {
                 DrawFakeGpsRoute();
                 await Task.Delay(5000);
-                
-                
+      
             }
             
            
@@ -818,8 +818,6 @@ namespace MapAPP
            
         }
 
-
     }
-
     }
 
