@@ -50,8 +50,6 @@ namespace MapAPP
             ReadTrips();  
             ReadFakeGpsData();
             ReadStopTimes();
-            WaitDraw();
-
             //-------------------------------------------------------
 
         }
@@ -125,24 +123,11 @@ namespace MapAPP
             if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
             // do nothing in this function
         }
-        SolidColorBrush onbusclick = new SolidColorBrush(Color.FromArgb(1, 179, 255, 153));
-        SolidColorBrush origcolor;
         void bus_Click(object sender, RoutedEventArgs e)
         {
             AppBarButton btn = sender as AppBarButton;
-
-            if ((SolidColorBrush)btn.Background == onbusclick)
-            {
-                btn.Background = origcolor;
-            }
-            else
-            {
-                origcolor = (SolidColorBrush)btn.Background;
-                btn.Background = onbusclick;
-
-            }
             string buttonlabel = btn.Label.ToString();
-            if (buttonlabel =="Linja 20") WaitDraw();
+            if (buttonlabel =="Linja 20") WaitDraw(buttonlabel);
             ReadLineData(buttonlabel);
 
         }
@@ -679,7 +664,7 @@ namespace MapAPP
         string image = "bussi.png";
         IList<MapElement> fakedatalist = new List<MapElement>();
         int i = 0;
-        public void DrawFakeGpsRoute()
+        public void DrawFakeGpsRoute(string label)
         {
            try
             {      
@@ -699,6 +684,7 @@ namespace MapAPP
                 MapIcon stopoint = new MapIcon();
                 stopoint.Location = snPoint;
                 stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
+                stopoint.Title = label;
                 stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bussi.png"));
                 stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/"+image));
                // JKLmap.MapElements.Add(stopoint);
@@ -706,11 +692,11 @@ namespace MapAPP
                 i++;
             }   
         }
-        public async Task WaitDraw()
+        public async Task WaitDraw(string label)
         {    
             while (true)
             {
-                DrawFakeGpsRoute();
+                DrawFakeGpsRoute(label);
                 await Task.Delay(5000);
             }
         }
