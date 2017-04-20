@@ -701,7 +701,7 @@ namespace MapAPP
             }
         }
 
-        private async void display3DLocation(double latitude = 62.2417, double longtitude = 25.7473, int style = 1)
+        private async void display3DLocation(double latitude = 62.2417, double longtitude = 25.7473, int style = 2)
         {
             if (JKLmap.Is3DSupported)
             {
