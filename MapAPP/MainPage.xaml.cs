@@ -666,6 +666,7 @@ namespace MapAPP
         int i = 0;
         public void DrawFakeGpsRoute(string label)
         {
+
            try
             {      
                JKLmap.MapElements.RemoveAt(0);
