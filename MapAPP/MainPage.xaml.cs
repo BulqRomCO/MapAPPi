@@ -174,21 +174,13 @@ namespace MapAPP
                     // Tiedosto ottaa vain 1200 riviä ja heittää sitten exceptionia
                     if (double.TryParse(parts[3], out lat))
                         stops.Add(new BussStops { StopName = stopname, StopID = stopid, Latitude = lat, LonTitude = lon });
-                    //loadingdata.Value += 1;
-
-
                 }
                 SaveStopsInfo();
             }
-
             catch (Exception e)
             {
                 Debug.Write("Virhe:", e.Message);
             }
-            //stops.Add(new BussStops { StopName = "Forum", StopID = 6000, Latitude = 62.2416403, LonTitude = 25.7474285 });
-            //stops.Add(new BussStops { StopName = "Jupari", StopID = 6000, Latitude = 62.236496, LonTitude = 25.723306 });
-
-
         }
         // Tallenetaan oliot-tiedostoon
         private async void SaveStopsInfo()
@@ -236,46 +228,19 @@ namespace MapAPP
 
         }
         private void ShowStops()
-        {
-            //stoptextblock.Text = "Stops:" + Environment.NewLine;       
+        { 
             foreach (BussStops stop in stops)
             {
-                // Debug.Write(stop.ToString());
-                //  stoptextblock.Text += stop.StopID + " " + stop.StopName + + stop.LonTitude + stop.LonTitude + Environment.NewLine;
-                // Debug.Write(stop.Latitude + stop.LonTitude);
-
-               
-                
-
-             
                 BasicGeoposition snPosition = new BasicGeoposition() { Latitude = stop.Latitude, Longitude = stop.LonTitude };
                 Geopoint snPoint = new Geopoint(snPosition);
-        
                 MapIcon stopoint = new MapIcon();
                 stopoint.Location = snPoint;
                 stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
                 stopoint.Title = stop.StopName;
-                
-                if (stop.StopName == " Pupuhuhta ")
-                {
-                    stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/home_stop_icon.png"));
-                }
-                else
-                {
-                    stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
-                }
+                if (stop.StopName == " Pupuhuhta ") stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/home_stop_icon.png"));
+                else stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
                 JKLmap.MapElements.Add(stopoint);
-                // TESMINKIÄ
-               
-                
-                //buspoint.NormalizedAnchorPoint = new Point(0.1, 0.4);
-                //buspoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bussi.png"));
-
             }
-            /*buspoint.Location = lista[0];
-            JKLmap.MapElements.Add(buspoint);
-            lista.Remove(lista[0]);*/
-
         }
         private void stopsonmap_Click(object sender, RoutedEventArgs e)
         {
@@ -289,7 +254,6 @@ namespace MapAPP
         }
         private void clearmap_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            //stops.Clear();
             JKLmap.MapElements.Clear();
             JKLmap.Routes.Clear();
         }
@@ -336,7 +300,6 @@ namespace MapAPP
             List<string> names = new List<string>();
             List<string> suggestion = new List<string>();
             foreach (BussStops name in stops) { names.Add(name.StopName); }
-            //sender.ItemsSource = names;
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
                 if (sender.Text.Length > 1)
@@ -344,11 +307,7 @@ namespace MapAPP
                     suggestion = names.Where(x => x.Contains(sender.Text)).ToList();
                     sender.ItemsSource = suggestion;
                 }
-                else
-                {
-                    sender.ItemsSource = new string[] { "Ei löydy" };
-                }
-
+                else sender.ItemsSource = new string[] { "Ei löydy" };
             }
         }
         private void DestinationSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
@@ -361,10 +320,8 @@ namespace MapAPP
             {
                 DestinationSuggestBox.Text = args.ChosenSuggestion.ToString();
                 ShowPoint(args.ChosenSuggestion.ToString());
-                routeto.Add(args.ChosenSuggestion.ToString());
-                
+                routeto.Add(args.ChosenSuggestion.ToString());   
             }
-
             else
             {
                 DestinationSuggestBox.Text = sender.Text;
@@ -375,7 +332,6 @@ namespace MapAPP
             List<string> names = new List<string>();
             List<string> suggestion = new List<string>();
             foreach (BussStops name in stops) { names.Add(name.StopName); }
-            //sender.ItemsSource = names;
             if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
             {
                 if (sender.Text.Length > 1)
@@ -387,7 +343,6 @@ namespace MapAPP
                 {
                     sender.ItemsSource = new string[] { "Ei löydy" };
                 }
-
             }
         }
         private void showButton_Tapped(object sender, TappedRoutedEventArgs e)
@@ -395,7 +350,6 @@ namespace MapAPP
             List<double> route = new List<double>();
             foreach (BussStops stop in stops)
             {
-
                 foreach (string n in routeto)
                 {
                     if (n == stop.StopName)
@@ -405,7 +359,6 @@ namespace MapAPP
                     }
                 }
             }
-
             ShowRouteOnMap(route);
             route.Clear();
         }
@@ -425,7 +378,6 @@ namespace MapAPP
                     stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
                     JKLmap.MapElements.Add(stopoint);
                     display3DLocation(stop.Latitude, stop.LonTitude, 2);
-                   
                 }
             }
         }
@@ -508,7 +460,6 @@ namespace MapAPP
                     int sequence = int.Parse(parts[4]);
                     stoptimes.Add(new StopTimes { StopTime = arrivetime, StopID = stopid, Sequence = sequence, TripID = tripid });
                     // Debug.Write(stopid);
-
                 }
                 Debug.Write("All parsed");
                 Debug.Write(stoptimes.Count);
@@ -524,11 +475,8 @@ namespace MapAPP
         {
             try
             {
-                
-
                 StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
                 StorageFile stopsfile = await storageFolder.CreateFileAsync("stoptimes.dat", CreationCollisionOption.ReplaceExisting);
-
                 // save employees to disk
                 Stream stream = await stopsfile.OpenStreamForWriteAsync();
                 DataContractSerializer serializer = new DataContractSerializer(typeof(List<StopTimes>));
@@ -554,8 +502,7 @@ namespace MapAPP
 
                 // read data
                 DataContractSerializer serializer = new DataContractSerializer(typeof(List<StopTimes>));
-                stoptimes = (List<StopTimes>)serializer.ReadObject(stream);
-                
+                stoptimes = (List<StopTimes>)serializer.ReadObject(stream);            
             }
             catch (Exception ex)
             {
@@ -756,27 +703,16 @@ namespace MapAPP
                // JKLmap.MapElements.Add(stopoint);
                 JKLmap.MapElements.Insert(0, stopoint);
                 i++;
-                   
-
-            }
-            
+            }   
         }
         public async Task WaitDraw()
-        {
-           
-            
+        {    
             while (true)
             {
-                
                 DrawFakeGpsRoute();
                 await Task.Delay(5000);
-      
             }
-            
-           
         }
-
-
 
         private async void display3DLocation(double latitude = 62.2417, double longtitude = 25.7473, int style = 1)
         {
@@ -790,7 +726,6 @@ namespace MapAPP
                     case 2:
                         JKLmap.Style = MapStyle.Aerial3DWithRoads;
                         break;
-
                 }
                 BasicGeoposition hwGeoposition = new BasicGeoposition() { Latitude = latitude, Longitude = longtitude };
                 Geopoint hwPoint = new Geopoint(hwGeoposition);
