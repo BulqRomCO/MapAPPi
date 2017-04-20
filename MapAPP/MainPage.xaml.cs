@@ -308,6 +308,7 @@ namespace MapAPP
         {
             if (destinationWindow.IsOpen) { destinationWindow.IsOpen = false; }
         }
+
         private void popstopsbutton_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (!popstops.IsOpen) { popstops.IsOpen = true; }
