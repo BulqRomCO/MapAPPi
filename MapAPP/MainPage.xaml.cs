@@ -328,6 +328,7 @@ namespace MapAPP
                 Searchbox.Text = args.ChosenSuggestion.ToString();
                 ShowPoint(args.ChosenSuggestion.ToString());
                 routeto.Add(args.ChosenSuggestion.ToString());
+                
             }
             else
             {
@@ -424,10 +425,10 @@ namespace MapAPP
                     MapIcon stopoint = new MapIcon();
                     stopoint.Location = snPoint;
                     stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
-                    stopoint.Title = stop.StopName;
-                    // ALLA VOIT VAIHTAA BUSSIN KUVAN
+                    stopoint.Title = stop.StopName;      
                     stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
                     JKLmap.MapElements.Add(stopoint);
+                    display3DLocation(stop.Latitude, stop.LonTitude);
                 }
             }
         }
@@ -755,7 +756,8 @@ namespace MapAPP
         {
            try
             {
-                JKLmap.MapElements.RemoveAt(0);
+                
+               JKLmap.MapElements.RemoveAt(0);
             }
             catch (Exception e)
             {
@@ -763,22 +765,21 @@ namespace MapAPP
             }
             finally
             {
-                    
-                    
-                    //BasicGeoposition snPosition = new BasicGeoposition() { Latitude = fakedata[i].lon, Longitude = fakedata[i].lat };
-                    BasicGeoposition snPosition = new BasicGeoposition() { Latitude = fakedata[i].lat, Longitude = fakedata[i].lon };
-              
-                    // BasicGeoposition snPosition = new BasicGeoposition() { Latitude = stops[i].Latitude, Longitude = stops[i].LonTitude };
-                    Geopoint snPoint = new Geopoint(snPosition);
-                    MapIcon stopoint = new MapIcon();
-                    stopoint.Location = snPoint;
-                    stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
-                    //stopoint.Title = stops[i].StopName;
-                //stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bussi.png"));
-                    stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/"+image));
-                    JKLmap.MapElements.Add(stopoint);
-                        i++;
-                
+
+
+                double latitude = fakedata[i].lat;
+                double longtitude = fakedata[i].lon;
+                BasicGeoposition snPosition = new BasicGeoposition() { Latitude = latitude, Longitude = longtitude };
+                Geopoint snPoint = new Geopoint(snPosition);
+                MapIcon stopoint = new MapIcon();
+                stopoint.Location = snPoint;
+                stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
+                stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bussi.png"));
+                stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/"+image));
+                JKLmap.MapElements.Add(stopoint);
+                i++;
+                   
+
             }
             
         }
@@ -798,11 +799,35 @@ namespace MapAPP
 
         private void Something_Click(object sender, RoutedEventArgs e)
         {
-            ShowHomes();
+            
         }
         public void ShowHomes()
         {
            
+        }
+        private async void display3DLocation(double latitude, double longtitude)
+        {
+            if (JKLmap.Is3DSupported)
+            {
+                JKLmap.Style = MapStyle.Aerial3DWithRoads;
+                BasicGeoposition hwGeoposition = new BasicGeoposition() { Latitude = latitude, Longitude = longtitude };
+                Geopoint hwPoint = new Geopoint(hwGeoposition);
+                MapScene hwScene = MapScene.CreateFromLocationAndRadius(hwPoint,
+                                                                                     80, /* show this many meters around */
+                                                                                     0, /* looking at it to the North*/
+                                                                                     60 /* degrees pitch */);
+                await JKLmap.TrySetSceneAsync(hwScene, MapAnimationKind.Bow);
+            }
+            else
+            {
+                ContentDialog viewNotSupportedDialog = new ContentDialog()
+                {
+                    Title = "3D ei ole tuettu",
+                    Content = "Ei tukea 3D näkymälle",
+                    PrimaryButtonText = "OK"
+                };
+                await viewNotSupportedDialog.ShowAsync();
+            }
         }
 
     }
