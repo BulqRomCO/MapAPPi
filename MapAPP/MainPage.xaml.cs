@@ -143,6 +143,7 @@ namespace MapAPP
 
             }
             string buttonlabel = btn.Label.ToString();
+            if (buttonlabel == "Linja 20") WaitDraw();
             ReadLineData(buttonlabel);
 
         }
@@ -309,10 +310,6 @@ namespace MapAPP
         }
         private void popstopsbutton_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            WaitDraw();
-            
-            
-           
             if (!popstops.IsOpen) { popstops.IsOpen = true; }
             if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
             if (destinationWindow.IsOpen) { destinationWindow.IsOpen = false; }
@@ -777,7 +774,6 @@ namespace MapAPP
                 stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/"+image));
                // JKLmap.MapElements.Add(stopoint);
                 JKLmap.MapElements.Insert(0, stopoint);
-                JKLmap.MapElements.
                 i++;
                    
 
