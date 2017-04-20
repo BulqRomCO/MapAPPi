@@ -372,7 +372,6 @@ namespace MapAPP
         {
             showroutebyname.Clear();
             StorageFolder storageFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-            Debug.Write("Bussi " + label.ToString());
             string PathToGPSFile = @"Linkit\" + label + ".txt";
             StorageFile linkkitieto = await storageFolder.GetFileAsync(PathToGPSFile);
             IList<string> linjadata = await FileIO.ReadLinesAsync(linkkitieto);
@@ -384,7 +383,6 @@ namespace MapAPP
                     {
 
                         BasicGeoposition snPosition = new BasicGeoposition() { Latitude = stop.Latitude, Longitude = stop.LonTitude };
-                        // Näytä linjan perusteella reitit 
                         Geopoint snPoint = new Geopoint(snPosition);
                         // Luodaan uusi stop 
                         MapIcon stopoint = new MapIcon();
@@ -395,6 +393,7 @@ namespace MapAPP
                         JKLmap.MapElements.Add(stopoint);
                         showroutebyname.Add(stop.Latitude);
                         showroutebyname.Add(stop.LonTitude);
+                        
                     }
                 }
             }
@@ -661,7 +660,7 @@ namespace MapAPP
             }
 
         }
-        string image = "bussi.png";
+        
         IList<MapElement> fakedatalist = new List<MapElement>();
         int i = 0;
         public void DrawFakeGpsRoute(string label)
@@ -685,20 +684,20 @@ namespace MapAPP
                 MapIcon stopoint = new MapIcon();
                 stopoint.Location = snPoint;
                 stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
-                stopoint.Title = label;
+                stopoint.Title = label; 
                 stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bussi.png"));
-                stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/"+image));
-               // JKLmap.MapElements.Add(stopoint);
                 JKLmap.MapElements.Insert(0, stopoint);
                 i++;
             }   
         }
         public async Task WaitDraw(string label)
-        {    
+        {
+            int time = 5000;
+            
             while (true)
             {
                 DrawFakeGpsRoute(label);
-                await Task.Delay(5000);
+                await Task.Delay(time);
             }
         }
 
@@ -736,6 +735,7 @@ namespace MapAPP
         {
             display3DLocation();
         }
+     
     }
     }
 
