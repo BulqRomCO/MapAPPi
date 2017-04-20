@@ -242,6 +242,7 @@ namespace MapAPP
                 JKLmap.MapElements.Add(stopoint);
             }
         }
+        //paska
         private void stopsonmap_Click(object sender, RoutedEventArgs e)
         {
             ReadStops();
