@@ -757,7 +757,7 @@ namespace MapAPP
                 stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/"+image));
                // JKLmap.MapElements.Add(stopoint);
                 JKLmap.MapElements.Insert(0, stopoint);
-                JKLmap.MapElements.
+                
                 i++;
                    
 
@@ -781,12 +781,20 @@ namespace MapAPP
 
 
 
-        private async void display3DLocation(double latitude = 62.2417, double longtitude = 25.7473)
+        private async void display3DLocation(double latitude = 62.2417, double longtitude = 25.7473, int style = 1)
         {
             if (JKLmap.Is3DSupported)
             {
-              
-                JKLmap.Style = MapStyle.Aerial3DWithRoads;
+                switch (style)
+                {
+                    case 1:
+                        JKLmap.Style = MapStyle.Terrain;
+                        break;
+                    case 2:
+                        JKLmap.Style = MapStyle.Aerial3DWithRoads;
+                        break;
+
+                }
                 BasicGeoposition hwGeoposition = new BasicGeoposition() { Latitude = latitude, Longitude = longtitude };
                 Geopoint hwPoint = new Geopoint(hwGeoposition);
                 MapScene hwScene = MapScene.CreateFromLocationAndRadius(hwPoint,80, /* Metrit */0, /* Pohjois */ 60 /* Asteluku */);
