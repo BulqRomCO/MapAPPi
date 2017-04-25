@@ -106,7 +106,6 @@ namespace MapAPP
         {
             if (!popupWindow.IsOpen) { popupWindow.IsOpen = true; }
             if (destinationWindow.IsOpen) { destinationWindow.IsOpen = false; }
-            if (popstops.IsOpen) { popstops.IsOpen = false; }
 
         }
         // Kun kartta ladataan oletus GPS paikka on JKL koordinaatit !
@@ -259,7 +258,6 @@ namespace MapAPP
         private void destination_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (!destinationWindow.IsOpen) { destinationWindow.IsOpen = true; }
-            if (popstops.IsOpen) { popstops.IsOpen = false; }
             if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
         }
         private void closedestination_Tapped(object sender, TappedRoutedEventArgs e)
@@ -268,7 +266,6 @@ namespace MapAPP
         }
         private void popstopsbutton_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            if (!popstops.IsOpen) { popstops.IsOpen = true; }
             if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
             if (destinationWindow.IsOpen) { destinationWindow.IsOpen = false; }
 
@@ -714,13 +711,20 @@ namespace MapAPP
         {
             if (JKLmap.Is3DSupported)
             {
-
-
-                JKLmap.Style = MapStyle.Aerial3D;
                 BasicGeoposition hwGeoposition = new BasicGeoposition() { Latitude = latitude, Longitude = longtitude };
                 Geopoint hwPoint = new Geopoint(hwGeoposition);
-                MapScene hwScene = MapScene.CreateFromLocationAndRadius(hwPoint,80, /* Metrit */0, /* Pohjois */ 60 /* Asteluku */);
-                await JKLmap.TrySetSceneAsync(hwScene, MapAnimationKind.Bow);
+                MapScene hwScene = MapScene.CreateFromLocationAndRadius(hwPoint,80,0,60);
+                if(JKLmap.Style == MapStyle.Aerial3D)
+                {
+                    JKLmap.Style = MapStyle.Road;
+                    hwScene = MapScene.CreateFromLocationAndRadius(hwPoint, 2500,0,0);
+                    await JKLmap.TrySetSceneAsync(hwScene, MapAnimationKind.Bow);
+                }
+                else if (JKLmap.Style == MapStyle.Road)
+                {
+                    JKLmap.Style = MapStyle.Aerial3D;
+                    await JKLmap.TrySetSceneAsync(hwScene, MapAnimationKind.Bow);
+                }
             }
             else
             {
@@ -738,6 +742,7 @@ namespace MapAPP
         {
             display3DLocation();
         }
+
      
     }
     }

@@ -12,7 +12,7 @@
 
 
     <Page.BottomAppBar>
-        <AppBar Width="500" HorizontalAlignment="Left">
+        <AppBar Width="600" HorizontalAlignment="Left">
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="70" Orientation="Horizontal">
                 <AppBarButton x:Name="chooseBus" Label="CHOOSE BUS" Tapped="chooseBus_Click" Height="70" >
                     <FontIcon Glyph="&#xE806;"/>
@@ -20,10 +20,10 @@
                 <AppBarButton x:Name="destination" Label="DESTINATION" Tapped="destination_Tapped">
                     <FontIcon Glyph="&#xE787;"/>
                 </AppBarButton>
-                <AppBarButton x:Name="popstopsbutton" Label="SHOW GPS" Tapped="popstopsbutton_Tapped">
+                <AppBarButton x:Name="stopsonmap" Label="SHOW STOPS" Tapped="stopsonmap_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="70" Width="68">
                     <FontIcon Glyph="&#xE14C;"/>
                 </AppBarButton>
-                <AppBarButton x:Name="stopsonmap" Label="SHOW STOPS" Tapped="stopsonmap_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="70" Width="68">
+                <AppBarButton x:Name="Show3DRoute" Label="3D View" Tapped="Show3DRoute_Click">
                     <FontIcon Glyph="&#xE1C4;"/>
                 </AppBarButton>
                 <AppBarButton Label="CLEAR MAP" x:Name="clearmap" Tapped="clearmap_Tapped">
@@ -293,13 +293,6 @@
                                 <FontIcon Glyph="&#xE8BB;"/>
                             </AppBarButton>
                         </StackPanel>
-                        <Popup x:Name="popstops" Height="600" Width="400" Margin="0,150,0,0">
-                            <ScrollViewer Height="596" Width="392">
-                                <StackPanel Grid.Row="11" Grid.Column="0" Background="#bfbfbf">
-                                    <Button x:Name="Show3DRoute" Click="Show3DRoute_Click" Content="3D View"/>
-                                </StackPanel>
-                            </ScrollViewer>
-                        </Popup>
                     </Grid>
                 </ScrollViewer>
 
