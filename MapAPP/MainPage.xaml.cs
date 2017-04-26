@@ -447,14 +447,17 @@ namespace MapAPP
                 Debug.Write("ReadFakeGpsdata error" + e.Message);
             }
 
-        }
-        
+        } 
         int i = 0;
+        /// <summary>
+        /// DrawFakeGpsRoute funktio piirtää kartalle GPS pisteen 5 sekunnin välein
+        /// </summary>
+        /// <param name="label"></param>
         public void DrawFakeGpsRoute(string label)
         {
 
            try
-            {      
+            {  // Poistetaan kartalta edellinen GPS paikka
                JKLmap.MapElements.RemoveAt(0);
                
             }
@@ -473,10 +476,16 @@ namespace MapAPP
                 stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
                 stopoint.Title = label; 
                 stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bussi.png"));
+                // Lisätään karttaelementti paikalle "0" jotta se voidaan poistaa
                 JKLmap.MapElements.Insert(0, stopoint);
                 i++;
             }   
         }
+        /// <summary>
+        /// WaitDraw funktiossa kutsutaan DrawFakeGpsRoute funktiota 5 sekunnin välein
+        /// </summary>
+        /// <param name="label"></param>
+        /// <returns></returns>
         public async Task WaitDraw(string label)
         {
             int time = 5000;
@@ -487,6 +496,12 @@ namespace MapAPP
                 await Task.Delay(time);
             }
         }
+        /// <summary>
+        /// display3DLocation funktio ottaa oletusparemtreina 2 double arvoa, lon ja lat jotka ohjaavat jyävskylän keskustaan.
+        /// </summary>
+        /// <param name="latitude"></param>
+        /// <param name="longtitude"></param>
+        /// <param name="style"></param>
         private async void display3DLocation(double latitude = 62.2417, double longtitude = 25.7473, int style = 2)
         {
             if (JKLmap.Is3DSupported)
