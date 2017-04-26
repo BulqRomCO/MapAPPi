@@ -101,16 +101,13 @@
     </Compile>
     <Compile Include="BussStops.cs" />
     <Compile Include="FakeData.cs" />
-    <Compile Include="Homes.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Routes.cs" />
     <Compile Include="StopTimes.cs" />
     <Compile Include="System\Windows\Drawing.cs" />
     <Compile Include="System\Windows\Media.cs" />
-    <Compile Include="Trips.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

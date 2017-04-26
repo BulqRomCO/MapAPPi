@@ -43,28 +43,18 @@ namespace MapAPP
                 LocationY = BusCanvas.Height / 2
             };
             // Ajetaan seuraavat functiot heti ohjelman käynnistyttyä
-            //--------------------------------------------------------
             GenerateStopsData();
-            ReadRoutes();
-            ReadStopTimesInfo();
-            ReadTrips();  
             ReadFakeGpsData();
-            ReadStopTimes();
-            //-------------------------------------------------------
-
+            
         }
         // Olio-kokoelmat
-        List<Trips>     trips = new     List<Trips>();
-        List<Routes>    routes = new    List<Routes>();
         List<BussStops> stops = new     List<MapAPP.BussStops>();
         List<StopTimes> stoptimes = new List<StopTimes>();
-        List<Homes>     homes = new     List<Homes>();
         List<FakeData>  fakedata = new  List<FakeData>();
         List<string>    routeto = new   List<string>();
-        
-
         /// <summary>
         /// 2 GPS-pisteen välille piirrettävä lyhin reitti
+        /// Ottaa double tyyppisen lista joka sisältää 2 GPS tietoa, lon ja lat tiedot.
         /// </summary>
         /// <param name="lista"></param>
         private async void ShowRouteOnMap(List<double> lista)
@@ -101,7 +91,11 @@ namespace MapAPP
             }
         
         }
-        
+        /// <summary>
+        /// Choose bus napin popup ikkunan toiminto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void chooseBus_Click(object sender, RoutedEventArgs e)
         {
             if (!popupWindow.IsOpen) { popupWindow.IsOpen = true; }
@@ -139,8 +133,9 @@ namespace MapAPP
             ReadLineData(buttonlabel);
 
         }
-        // BussStops luokan tyyppinen oliolista
-        public object ContactSampleDataSource { get; private set; }
+        /// <summary>
+        /// Funktion joka avaa linkkidatan stops tiedoston ja parsii siitä osan tiedoista ja lisää olioon.
+        /// </summary>
         private async void GenerateStopsData()
         {
             try
@@ -164,7 +159,6 @@ namespace MapAPP
                     int stopid = int.Parse(parts[0]);
                     double lon = double.Parse(parts[4]);
                     double lat;
-                    // Tiedosto ottaa vain 1200 riviä ja heittää sitten exceptionia
                     if (double.TryParse(parts[3], out lat))
                         stops.Add(new BussStops { StopName = stopname, StopID = stopid, Latitude = lat, LonTitude = lon });
                 }
@@ -176,16 +170,15 @@ namespace MapAPP
             }
         }
         // Tallenetaan oliot-tiedostoon
+        /// <summary>
+        /// SaveStopsInfo tallentaa kaikki olion "instanssit" .dat tiedostoon josta niitä on helppo myöhemmin lukea.
+        /// </summary>
         private async void SaveStopsInfo()
         {
             try
             {
-                // open/create a file
-
                 StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-                StorageFile stopsfile = await storageFolder.CreateFileAsync("stops.dat", CreationCollisionOption.OpenIfExists);
-
-                // save employees to disk
+                StorageFile stopsfile = await storageFolder.CreateFileAsync("stops.dat", CreationCollisionOption.OpenIfExists);  
                 Stream stream = await stopsfile.OpenStreamForWriteAsync();
                 DataContractSerializer serializer = new DataContractSerializer(typeof(List<BussStops>));
                 serializer.WriteObject(stream, stops);
@@ -194,10 +187,12 @@ namespace MapAPP
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Following exception has happend (writing): " + ex.ToString());
+                Debug.WriteLine(ex.ToString());
             }
         }
-        // Save stops data napin funktio joka kutsuu SaveStopsInfo funktiota ja kirjoittaa pysäkkien tiedot tiedostoon stops.dat
+        /// <summary>
+        /// ReadStops funktio lukee stops.dat tiedostosta tiedot takaisin "olioon"
+        /// </summary>
         private async void ReadStops()
         {
             try
@@ -220,6 +215,9 @@ namespace MapAPP
             }
 
         }
+        /// <summary>
+        /// ShowStops funktio hakee BussStops tyyppisestä listasta kaikki pysäkit ja tulostaa ne kartalle.
+        /// </summary>
         private void ShowStops()
         { 
             foreach (BussStops stop in stops)
@@ -230,22 +228,33 @@ namespace MapAPP
                 stopoint.Location = snPoint;
                 stopoint.NormalizedAnchorPoint = new Point(0.5, 1.0);
                 stopoint.Title = stop.StopName;
+                // Jos pysäkin nimi on pupuhuhta niin POIn logo on eri värinen. tämä kuvastaa mikaelin koti pysäkkiä
                 if (stop.StopName == " Pupuhuhta ") stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/home.png"));
                 else stopoint.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Assets/bus_stop_icon.png"));
                 JKLmap.MapElements.Add(stopoint);
             }
         }
-        //paska
+        // Show Stops nappia painattaessa ReadStops funktio lukee tiedostosta pysäkkien tiedot ja showstops näyttää ne
         private void stopsonmap_Click(object sender, RoutedEventArgs e)
         {
             ReadStops();
             ShowStops();
 
         }
+        /// <summary>
+        /// Kun exit nappia painetaan niin ohjelma sulkeutuu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EXIT_Tapped(object sender, TappedRoutedEventArgs e)
         {
             Application.Current.Exit();
         }
+        /// <summary>
+        /// Clearmap nappia painamalla JKLmap kartasta poistetaan kaikki elementit ja reitit tythjätään.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void clearmap_Tapped(object sender, TappedRoutedEventArgs e)
         {
             JKLmap.MapElements.Clear();
@@ -374,6 +383,18 @@ namespace MapAPP
             }
         }
         List<double> showroutebyname = new List<double>();
+        /// <summary>
+        /// ReadLineData funktio ottaa XAML painikkeen nimen parametrina ja sen perusteella antaa tiedoston etuliitteen.
+        /// Sitten BussStops listaa käydään läpi ja tarkistetaan onko tiedostosta otettu tieto sama, jos on niin piiretään kartalle sen
+        /// nimen perusteella pysäkki
+        /* tiedosto on muotoa: 
+          Pupuhuhta 
+          Pupuhuhdan koulu 1 
+          Pieles 1 
+         */
+        /// </summary>
+        /// <param name="label"></param>
+        /// 
         private async void ReadLineData(string label)
         {
             showroutebyname.Clear();
@@ -404,245 +425,6 @@ namespace MapAPP
                 }
             }
       
-        }
-        private async void ShowRoutesLines(List<double> lista)
-        {
-            Debug.Write(lista[0] + " " + lista[1] + " " + lista[2] + " " + lista[3]);
-            BasicGeoposition startPoint = new BasicGeoposition() { Latitude = lista[0], Longitude = lista[1] };
-            BasicGeoposition endPoint = new BasicGeoposition() { Latitude = lista[2], Longitude = lista[3] };
-            MapRouteFinderResult routeResult =
-                      await MapRouteFinder.GetDrivingRouteAsync(
-                      new Geopoint(startPoint),
-                      new Geopoint(endPoint),
-                      MapRouteOptimization.Time,
-                      MapRouteRestrictions.None);
-
-            if (routeResult.Status == MapRouteFinderStatus.Success)
-            {
-                Debug.Write("Added");
-                MapRouteView viewOfRoute = new MapRouteView(routeResult.Route);
-                viewOfRoute.RouteColor = Colors.ForestGreen;
-                viewOfRoute.OutlineColor = Colors.Black;
-                JKLmap.Routes.Add(viewOfRoute);
-            }
-
-        }
-        private async void ReadStopTimes()
-        {
-            try
-            {
-                // Avaa paikallinen kansio missä on asennettu tämä softa
-                StorageFolder storageFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-                string PathToGPSFile = @"Linkkidata\stop_times.txt";
-                StorageFile linkkitieto = await storageFolder.GetFileAsync(PathToGPSFile);
-                // Luetaan tiedostosta kaikki rivit yksitellen
-                IList<string> pys = await FileIO.ReadLinesAsync(linkkitieto);
-                // Lista mihin lisätään parsittu tieto
-                List<string[]> InfoList = new List<string[]>();
-                // Parsitaan tieto ensin splittaamalla , kohdalta ja sitten korvataan "" tyhjällä.
-                // "2827af93-c63b-4433-90c8-9b5893001884","06:05:00","06:05:00","207773","26",""
-                foreach (string splitti in pys)
-                {
-                    string s = splitti.Replace('"', ' ').Trim();
-                    string[] parts = s.Split(',');
-                    string arrivetime = parts[1];
-                    string tripid = parts[0];
-                    int stopid = int.Parse(parts[3]);
-                    int sequence = int.Parse(parts[4]);
-                    stoptimes.Add(new StopTimes { StopTime = arrivetime, StopID = stopid, Sequence = sequence, TripID = tripid });
-                    // Debug.Write(stopid);
-                }
-                Debug.Write("All parsed");
-                Debug.Write(stoptimes.Count);
-                SaveStopTimesInfo();
-            }
-            catch (Exception e)
-            {
-                arrivaltime.Text = e.ToString();
-            }
-            
-        }
-        private async void SaveStopTimesInfo()
-        {
-            try
-            {
-                StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-                StorageFile stopsfile = await storageFolder.CreateFileAsync("stoptimes.dat", CreationCollisionOption.ReplaceExisting);
-                // save employees to disk
-                Stream stream = await stopsfile.OpenStreamForWriteAsync();
-                DataContractSerializer serializer = new DataContractSerializer(typeof(List<StopTimes>));
-                serializer.WriteObject(stream, stoptimes);
-                await stream.FlushAsync();
-                stream.Dispose();
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Following exception has happend (writing): " + ex.ToString());
-            }
-        }
-        private async void ReadStopTimesInfo()
-        {
-            try
-            {
-                // find a file
-                StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-                Stream stream = await storageFolder.OpenStreamForReadAsync("stoptimes.dat");
-
-                // is it empty
-                if (stream == null) stops = new List<BussStops>();
-
-                // read data
-                DataContractSerializer serializer = new DataContractSerializer(typeof(List<StopTimes>));
-                stoptimes = (List<StopTimes>)serializer.ReadObject(stream);            
-            }
-            catch (Exception ex)
-            {
-                arrivaltime.Text = ex.ToString();
-            }
-
-        }      
-        private async void ReadTrips()
-        {
-            try
-            {
-                // Avaa paikallinen kansio missä on asennettu tämä softa
-                StorageFolder storageFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-                string PathToGPSFile = @"Linkkidata\trips.txt";
-                StorageFile linkkitieto = await storageFolder.GetFileAsync(PathToGPSFile);
-                IList<string> pys = await FileIO.ReadLinesAsync(linkkitieto);
-                List<string[]> InfoList = new List<string[]>();
-                
-                foreach (string splitti in pys)
-                {
-                    string s = splitti.Replace('"', ' ').Trim();
-                    string[] parts = s.Split(',');
-                    string tripid= parts[2];
-                    int routeid = int.Parse(parts[0]);
-                    string serviceid = parts[1];
-                    trips.Add(new Trips { TripID = tripid, RouteID = routeid, ServiceID = serviceid});   
-
-                }
-                Debug.Write("All parsed");
-                Debug.Write(trips.Count);
-                SaveTripsInfo();
-            }
-            catch (Exception e)
-            {
-                Debug.Write("Virhe:", e.Message);
-            }
-
-        }
-        private async void SaveTripsInfo()
-        {
-            try
-            {
-
-
-                StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-                StorageFile stopsfile = await storageFolder.CreateFileAsync("trips.dat", CreationCollisionOption.ReplaceExisting);
-
-                // save employees to disk
-                Stream stream = await stopsfile.OpenStreamForWriteAsync();
-                DataContractSerializer serializer = new DataContractSerializer(typeof(List<Trips>));
-                serializer.WriteObject(stream, trips);
-                await stream.FlushAsync();
-                stream.Dispose();
-            }
-            catch (Exception ex)
-            {
-                arrivaltime.Text = ex.ToString();
-            }
-        }
-        private async void ReadTripsInfo()
-        {
-            try
-            {
-                // find a file
-                StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-                Stream stream = await storageFolder.OpenStreamForReadAsync("trips.dat");
-
-                // is it empty
-                if (stream == null) trips = new List<Trips>();
-
-                // read data
-                DataContractSerializer serializer = new DataContractSerializer(typeof(List<Trips>));
-                trips = (List<Trips>)serializer.ReadObject(stream);
-
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Following exception has happend (reading): " + ex.ToString());
-            }
-
-        }
-        private async void ReadRoutes()
-        {
-            try
-            {
-                // Avaa paikallinen kansio missä on asennettu tämä softa
-                StorageFolder storageFolder = Windows.ApplicationModel.Package.Current.InstalledLocation;
-                string PathToGPSFile = @"Linkkidata\routes.txt";
-                StorageFile linkkitieto = await storageFolder.GetFileAsync(PathToGPSFile);
-                IList<string> pys = await FileIO.ReadLinesAsync(linkkitieto);
-                List<string[]> InfoList = new List<string[]>();
-
-                foreach (string splitti in pys)
-                {
-                    string s = splitti.Replace('"', ' ').Trim();
-                    string[] parts = s.Split(',');
-                    int routeid = int.Parse(parts[0]);
-                    int agencyid = int.Parse(parts[1]);
-                    string routeshortname = parts[2];
-                    string routelongname = parts[3];    
-                    routes.Add(new Routes { RouteID = routeid, AgencyID = agencyid, RouteShortName = routeshortname, RouteLongName = routelongname });
-                   
-                }
-                Debug.Write("All parsed");
-                Debug.Write(routes.Count);
-                SaveRoutesInfo();
-            }
-            catch (Exception e)
-            {
-                Debug.Write("Virhe:", e.Message);
-            }
-
-        }
-        private async void SaveRoutesInfo()
-        {
-            try
-            {
-
-
-                StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-                StorageFile stopsfile = await storageFolder.CreateFileAsync("routes.dat", CreationCollisionOption.ReplaceExisting);
-
-                // save employees to disk
-                Stream stream = await stopsfile.OpenStreamForWriteAsync();
-                DataContractSerializer serializer = new DataContractSerializer(typeof(List<Routes>));
-                serializer.WriteObject(stream, routes);
-                await stream.FlushAsync();
-                stream.Dispose();
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Following exception has happend (writing): " + ex.ToString());
-            }
-        }
-        private async void ReadRoutesInfo()
-        {
-            try
-            {
-                StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
-                Stream stream = await storageFolder.OpenStreamForReadAsync("routes.dat");
-                if (stream == null) routes = new List<Routes>();
-                DataContractSerializer serializer = new DataContractSerializer(typeof(List<Trips>));
-                routes = (List<Routes>)serializer.ReadObject(stream);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine("Following exception has happend (reading): " + ex.ToString());
-            }
-
         }
         public async void ReadFakeGpsData()
         {
@@ -705,7 +487,6 @@ namespace MapAPP
                 await Task.Delay(time);
             }
         }
-
         private async void display3DLocation(double latitude = 62.2417, double longtitude = 25.7473, int style = 2)
         {
             if (JKLmap.Is3DSupported)
@@ -736,13 +517,10 @@ namespace MapAPP
                 await viewNotSupportedDialog.ShowAsync();
             }
         }
-
         private void Show3DRoute_Click(object sender, RoutedEventArgs e)
         {
             display3DLocation();
         }
-
-     
     }
-    }
+}
 
