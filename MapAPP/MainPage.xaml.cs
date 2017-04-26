@@ -282,6 +282,11 @@ namespace MapAPP
         private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
         }
+        /// <summary>
+        /// AutoSuggestBox_querySubmitted funktio kutsuu 2 funktiota, ShowPoint ja routeto sekä antaa niille parametrina valitun string tyypisen pysäkin nime
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             if (args.ChosenSuggestion != null)
@@ -346,6 +351,11 @@ namespace MapAPP
                 }
             }
         }
+        /// <summary>
+        /// showButton_Tapped funktio näyttää kartalla 2 pisteen välisen lyhyimmän reitin. Funktio kutsuu ShowRouteOnMap funktiota parametrinaan route lista jossa on pisteiden gps tiedot
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void showButton_Tapped(object sender, TappedRoutedEventArgs e)
         {
             List<double> route = new List<double>();
@@ -426,6 +436,9 @@ namespace MapAPP
             }
       
         }
+        /// <summary>
+        /// ReadFakeGpsData funktio lisää fakedata listaan gps tiedot ja muiden funktioiden avulla piirtää kartallla
+        /// </summary>
         public async void ReadFakeGpsData()
         {
             try
