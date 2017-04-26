@@ -667,7 +667,6 @@ namespace MapAPP
 
         }
         
-        IList<MapElement> fakedatalist = new List<MapElement>();
         int i = 0;
         public void DrawFakeGpsRoute(string label)
         {

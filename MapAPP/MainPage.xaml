@@ -98,7 +98,7 @@
             </Popup>
         </StackPanel>
         <StackPanel>
-            <Popup x:Name="popupWindow" Height="600" Width="400" Margin="0,150,0,0">
+            <Popup x:Name="popupWindow" Height="500" Width="400" Margin="0,150,0,0">
                 <ScrollViewer>
                     <Grid x:Name="popupGrid" Background="#bfbfbf" BorderBrush="Black" BorderThickness="2">
                         <Grid.ColumnDefinitions>
