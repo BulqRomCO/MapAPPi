@@ -104,19 +104,21 @@ namespace MapAPP
             JKLmap.LandmarksVisible = true;
         }
 
-        // Show Stops nappia painattaessa ReadStops funktio lukee tiedostosta pysäkkien tiedot ja showstops näyttää ne
         /// <summary>
-        /// Kun exit nappia painetaan niin ohjelma sulkeutuu
+        /// Funktio kaikikille näppäimille mitä ohjelmassa käytetään:
+        /// CHOOSE BUS näppäin avaa popup näkymän mistä voi valita bussin tai busseja
+        /// Linja 'numero' näppäin tuo kartalle näkyviin bussin, sekä linjan kyseiset pysäkit punaisella. Ainoastaan linja 20 on feikki gps dataa demoamisen vuoksi
+        /// DESTINATION näppäin avaa popup näkymän mistä voi valita reitin kahden pysäkin väliltä
+        /// SHOW STOPS näppäin tuo kartalle näkyviin kaikki Jyväskylän liikenteen bussipysäkit
+        /// D View näppäim vaihtaa kartan näkymän 3D:hen karttaa, jossa voidaan tarkastella näkymää x,y,z akseleilla. Näppäintä painaessa uudestaan näkymä vaihtuu takaisin 2D näkymään
+        /// CLEAR MAP näppäin poistaa kartalla olevat elementit(pysäkit tai reitit)
+        /// Show näppäin on DESTINATION näppäimen popup ikkunan takana, jota painaessa voidaan piirtää kartalle pysäkkien välinen reitti
+        /// OK tai Cancel näppäin sulkee CHOOSE BUS ikkunan, tämä voidaan myös toteuttaa painamalla SHOW STOPS tai DESTINATIOM tai CLEAR MAP näppäintä
+        /// Close näppäin tekee saman asian kuin OK tai Cancel, mutta DESTINATION ikkunalle.
+        /// EXIT näppäin sulkee sovelluksen kokonaan.
         /// </summary>
-        /// <summary>
-        /// Clearmap nappia painamalla JKLmap kartasta poistetaan kaikki elementit ja reitit tythjätään.
-        /// </summary>
-        /// <summary>
-        /// showButton_Tapped funktio näyttää kartalla 2 pisteen välisen lyhyimmän reitin. Funktio kutsuu ShowRouteOnMap funktiota parametrinaan route lista jossa on pisteiden gps tiedot
-        /// </summary>
-        /// <summary>
-        /// Choose bus napin popup ikkunan toiminto
-        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void bus_Click(object sender, RoutedEventArgs e)
         {
             AppBarButton btn = sender as AppBarButton;
