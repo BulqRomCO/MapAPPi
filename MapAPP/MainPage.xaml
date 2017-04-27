@@ -12,24 +12,24 @@
 
 
     <Page.BottomAppBar>
-        <AppBar Width="600" HorizontalAlignment="Left">
+        <AppBar Width="500" HorizontalAlignment="Left">
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Height="70" Orientation="Horizontal">
-                <AppBarButton x:Name="chooseBus" Label="CHOOSE BUS" Tapped="chooseBus_Click" Height="70" >
+                <AppBarButton x:Name="chooseBus" Label="CHOOSE BUS" Tapped="bus_Click" Height="70" >
                     <FontIcon Glyph="&#xE806;"/>
                 </AppBarButton>
-                <AppBarButton x:Name="destination" Label="DESTINATION" Tapped="destination_Tapped">
+                <AppBarButton x:Name="destination" Label="DESTINATION" Tapped="bus_Click">
                     <FontIcon Glyph="&#xE787;"/>
                 </AppBarButton>
-                <AppBarButton x:Name="stopsonmap" Label="SHOW STOPS" Tapped="stopsonmap_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="70" Width="68">
+                <AppBarButton x:Name="stopsonmap" Label="SHOW STOPS" Tapped="bus_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Height="70" Width="68">
                     <FontIcon Glyph="&#xE14C;"/>
                 </AppBarButton>
-                <AppBarButton x:Name="Show3DRoute" Label="3D View" Tapped="Show3DRoute_Click">
+                <AppBarButton x:Name="Show3DRoute" Label="3D View" Tapped="bus_Click">
                     <FontIcon Glyph="&#xE1C4;"/>
                 </AppBarButton>
-                <AppBarButton Label="CLEAR MAP" x:Name="clearmap" Tapped="clearmap_Tapped">
+                <AppBarButton Label="CLEAR MAP" x:Name="clearmap" Tapped="bus_Click">
                     <FontIcon Glyph="&#xE107;"/>
                 </AppBarButton>
-                <AppBarButton x:Name="exitButton" Label="EXIT" Tapped="EXIT_Tapped">
+                <AppBarButton x:Name="exitButton" Label="EXIT" Tapped="bus_Click">
                     <FontIcon Glyph="&#xE7E8;"/>
                 </AppBarButton>
 
@@ -74,20 +74,18 @@
                     <AutoSuggestBox
                                        x:Name="DestinationSuggestBox"
                                         QueryIcon="Find"
-                                        SuggestionChosen="DestinationSuggestBox_SuggestionChosen"
                                         QuerySubmitted="DestinationSuggestBox_QuerySubmitted"
                                         TextChanged="DestinationSuggestBox_TextChanged">
 
                     </AutoSuggestBox>
-                    <!--<TextBox x:Name="destinationBlock" TextWrapping="Wrap" Text=""/>-->
                     <TextBlock x:Name="dateTextBox" TextWrapping="Wrap" Text="Date:"/>
                     <CalendarDatePicker Height="27" Width="124" HorizontalAlignment="Center" FontFamily="OCR A Extended"/>
                     <TextBlock x:Name="timeTextBox" TextWrapping="Wrap" Text="Time:"/>
                     <TimePicker Width="110" HorizontalAlignment="Center" FontFamily="OCR A Extended"/>
-                    <AppBarButton x:Name="showButton" Label="Show" Tapped="showButton_Tapped">
+                    <AppBarButton x:Name="showButton" Label="Show" Tapped="bus_Click">
                         <FontIcon Glyph="&#xE819;"/>
                     </AppBarButton>
-                    <AppBarButton x:Name="closedestination" Label="Close" Tapped="closedestination_Tapped">
+                    <AppBarButton x:Name="closedestination" Label="Close" Tapped="bus_Click">
                         <FontIcon Glyph="&#xE8BB;"/>
                     </AppBarButton>
                     <ListBox>
@@ -284,12 +282,12 @@
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="0" Grid.Row="10">
-                            <AppBarButton x:Name="okButton" Label="OK" Tapped="OK_Click">
+                            <AppBarButton x:Name="okButton" Label="OK" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE81D;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="3" Grid.Row="10">
-                            <AppBarButton x:Name="cancelButton" Label="Cancel" Tapped="cancelButton_Click">
+                            <AppBarButton x:Name="cancelButton" Label="Cancel" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE8BB;"/>
                             </AppBarButton>
                         </StackPanel>
@@ -300,21 +298,8 @@
         </StackPanel>
         <StackPanel x:Name="timeDateStack"  Grid.Column="1" Grid.Row="0" Background="#bfbfbf" BorderThickness="2,0,0,2" BorderBrush="Black">
             <TextBlock x:Name="Time" Text="TÄHÄHN AIKA" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-       
-        
 
         </StackPanel>
-
-
-        <!--<StackPanel x:Name="optionStack"  Grid.Column="0" Grid.Row="3" BorderThickness="0,2,2,0" BorderBrush="Black">
-            <ScrollViewer Height="340">
-                <StackPanel>
-                    <TextBlock x:Name="stoptextblock" Text=""/>
-                </StackPanel>
-            </ScrollViewer>
-            <ProgressBar x:Name="loadingdata" Value="0" Maximum="1000"/>
-        </StackPanel>
--->
 
         <StackPanel x:Name="mapStack"  Grid.Column="1" Grid.Row="3">
             <Canvas x:Name="BusCanvas">

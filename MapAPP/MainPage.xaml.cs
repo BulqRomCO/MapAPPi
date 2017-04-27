@@ -91,17 +91,6 @@ namespace MapAPP
             }
         
         }
-        /// <summary>
-        /// Choose bus napin popup ikkunan toiminto
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void chooseBus_Click(object sender, RoutedEventArgs e)
-        {
-            if (!popupWindow.IsOpen) { popupWindow.IsOpen = true; }
-            if (destinationWindow.IsOpen) { destinationWindow.IsOpen = false; }
-
-        }
         // Kun kartta ladataan oletus GPS paikka on JKL koordinaatit !
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -114,24 +103,78 @@ namespace MapAPP
             JKLmap.ZoomLevel = 13;
             JKLmap.LandmarksVisible = true;
         }
-        private void OK_Click(object sender, RoutedEventArgs e)
-        {
-            if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
-            // show elements on map here
-        }
-        private void cancelButton_Click(object sender, RoutedEventArgs e)
-        {
 
-            if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
-            // do nothing in this function
-        }
+        // Show Stops nappia painattaessa ReadStops funktio lukee tiedostosta pysäkkien tiedot ja showstops näyttää ne
+        /// <summary>
+        /// Kun exit nappia painetaan niin ohjelma sulkeutuu
+        /// </summary>
+        /// <summary>
+        /// Clearmap nappia painamalla JKLmap kartasta poistetaan kaikki elementit ja reitit tythjätään.
+        /// </summary>
+        /// <summary>
+        /// showButton_Tapped funktio näyttää kartalla 2 pisteen välisen lyhyimmän reitin. Funktio kutsuu ShowRouteOnMap funktiota parametrinaan route lista jossa on pisteiden gps tiedot
+        /// </summary>
+        /// <summary>
+        /// Choose bus napin popup ikkunan toiminto
+        /// </summary>
         void bus_Click(object sender, RoutedEventArgs e)
         {
             AppBarButton btn = sender as AppBarButton;
             string buttonlabel = btn.Label.ToString();
-            if (buttonlabel =="Linja 20") WaitDraw(buttonlabel);
-            ReadLineData(buttonlabel);
-
+            string s = Regex.Replace(buttonlabel, "[0-9]", "").Trim();
+            Debug.WriteLine(s.ToString());
+            if( s== "CHOOSE BUS") {
+                if (!popupWindow.IsOpen) { popupWindow.IsOpen = true; }
+                if (destinationWindow.IsOpen) { destinationWindow.IsOpen = false; }
+            }
+            else if (s == "Linja")
+            {
+                if (buttonlabel == "Linja 20")
+                {
+                    WaitDraw(buttonlabel);
+                    ReadLineData(buttonlabel);
+                }
+                else ReadLineData(buttonlabel);
+            }
+            else if (s == "DESTINATION")
+            {
+                if (!destinationWindow.IsOpen) { destinationWindow.IsOpen = true; }
+                if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
+            }
+            else if (s == "SHOW STOPS")
+            {
+                if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
+                if (destinationWindow.IsOpen) { destinationWindow.IsOpen = false; }
+                ReadStops();
+                ShowStops();
+            }
+            else if (s == "D View") display3DLocation();
+            else if (s == "CLEAR MAP")
+            {
+                JKLmap.MapElements.Clear();
+                JKLmap.Routes.Clear();
+            }
+            else if (s == "Show")
+            {
+                List<double> route = new List<double>();
+                foreach (BussStops stop in stops)
+                {
+                    foreach (string n in routeto)
+                    {
+                        if (n == stop.StopName)
+                        {
+                            route.Add(stop.Latitude);
+                            route.Add(stop.LonTitude);
+                        }
+                    }
+                }
+                ShowRouteOnMap(route);
+                route.Clear();
+            }
+            else if (s == "OK" || s== "Cancel" ) { if (popupWindow.IsOpen) { popupWindow.IsOpen = false; } }
+            else if (s == "Close") { if (destinationWindow.IsOpen) { destinationWindow.IsOpen = false; } }
+            else if (s == "EXIT") Application.Current.Exit();
+            
         }
         /// <summary>
         /// Funktion joka avaa linkkidatan stops tiedoston ja parsii siitä osan tiedoista ja lisää olioon.
@@ -234,51 +277,6 @@ namespace MapAPP
                 JKLmap.MapElements.Add(stopoint);
             }
         }
-        // Show Stops nappia painattaessa ReadStops funktio lukee tiedostosta pysäkkien tiedot ja showstops näyttää ne
-        private void stopsonmap_Click(object sender, RoutedEventArgs e)
-        {
-            ReadStops();
-            ShowStops();
-
-        }
-        /// <summary>
-        /// Kun exit nappia painetaan niin ohjelma sulkeutuu
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void EXIT_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            Application.Current.Exit();
-        }
-        /// <summary>
-        /// Clearmap nappia painamalla JKLmap kartasta poistetaan kaikki elementit ja reitit tythjätään.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void clearmap_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            JKLmap.MapElements.Clear();
-            JKLmap.Routes.Clear();
-        }
-        private void fromTextBlock_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-        private void destination_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            if (!destinationWindow.IsOpen) { destinationWindow.IsOpen = true; }
-            if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
-        }
-        private void closedestination_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            if (destinationWindow.IsOpen) { destinationWindow.IsOpen = false; }
-        }
-        private void popstopsbutton_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            if (popupWindow.IsOpen) { popupWindow.IsOpen = false; }
-            if (destinationWindow.IsOpen) { destinationWindow.IsOpen = false; }
-
-        }
         private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
         }
@@ -294,7 +292,6 @@ namespace MapAPP
                 Searchbox.Text = args.ChosenSuggestion.ToString();
                 ShowPoint(args.ChosenSuggestion.ToString());
                 routeto.Add(args.ChosenSuggestion.ToString());
-                
             }
             else
             {
@@ -316,10 +313,7 @@ namespace MapAPP
                 else sender.ItemsSource = new string[] { "Ei löydy" };
             }
         }
-        private void DestinationSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
-        {
 
-        }
         private void DestinationSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             if (args.ChosenSuggestion != null)
@@ -351,28 +345,7 @@ namespace MapAPP
                 }
             }
         }
-        /// <summary>
-        /// showButton_Tapped funktio näyttää kartalla 2 pisteen välisen lyhyimmän reitin. Funktio kutsuu ShowRouteOnMap funktiota parametrinaan route lista jossa on pisteiden gps tiedot
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void showButton_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            List<double> route = new List<double>();
-            foreach (BussStops stop in stops)
-            {
-                foreach (string n in routeto)
-                {
-                    if (n == stop.StopName)
-                    {
-                        route.Add(stop.Latitude);
-                        route.Add(stop.LonTitude);
-                    }
-                }
-            }
-            ShowRouteOnMap(route);
-            route.Clear();
-        }
+
         public void ShowPoint(string name)
         {
             foreach (BussStops stop in stops)
@@ -544,10 +517,6 @@ namespace MapAPP
                 };
                 await viewNotSupportedDialog.ShowAsync();
             }
-        }
-        private void Show3DRoute_Click(object sender, RoutedEventArgs e)
-        {
-            display3DLocation();
         }
     }
 }
