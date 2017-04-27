@@ -26,32 +26,25 @@
                 <AppBarButton x:Name="Show3DRoute" Label="3D View" Tapped="bus_Click">
                     <FontIcon Glyph="&#xE1C4;"/>
                 </AppBarButton>
-                <AppBarButton Label="CLEAR MAP" x:Name="clearmap" Tapped="bus_Click">
+                <AppBarButton x:Name="clearmap" Label="CLEAR MAP" Tapped="bus_Click">
                     <FontIcon Glyph="&#xE107;"/>
                 </AppBarButton>
                 <AppBarButton x:Name="exitButton" Label="EXIT" Tapped="bus_Click">
                     <FontIcon Glyph="&#xE7E8;"/>
                 </AppBarButton>
-
             </StackPanel>
         </AppBar>
     </Page.BottomAppBar>
-
     <Grid>
-
-
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
-
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
 
         <StackPanel x:Name="nameStack"  Grid.Column="0" Grid.Row="0" Background="#b3b3b3" BorderThickness="0,0,2,2" BorderBrush="Black">
             <TextBlock x:Name="title" TextWrapping="Wrap" Text="MapAPP" FontSize="80" TextAlignment="Center" Foreground="#FF7A7A7A" FontFamily="PMingLiU-ExtB"/>
@@ -61,11 +54,9 @@
 
                 <StackPanel Background="Bisque">
                     <TextBlock x:Name="fromTextBox" TextWrapping="Wrap" Text="From:"/>
-                    <!--<TextBox x:Name="fromTextBlock" TextWrapping="Wrap" Text="" TextChanged="fromTextBlock_TextChanged"/>-->
                     <AutoSuggestBox
                                         x:Name="Searchbox"
                                         QueryIcon="Find"
-                                        SuggestionChosen="AutoSuggestBox_SuggestionChosen"
                                         QuerySubmitted="AutoSuggestBox_QuerySubmitted"
                                         TextChanged="AutoSuggestBox_TextChanged">
 
@@ -92,9 +83,9 @@
                         <TextBlock x:Name="arrivaltime" Text=""/>
                     </ListBox>
                 </StackPanel>
-
             </Popup>
         </StackPanel>
+        
         <StackPanel>
             <Popup x:Name="popupWindow" Height="500" Width="400" Margin="0,150,0,0">
                 <ScrollViewer>
@@ -121,181 +112,180 @@
                         </Grid.RowDefinitions>
 
                         <StackPanel Grid.Column="0" Grid.Row="0">
-                            <AppBarButton x:Name="bus1" Label="Linja 1" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 1" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
-
                         <StackPanel Grid.Column="1" Grid.Row="0">
-                            <AppBarButton x:Name="bus2" Label="Linja 2" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 2" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Grid.Row="0">
-                            <AppBarButton x:Name="bus2m" Label="Linja 2m" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 2m" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="3" Grid.Row="0">
-                            <AppBarButton x:Name="bus3" Label="Linja 3" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 3" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="0" Grid.Row="1">
-                            <AppBarButton x:Name="bus3k" Label="Linja 3k" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 3k" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Grid.Row="1">
-                            <AppBarButton x:Name="bus4" Label="Linja 4" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 4" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Grid.Row="1">
-                            <AppBarButton x:Name="bus5" Label="Linja 5" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 5" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="3" Grid.Row="1">
-                            <AppBarButton x:Name="bus5k" Label="Linja 5k" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 5k" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="0" Grid.Row="2">
-                            <AppBarButton x:Name="bus8" Label="Linja 8" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 8" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Grid.Row="2">
-                            <AppBarButton x:Name="bus10" Label="Linja 10" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 10" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Grid.Row="2">
-                            <AppBarButton x:Name="bus12" Label="Linja 12" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 12" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="3" Grid.Row="2">
-                            <AppBarButton x:Name="bus12k" Label="Linja 12k" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 12k" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="0" Grid.Row="3">
-                            <AppBarButton x:Name="bus13" Label="Linja 13" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 13" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Grid.Row="3">
-                            <AppBarButton x:Name="bus14" Label="Linja 14" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 14" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Grid.Row="3">
-                            <AppBarButton x:Name="bus15" Label="Linja 15" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 15" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="3" Grid.Row="3">
-                            <AppBarButton x:Name="bus15k" Label="Linja 15k" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 15k" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="0" Grid.Row="4">
-                            <AppBarButton x:Name="bus16" Label="Linja 16" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 16" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Grid.Row="4">
-                            <AppBarButton x:Name="bus16m" Label="Linja 16m" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 16m" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Grid.Row="4">
-                            <AppBarButton x:Name="bus18k" Label="Linja 18k" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 18k" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="3" Grid.Row="4">
-                            <AppBarButton x:Name="bus19" Label="Linja 19" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 19" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="0" Grid.Row="5">
-                            <AppBarButton x:Name="bus20" Label="Linja 20" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 20" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Grid.Row="5">
-                            <AppBarButton x:Name="bus21" Label="Linja 21" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 21" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Grid.Row="5">
-                            <AppBarButton x:Name="bus22" Label="Linja 22" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 22" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="3" Grid.Row="5">
-                            <AppBarButton x:Name="bus25" Label="Linja 25" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 25" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="0" Grid.Row="6">
-                            <AppBarButton x:Name="bus26" Label="Linja 26" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 26" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Grid.Row="6">
-                            <AppBarButton x:Name="bus27" Label="Linja 27" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 27" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Grid.Row="6">
-                            <AppBarButton x:Name="bus31" Label="Linja 31" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 31" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="3" Grid.Row="6">
-                            <AppBarButton x:Name="bus36" Label="Linja 36" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 36" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="0" Grid.Row="7">
-                            <AppBarButton x:Name="bus37" Label="Linja 37" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 37" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Grid.Row="7">
-                            <AppBarButton x:Name="bus38" Label="Linja 38" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 38" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Grid.Row="7">
-                            <AppBarButton x:Name="bus39" Label="Linja 39" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 39" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="3" Grid.Row="7">
-                            <AppBarButton x:Name="bus41" Label="Linja 41" Tapped="bus_Click">
+                            <AppBarButton Label="Linja 41" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE806;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="0" Grid.Row="10">
-                            <AppBarButton x:Name="okButton" Label="OK" Tapped="bus_Click">
+                            <AppBarButton Label="OK" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE81D;"/>
                             </AppBarButton>
                         </StackPanel>
                         <StackPanel Grid.Column="3" Grid.Row="10">
-                            <AppBarButton x:Name="cancelButton" Label="Cancel" Tapped="bus_Click">
+                            <AppBarButton Label="Cancel" Tapped="bus_Click">
                                 <FontIcon Glyph="&#xE8BB;"/>
                             </AppBarButton>
                         </StackPanel>
                     </Grid>
                 </ScrollViewer>
-
             </Popup>
         </StackPanel>
+        
         <StackPanel x:Name="timeDateStack"  Grid.Column="1" Grid.Row="0" Background="#bfbfbf" BorderThickness="2,0,0,2" BorderBrush="Black">
             <TextBlock x:Name="Time" Text="TÄHÄHN AIKA" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 

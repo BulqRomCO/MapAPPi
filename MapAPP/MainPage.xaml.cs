@@ -45,7 +45,6 @@ namespace MapAPP
             // Ajetaan seuraavat functiot heti ohjelman käynnistyttyä
             GenerateStopsData();
             ReadFakeGpsData();
-            
         }
         // Olio-kokoelmat
         List<BussStops> stops = new     List<MapAPP.BussStops>();
@@ -111,11 +110,11 @@ namespace MapAPP
         /// s muuttujaa käytetään if lausekkeissa. Linja näppäimessä käytetään s ja button label muuttujia, tämä ei olisi tarpeellista jos meillä olisi oikeata gps dataa.
         /// Funktio kaikikille näppäimille mitä ohjelmassa käytetään:
         /// CHOOSE BUS näppäin avaa popup näkymän mistä voi valita bussin tai busseja
-        /// Linja 'numero' näppäin tuo kartalle näkyviin bussin, sekä linjan kyseiset pysäkit punaisella. Ainoastaan linja 20 on feikki gps dataa demoamisen vuoksi
+        /// Linja 'numero' näppäin tuo kartalle näkyviin bussin, sekä linjan kyseiset pysäkit punaisella. Ainoastaan linja 20 on feikki gps dataa demoamisen vuoksi. Ladataan myös uudestaan Fakedata, jos CLEAR MAP näppäintä on painettu.
         /// DESTINATION näppäin avaa popup näkymän mistä voi valita reitin kahden pysäkin väliltä
         /// SHOW STOPS näppäin tuo kartalle näkyviin kaikki Jyväskylän liikenteen bussipysäkit
         /// D View näppäim vaihtaa kartan näkymän 3D:hen karttaa, jossa voidaan tarkastella näkymää x,y,z akseleilla. Näppäintä painaessa uudestaan näkymä vaihtuu takaisin 2D näkymään
-        /// CLEAR MAP näppäin poistaa kartalla olevat elementit(pysäkit tai reitit)
+        /// CLEAR MAP näppäin poistaa kartalla olevat elementit(pysäkit tai reitit) tyhjentää myös feikkidatalistan aika likaisesti, Taskin olisi voinut pysäyttää.
         /// Show näppäin on DESTINATION näppäimen popup ikkunan takana, jota painaessa voidaan piirtää kartalle pysäkkien välinen reitti
         /// OK tai Cancel näppäin sulkee CHOOSE BUS ikkunan, tämä voidaan myös toteuttaa painamalla SHOW STOPS tai DESTINATIOM tai CLEAR MAP näppäintä
         /// Close näppäin tekee saman asian kuin OK tai Cancel, mutta DESTINATION ikkunalle.
@@ -135,6 +134,7 @@ namespace MapAPP
             }
             else if (s == "Linja")
             {
+                ReadFakeGpsData();
                 if (buttonlabel == "Linja 20")
                 {
                     WaitDraw(buttonlabel);
@@ -159,6 +159,7 @@ namespace MapAPP
             {
                 JKLmap.MapElements.Clear();
                 JKLmap.Routes.Clear();
+                fakedata = new List<FakeData>();
             }
             else if (s == "Show")
             {
@@ -283,9 +284,7 @@ namespace MapAPP
                 JKLmap.MapElements.Add(stopoint);
             }
         }
-        private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
-        {
-        }
+
         /// <summary>
         /// AutoSuggestBox_querySubmitted funktio kutsuu 2 funktiota, ShowPoint ja routeto sekä antaa niille parametrina valitun string tyypisen pysäkin nime
         /// </summary>
