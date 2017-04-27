@@ -303,6 +303,11 @@ namespace MapAPP
                 Searchbox.Text = sender.Text;
             }
         }
+        /// <summary>
+        /// Funktio käy vertaamassa käyttäjän syötettä bussi pysäkki listan nimiin ja tuo mahdolliset vaihtoehdot
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             List<string> names = new List<string>();
@@ -318,7 +323,11 @@ namespace MapAPP
                 else sender.ItemsSource = new string[] { "Ei löydy" };
             }
         }
-
+        /// <summary>
+        /// Tekee saman asian kuin toinenkin autosuggest box ylempänä
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void DestinationSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             if (args.ChosenSuggestion != null)
@@ -332,6 +341,11 @@ namespace MapAPP
                 DestinationSuggestBox.Text = sender.Text;
             }
         }
+        /// <summary>
+        /// Funktio käy vertaamassa käyttäjän syötettä bussi pysäkki listan nimiin ja tuo mahdolliset vaihtoehdot
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void DestinationSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             List<string> names = new List<string>();
@@ -351,6 +365,10 @@ namespace MapAPP
             }
         }
 
+        /// <summary>
+        /// Funktio piirtää kartalle bussipysäkki elementit.
+        /// </summary>
+        /// <param name="name"></param>
         public void ShowPoint(string name)
         {
             foreach (BussStops stop in stops)
