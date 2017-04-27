@@ -105,6 +105,10 @@ namespace MapAPP
         }
 
         /// <summary>
+        /// Funktio ottaa parametreina objektin joka on näppäin. Funktiossa toteutetaan väliaikainen muuttuja nimeltä btn.
+        /// Näppäimen sisällä oleva 'label' tuodaan buttonlabel nimiseen merkkinoon.
+        /// Buttonlabel muuttujan sisältö parsitaan numeroista ja korvataan '' tyhjällä s merkkijono muuttujaan.
+        /// s muuttujaa käytetään if lausekkeissa. Linja näppäimessä käytetään s ja button label muuttujia, tämä ei olisi tarpeellista jos meillä olisi oikeata gps dataa.
         /// Funktio kaikikille näppäimille mitä ohjelmassa käytetään:
         /// CHOOSE BUS näppäin avaa popup näkymän mistä voi valita bussin tai busseja
         /// Linja 'numero' näppäin tuo kartalle näkyviin bussin, sekä linjan kyseiset pysäkit punaisella. Ainoastaan linja 20 on feikki gps dataa demoamisen vuoksi
